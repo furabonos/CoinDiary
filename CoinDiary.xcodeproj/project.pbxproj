@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06122D0A28D2F4A400792B87 /* domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D0928D2F4A400792B87 /* domain.swift */; };
 		06122D0C28D2F4AE00792B87 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D0B28D2F4AE00792B87 /* data.swift */; };
 		06122D0E28D2F4B600792B87 /* common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D0D28D2F4B600792B87 /* common.swift */; };
+		06122D1128D2F84500792B87 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1028D2F84500792B87 /* AppDIContainer.swift */; };
+		06122D1428D2F94100792B87 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1328D2F94100792B87 /* BaseViewController.swift */; };
+		06122D1A28D2F9B200792B87 /* entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1928D2F9B200792B87 /* entities.swift */; };
+		06122D1C28D2F9BE00792B87 /* usecases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1B28D2F9BE00792B87 /* usecases.swift */; };
+		06122D1E28D2F9C900792B87 /* repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1D28D2F9C900792B87 /* repository.swift */; };
+		06122D2328D2FA4400792B87 /* dto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D2228D2FA4400792B87 /* dto.swift */; };
 		06B53C2328D2EFE1001B9BA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C2228D2EFE1001B9BA2 /* AppDelegate.swift */; };
 		06B53C2728D2EFE1001B9BA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C2628D2EFE1001B9BA2 /* ViewController.swift */; };
 		06B53C2D28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C2B28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld */; };
@@ -41,9 +46,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		06122D0928D2F4A400792B87 /* domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = domain.swift; sourceTree = "<group>"; };
 		06122D0B28D2F4AE00792B87 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
 		06122D0D28D2F4B600792B87 /* common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = common.swift; sourceTree = "<group>"; };
+		06122D1028D2F84500792B87 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		06122D1328D2F94100792B87 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		06122D1928D2F9B200792B87 /* entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = entities.swift; sourceTree = "<group>"; };
+		06122D1B28D2F9BE00792B87 /* usecases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usecases.swift; sourceTree = "<group>"; };
+		06122D1D28D2F9C900792B87 /* repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = repository.swift; sourceTree = "<group>"; };
+		06122D2228D2FA4400792B87 /* dto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dto.swift; sourceTree = "<group>"; };
 		06B53C1F28D2EFE1001B9BA2 /* CoinDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B53C2228D2EFE1001B9BA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06B53C2628D2EFE1001B9BA2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,7 +126,8 @@
 		06122D0528D2F0DF00792B87 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				06122D0B28D2F4AE00792B87 /* data.swift */,
+				06122D2028D2FA2500792B87 /* DataSource */,
+				06122D1F28D2FA1D00792B87 /* Repository */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -124,7 +135,9 @@
 		06122D0628D2F0E400792B87 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				06122D0928D2F4A400792B87 /* domain.swift */,
+				06122D1828D2F97A00792B87 /* Entity */,
+				06122D1728D2F97300792B87 /* UseCase */,
+				06122D1528D2F96200792B87 /* Interface */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -132,6 +145,7 @@
 		06122D0728D2F0E900792B87 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				06122D1228D2F92F00792B87 /* Base */,
 				06B53C2628D2EFE1001B9BA2 /* ViewController.swift */,
 			);
 			path = Presentation;
@@ -141,8 +155,81 @@
 			isa = PBXGroup;
 			children = (
 				06B53C2228D2EFE1001B9BA2 /* AppDelegate.swift */,
+				06122D0F28D2F82F00792B87 /* DIContainer */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		06122D0F28D2F82F00792B87 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				06122D1028D2F84500792B87 /* AppDIContainer.swift */,
+			);
+			path = DIContainer;
+			sourceTree = "<group>";
+		};
+		06122D1228D2F92F00792B87 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				06122D1328D2F94100792B87 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		06122D1528D2F96200792B87 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				06122D1628D2F96900792B87 /* Repository */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		06122D1628D2F96900792B87 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				06122D1D28D2F9C900792B87 /* repository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		06122D1728D2F97300792B87 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				06122D1B28D2F9BE00792B87 /* usecases.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		06122D1828D2F97A00792B87 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				06122D1928D2F9B200792B87 /* entities.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		06122D1F28D2FA1D00792B87 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				06122D0B28D2F4AE00792B87 /* data.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		06122D2028D2FA2500792B87 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				06122D2128D2FA3C00792B87 /* DTO */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		06122D2128D2FA3C00792B87 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				06122D2228D2FA4400792B87 /* dto.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		06B53C1628D2EFE1001B9BA2 = {
@@ -459,12 +546,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06122D1128D2F84500792B87 /* AppDIContainer.swift in Sources */,
 				06B53C2D28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld in Sources */,
+				06122D2328D2FA4400792B87 /* dto.swift in Sources */,
 				06B53C2728D2EFE1001B9BA2 /* ViewController.swift in Sources */,
 				06122D0E28D2F4B600792B87 /* common.swift in Sources */,
 				06B53C2328D2EFE1001B9BA2 /* AppDelegate.swift in Sources */,
+				06122D1A28D2F9B200792B87 /* entities.swift in Sources */,
+				06122D1428D2F94100792B87 /* BaseViewController.swift in Sources */,
 				06122D0C28D2F4AE00792B87 /* data.swift in Sources */,
-				06122D0A28D2F4A400792B87 /* domain.swift in Sources */,
+				06122D1C28D2F9BE00792B87 /* usecases.swift in Sources */,
+				06122D1E28D2F9C900792B87 /* repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
