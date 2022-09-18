@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+final class AppDIContainer {
+    
+    // MARK: - DIContainers of scenes
+    func makeSceneDIContainer() -> SceneDIContainer {
+        let dependencies = SceneDIContainer()
+        return dependencies
+    }
+    
+}
