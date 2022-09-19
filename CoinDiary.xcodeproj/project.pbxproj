@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06050D6C28D834B500443156 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06050D6B28D834B500443156 /* GoogleService-Info.plist */; };
 		06122D1128D2F84500792B87 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1028D2F84500792B87 /* AppDIContainer.swift */; };
 		06122D1428D2F94100792B87 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1328D2F94100792B87 /* BaseViewController.swift */; };
 		06122D1A28D2F9B200792B87 /* entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1928D2F9B200792B87 /* entities.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06050D6B28D834B500443156 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06122D1028D2F84500792B87 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		06122D1328D2F94100792B87 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		06122D1928D2F9B200792B87 /* entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = entities.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 		06B53C2128D2EFE1001B9BA2 /* CoinDiary */ = {
 			isa = PBXGroup;
 			children = (
+				06050D6B28D834B500443156 /* GoogleService-Info.plist */,
 				06122D0828D2F0FD00792B87 /* Application */,
 				06122D0728D2F0E900792B87 /* Presentation */,
 				06122D0628D2F0E400792B87 /* Domain */,
@@ -501,6 +504,7 @@
 			files = (
 				06B53C3228D2EFE2001B9BA2 /* LaunchScreen.storyboard in Resources */,
 				06B53C2F28D2EFE2001B9BA2 /* Assets.xcassets in Resources */,
+				06050D6C28D834B500443156 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

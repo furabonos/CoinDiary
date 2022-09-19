@@ -8,6 +8,10 @@ target 'CoinDiary' do
   # Pods for CoinDiary
 pod 'Alamofire'
 pod 'SnapKit'
+pod 'FirebaseAuth'
+pod 'FirebaseFirestore'
+pod 'FirebaseAnalytics'
+pod 'Kingfisher'
 
   target 'CoinDiaryTests' do
     inherit! :search_paths
