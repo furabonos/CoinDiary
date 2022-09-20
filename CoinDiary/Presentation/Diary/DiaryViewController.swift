@@ -22,6 +22,30 @@ class DiaryViewController: BaseViewController, Alertable {
         return sv
     }()
     
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+//        layout.estimatedItemSize.height = 10
+        let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
+//        let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+//        cv.backgroundColor = .white
+//        cv.delegate = self
+//        cv.dataSource = self
+//        cv.register(UserListCell.self, forCellWithReuseIdentifier: self.userListCell)
+        return cv
+    }()
+    
+    lazy var addBtn: UIButton = {
+        var b = UIButton()
+        b.setImage(UIImage(systemName: "plus"), for: .normal)
+        b.backgroundColor = .white
+        b.layer.cornerRadius = 30
+        b.layer.shadowColor = UIColor.gray.cgColor
+        b.layer.shadowOpacity = 1.0
+        b.layer.shadowOffset = CGSize.zero
+        b.layer.shadowRadius = 6
+        return b
+    }()
+    
     public var viewModel: DiaryViewModel!
     var subscriptions = Set<AnyCancellable>()
     
@@ -37,7 +61,7 @@ class DiaryViewController: BaseViewController, Alertable {
     }
     
     override func setupUI() {
-        [menuStackView].forEach { self.view.addSubview($0) }
+        [menuStackView, collectionView, addBtn].forEach { self.view.addSubview($0) }
         makeMenuStackView()
     }
     
@@ -46,6 +70,17 @@ class DiaryViewController: BaseViewController, Alertable {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(30)
+        }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(menuStackView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        addBtn.snp.makeConstraints {
+            $0.width.height.equalTo(60)
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
         }
     }
     
