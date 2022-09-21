@@ -8,10 +8,9 @@
 import Foundation
 import Combine
 
-//struct DiaryViewModelAction {
-//    let showMovieDetails: (Movie) -> Void
-//    let showNext: () -> Void
-//}
+struct DiaryViewModelAction {
+    let showAddViewController: () -> Void
+}
 
 protocol DiaryViewModelInput {
     
@@ -26,13 +25,17 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
     private let useCase: DiaryUseCaseInterface
     private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
     
-//    private let action: DiaryViewModelAction?
+    private let action: DiaryViewModelAction?
     let menuList = ["날짜", "시작금액", "종료금액", "수익률", "메모"]
     
     
-    init(useCase: DiaryUseCaseInterface) {
+    init(useCase: DiaryUseCaseInterface, actions: DiaryViewModelAction? = nil) {
         self.useCase = useCase
-//        self.action = actions
+        self.action = actions
+    }
+    
+    public func showAddViewController() {
+        action?.showAddViewController()
     }
     
 }

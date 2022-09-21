@@ -43,6 +43,7 @@ class DiaryViewController: BaseViewController, Alertable {
         b.layer.shadowOpacity = 1.0
         b.layer.shadowOffset = CGSize.zero
         b.layer.shadowRadius = 6
+        b.addTarget(self, action: #selector(clickAddBtn(_:)), for: .touchUpInside)
         return b
     }()
     
@@ -89,14 +90,16 @@ class DiaryViewController: BaseViewController, Alertable {
             var menuLabel: UILabel = {
                 var l = UILabel()
                 l.text = viewModel.menuList[i]
-//                l.textColor = .black
                 l.textAlignment = .center
-//                l.backgroundColor = Colors.iosGrey
                 l.font = l.font.withSize(13)
                 return l
             }()
             menuStackView.addArrangedSubview(menuLabel)
         }
+    }
+    
+    @objc func clickAddBtn(_ sender: UIButton) {
+        viewModel.showAddViewController()
     }
 
 }

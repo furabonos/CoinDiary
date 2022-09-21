@@ -23,6 +23,12 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
         return ChartRepository(dataSource: dataSource)
     }
     
+    func makeAddRepository() -> AddRepository {
+        let dataSource: AddDataSourceInterface
+        dataSource = AddDataSource()
+        return AddRepository(dataSource: dataSource)
+    }
+    
     // MARK: - UseCase
     func makeDiaryUseCase() -> DiaryUseCase {
         return DiaryUseCase(repository: makeDiaryRepository())
@@ -31,25 +37,38 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
     func makeChartUseCase() -> ChartUseCase {
         return ChartUseCase(repository: makeChartRepository())
     }
-    // MARK: - Presentation
-    func makeTabbarController(diary: DiaryViewController, chart: ChartViewController) -> TabbarController {
-        return TabbarController(diary: makeDiaryViewController(), chart: makeChartViewController())
+    
+    func makeAddUseCase() -> AddUseCase {
+        return AddUseCase(repository: makeAddRepository())
     }
     
-    func makeDiaryViewModel() -> DiaryViewModel {
-        return DiaryViewModel(useCase: makeDiaryUseCase())
+    // MARK: - Presentation
+    func makeTabbarController(diary: DiaryViewController, chart: ChartViewController, actions: DiaryViewModelAction) -> TabbarController {
+        return TabbarController(diary: makeDiaryViewController(actions: actions), chart: makeChartViewController())
+    }
+    
+    func makeDiaryViewModel(actions: DiaryViewModelAction) -> DiaryViewModel {
+        return DiaryViewModel(useCase: makeDiaryUseCase(), actions: actions)
     }
     
     func makeChartViewModel() -> ChartViewModel {
         return ChartViewModel(useCase: makeChartUseCase())
     }
     
-    func makeDiaryViewController() -> DiaryViewController {
-        return DiaryViewController.create(with: makeDiaryViewModel())
+    func makeAddViewModel() -> AddViewModel {
+        return AddViewModel(useCase: makeAddUseCase())
+    }
+    
+    func makeDiaryViewController(actions: DiaryViewModelAction) -> DiaryViewController {
+        return DiaryViewController.create(with: DiaryViewModel(useCase: makeDiaryUseCase(), actions: actions))
     }
     
     func makeChartViewController() -> ChartViewController {
         return ChartViewController.create(with: makeChartViewModel())
+    }
+    
+    func makeAddViewController() -> AddViewController {
+        return AddViewController.create(with: makeAddViewModel())
     }
     
     // MARK: - Flow Coordinators

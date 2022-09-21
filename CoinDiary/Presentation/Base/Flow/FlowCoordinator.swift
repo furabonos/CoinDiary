@@ -11,9 +11,12 @@ import UIKit
 protocol FlowCoordinatorDependencies  {
 //    func makeUserViewController(actions: UsersViewModelActions) -> UserViewController
 //    func makeNextViewController() -> UIViewController
-    func makeTabbarController(diary: DiaryViewController, chart: ChartViewController) -> TabbarController
-    func makeDiaryViewController() -> DiaryViewController
+//    func makeTabbarController(diary: DiaryViewController, chart: ChartViewController) -> TabbarController
+//    func makeDiaryViewController() -> DiaryViewController
+    func makeTabbarController(diary: DiaryViewController, chart: ChartViewController, actions: DiaryViewModelAction) -> TabbarController
+    func makeDiaryViewController(actions: DiaryViewModelAction) -> DiaryViewController
     func makeChartViewController() -> ChartViewController
+    func makeAddViewController() -> AddViewController
 }
 
 final class FlowCoordinator {
@@ -29,19 +32,26 @@ final class FlowCoordinator {
     }
     
     func start() {
-        let vc = dependencies.makeTabbarController(diary: makeDiaryViewController(), chart: makeChartViewController())
+        let actions = DiaryViewModelAction(showAddViewController: showAddViewController)
+        let vc = dependencies.makeTabbarController(diary: makeDiaryViewController(), chart: makeChartViewController(), actions: actions)
         navigationController?.pushViewController(vc, animated: false)
         StartVC = vc
     }
     
     func makeDiaryViewController() -> DiaryViewController {
-        let vc = dependencies.makeDiaryViewController()
+        let actions = DiaryViewModelAction(showAddViewController: showAddViewController)
+        let vc = dependencies.makeDiaryViewController(actions: actions)
         return vc
     }
     
     func makeChartViewController() -> ChartViewController {
         let vc = dependencies.makeChartViewController()
         return vc
+    }
+    
+    private func showAddViewController() {
+        let vc = dependencies.makeAddViewController()
+        navigationController?.present(vc, animated: true)
     }
     
 }

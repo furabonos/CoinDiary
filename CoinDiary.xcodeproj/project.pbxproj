@@ -12,6 +12,13 @@
 		06122D1428D2F94100792B87 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1328D2F94100792B87 /* BaseViewController.swift */; };
 		06122D1A28D2F9B200792B87 /* entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1928D2F9B200792B87 /* entities.swift */; };
 		06122D2328D2FA4400792B87 /* dto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D2228D2FA4400792B87 /* dto.swift */; };
+		0669684528DA986900C51B91 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669684428DA986900C51B91 /* AddViewController.swift */; };
+		0669684728DA9F2C00C51B91 /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669684628DA9F2C00C51B91 /* AddViewModel.swift */; };
+		0669684B28DAA41F00C51B91 /* AddUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669684A28DAA41F00C51B91 /* AddUseCase.swift */; };
+		0669684D28DAA44700C51B91 /* AddRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669684C28DAA44700C51B91 /* AddRepositoryInterface.swift */; };
+		0669684F28DAA46200C51B91 /* AddDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669684E28DAA46200C51B91 /* AddDataSource.swift */; };
+		0669685128DAA48700C51B91 /* AddRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669685028DAA48700C51B91 /* AddRepository.swift */; };
+		0669685528DAB19900C51B91 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669685428DAB19900C51B91 /* DateExtensions.swift */; };
 		06B53C2328D2EFE1001B9BA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C2228D2EFE1001B9BA2 /* AppDelegate.swift */; };
 		06B53C2D28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C2B28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld */; };
 		06B53C2F28D2EFE2001B9BA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06B53C2E28D2EFE2001B9BA2 /* Assets.xcassets */; };
@@ -66,6 +73,13 @@
 		06122D1328D2F94100792B87 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		06122D1928D2F9B200792B87 /* entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = entities.swift; sourceTree = "<group>"; };
 		06122D2228D2FA4400792B87 /* dto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dto.swift; sourceTree = "<group>"; };
+		0669684428DA986900C51B91 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		0669684628DA9F2C00C51B91 /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
+		0669684A28DAA41F00C51B91 /* AddUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUseCase.swift; sourceTree = "<group>"; };
+		0669684C28DAA44700C51B91 /* AddRepositoryInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRepositoryInterface.swift; sourceTree = "<group>"; };
+		0669684E28DAA46200C51B91 /* AddDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataSource.swift; sourceTree = "<group>"; };
+		0669685028DAA48700C51B91 /* AddRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRepository.swift; sourceTree = "<group>"; };
+		0669685428DAB19900C51B91 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		06B53C1F28D2EFE1001B9BA2 /* CoinDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B53C2228D2EFE1001B9BA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06B53C2C28D2EFE1001B9BA2 /* CoinDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoinDiary.xcdatamodel; sourceTree = "<group>"; };
@@ -149,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				871EF8ED28D6F6DC0010F197 /* Colors.swift */,
+				0669685428DAB19900C51B91 /* DateExtensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -226,6 +241,7 @@
 			children = (
 				871EF8DB28D5A36F0010F197 /* DiaryRepositoryInterface.swift */,
 				871EF8E328D6D5410010F197 /* ChartRepositoryInterface.swift */,
+				0669684C28DAA44700C51B91 /* AddRepositoryInterface.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -235,6 +251,7 @@
 			children = (
 				871EF8D928D5A2740010F197 /* DiaryUseCase.swift */,
 				871EF8E128D6D4EF0010F197 /* ChartUseCase.swift */,
+				0669684A28DAA41F00C51B91 /* AddUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -252,6 +269,7 @@
 			children = (
 				871EF8DD28D5A4010010F197 /* DiaryRepository.swift */,
 				871EF8E728D6D58B0010F197 /* ChartRepository.swift */,
+				0669685028DAA48700C51B91 /* AddRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -262,6 +280,7 @@
 				06122D2128D2FA3C00792B87 /* DTO */,
 				871EF8DF28D5A4830010F197 /* DiaryDataSource.swift */,
 				871EF8E528D6D56E0010F197 /* ChartDataSource.swift */,
+				0669684E28DAA46200C51B91 /* AddDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -272,6 +291,24 @@
 				06122D2228D2FA4400792B87 /* dto.swift */,
 			);
 			path = DTO;
+			sourceTree = "<group>";
+		};
+		0669684828DA9F3C00C51B91 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				871EF8C228D57DA50010F197 /* DiaryViewController.swift */,
+				0669684428DA986900C51B91 /* AddViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0669684928DA9F4100C51B91 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				871EF8C428D57DB40010F197 /* DiaryViewModel.swift */,
+				0669684628DA9F2C00C51B91 /* AddViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		06B53C1628D2EFE1001B9BA2 = {
@@ -341,8 +378,8 @@
 		871EF8C028D57D7B0010F197 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
-				871EF8C228D57DA50010F197 /* DiaryViewController.swift */,
-				871EF8C428D57DB40010F197 /* DiaryViewModel.swift */,
+				0669684828DA9F3C00C51B91 /* View */,
+				0669684928DA9F4100C51B91 /* ViewModel */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -633,11 +670,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				871EF8C928D57DCC0010F197 /* ChartViewModel.swift in Sources */,
+				0669684B28DAA41F00C51B91 /* AddUseCase.swift in Sources */,
 				871EF8E828D6D58B0010F197 /* ChartRepository.swift in Sources */,
 				871EF8C528D57DB40010F197 /* DiaryViewModel.swift in Sources */,
 				871EF8C728D57DC20010F197 /* ChartViewController.swift in Sources */,
 				06122D1128D2F84500792B87 /* AppDIContainer.swift in Sources */,
+				0669684F28DAA46200C51B91 /* AddDataSource.swift in Sources */,
 				871EF8E628D6D56E0010F197 /* ChartDataSource.swift in Sources */,
+				0669684728DA9F2C00C51B91 /* AddViewModel.swift in Sources */,
 				06B53C2D28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld in Sources */,
 				06122D2328D2FA4400792B87 /* dto.swift in Sources */,
 				871EF8D828D587FE0010F197 /* FlowCoordinator.swift in Sources */,
@@ -648,6 +688,8 @@
 				06B53C2328D2EFE1001B9BA2 /* AppDelegate.swift in Sources */,
 				871EF8CD28D5815D0010F197 /* AppFlowCoordinator.swift in Sources */,
 				06122D1A28D2F9B200792B87 /* entities.swift in Sources */,
+				0669685128DAA48700C51B91 /* AddRepository.swift in Sources */,
+				0669684D28DAA44700C51B91 /* AddRepositoryInterface.swift in Sources */,
 				06122D1428D2F94100792B87 /* BaseViewController.swift in Sources */,
 				871EF8E028D5A4830010F197 /* DiaryDataSource.swift in Sources */,
 				871EF8DE28D5A4010010F197 /* DiaryRepository.swift in Sources */,
@@ -656,6 +698,8 @@
 				871EF8D328D585E40010F197 /* TabbarController.swift in Sources */,
 				871EF8CB28D5814A0010F197 /* AppAppearance.swift in Sources */,
 				871EF8DC28D5A36F0010F197 /* DiaryRepositoryInterface.swift in Sources */,
+				0669685528DAB19900C51B91 /* DateExtensions.swift in Sources */,
+				0669684528DA986900C51B91 /* AddViewController.swift in Sources */,
 				871EF8EC28D6DE280010F197 /* Alertable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
