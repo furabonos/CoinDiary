@@ -19,6 +19,9 @@
 		0669684F28DAA46200C51B91 /* AddDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669684E28DAA46200C51B91 /* AddDataSource.swift */; };
 		0669685128DAA48700C51B91 /* AddRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669685028DAA48700C51B91 /* AddRepository.swift */; };
 		0669685528DAB19900C51B91 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669685428DAB19900C51B91 /* DateExtensions.swift */; };
+		06A74B8728DBF6AB000F7FE3 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A74B8628DBF6AB000F7FE3 /* CustomLabel.swift */; };
+		06A74B8928DBFDBD000F7FE3 /* TextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A74B8828DBFDBD000F7FE3 /* TextFieldExtensions.swift */; };
+		06A74B8C28DC3507000F7FE3 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A74B8B28DC3507000F7FE3 /* PictureView.swift */; };
 		06B53C2328D2EFE1001B9BA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C2228D2EFE1001B9BA2 /* AppDelegate.swift */; };
 		06B53C2D28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C2B28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld */; };
 		06B53C2F28D2EFE2001B9BA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06B53C2E28D2EFE2001B9BA2 /* Assets.xcassets */; };
@@ -80,6 +83,9 @@
 		0669684E28DAA46200C51B91 /* AddDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataSource.swift; sourceTree = "<group>"; };
 		0669685028DAA48700C51B91 /* AddRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRepository.swift; sourceTree = "<group>"; };
 		0669685428DAB19900C51B91 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		06A74B8628DBF6AB000F7FE3 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		06A74B8828DBFDBD000F7FE3 /* TextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtensions.swift; sourceTree = "<group>"; };
+		06A74B8B28DC3507000F7FE3 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
 		06B53C1F28D2EFE1001B9BA2 /* CoinDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B53C2228D2EFE1001B9BA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06B53C2C28D2EFE1001B9BA2 /* CoinDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoinDiary.xcdatamodel; sourceTree = "<group>"; };
@@ -164,6 +170,8 @@
 			children = (
 				871EF8ED28D6F6DC0010F197 /* Colors.swift */,
 				0669685428DAB19900C51B91 /* DateExtensions.swift */,
+				06A74B8628DBF6AB000F7FE3 /* CustomLabel.swift */,
+				06A74B8828DBFDBD000F7FE3 /* TextFieldExtensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -298,6 +306,7 @@
 			children = (
 				871EF8C228D57DA50010F197 /* DiaryViewController.swift */,
 				0669684428DA986900C51B91 /* AddViewController.swift */,
+				06A74B8A28DC34DA000F7FE3 /* Custom */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -309,6 +318,14 @@
 				0669684628DA9F2C00C51B91 /* AddViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		06A74B8A28DC34DA000F7FE3 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				06A74B8B28DC3507000F7FE3 /* PictureView.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		06B53C1628D2EFE1001B9BA2 = {
@@ -672,6 +689,7 @@
 				871EF8C928D57DCC0010F197 /* ChartViewModel.swift in Sources */,
 				0669684B28DAA41F00C51B91 /* AddUseCase.swift in Sources */,
 				871EF8E828D6D58B0010F197 /* ChartRepository.swift in Sources */,
+				06A74B8928DBFDBD000F7FE3 /* TextFieldExtensions.swift in Sources */,
 				871EF8C528D57DB40010F197 /* DiaryViewModel.swift in Sources */,
 				871EF8C728D57DC20010F197 /* ChartViewController.swift in Sources */,
 				06122D1128D2F84500792B87 /* AppDIContainer.swift in Sources */,
@@ -682,6 +700,7 @@
 				06122D2328D2FA4400792B87 /* dto.swift in Sources */,
 				871EF8D828D587FE0010F197 /* FlowCoordinator.swift in Sources */,
 				871EF8C328D57DA50010F197 /* DiaryViewController.swift in Sources */,
+				06A74B8728DBF6AB000F7FE3 /* CustomLabel.swift in Sources */,
 				871EF8DA28D5A2740010F197 /* DiaryUseCase.swift in Sources */,
 				871EF8E228D6D4EF0010F197 /* ChartUseCase.swift in Sources */,
 				871EF8CF28D584000010F197 /* SceneDIContainer.swift in Sources */,
@@ -692,6 +711,7 @@
 				0669684D28DAA44700C51B91 /* AddRepositoryInterface.swift in Sources */,
 				06122D1428D2F94100792B87 /* BaseViewController.swift in Sources */,
 				871EF8E028D5A4830010F197 /* DiaryDataSource.swift in Sources */,
+				06A74B8C28DC3507000F7FE3 /* PictureView.swift in Sources */,
 				871EF8DE28D5A4010010F197 /* DiaryRepository.swift in Sources */,
 				871EF8E428D6D5410010F197 /* ChartRepositoryInterface.swift in Sources */,
 				871EF8EE28D6F6DC0010F197 /* Colors.swift in Sources */,

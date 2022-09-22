@@ -51,6 +51,7 @@ final class FlowCoordinator {
     
     private func showAddViewController() {
         let vc = dependencies.makeAddViewController()
+        vc.modalPresentationStyle = .fullScreen
         navigationController?.present(vc, animated: true)
     }
     
