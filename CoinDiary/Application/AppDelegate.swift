@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        UserDefaults.standard.set(UIDevice.current.identifierForVendor!.uuidString, forKey: "UUID")
+        
         return true
     }
 

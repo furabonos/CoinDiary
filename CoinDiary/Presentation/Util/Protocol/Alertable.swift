@@ -16,7 +16,29 @@ public extension Alertable where Self: UIViewController {
         self.present(alert, animated: true, completion: completion)
     }
     
-    func selectMoneyUnitAlert() {}
+    func selectMoneyUnitAlert(title: String = "", message: String, preferredStyle: UIAlertController.Style = .alert, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "KRW", style: UIAlertAction.Style.default, handler: { action in
+            UserDefaults.standard.set("KRW", forKey: "unit")
+        }))
+        alert.addAction(UIAlertAction(title: "USDT", style: UIAlertAction.Style.default, handler: { action in
+            UserDefaults.standard.set("USDT", forKey: "unit")
+        }))
+        self.present(alert, animated: true, completion: completion)
+    }
     
-    func selectChallengeDaysAlert() {}
+    func saveDataSuccess(title: String = "", message: String, preferredStyle: UIAlertController.Style = .alert, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { action in
+            self.dismiss(animated: true)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func saveDataFailure(title: String = "", message: String, preferredStyle: UIAlertController.Style = .alert, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }

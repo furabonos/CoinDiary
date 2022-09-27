@@ -16,4 +16,10 @@ public final class AddRepository: AddRepositoryInterface {
         self.dataSource = dataSource
     }
     
+    public func saveData(date: String, start: String, end: String, memo: String, completion: @escaping (Bool) -> Void) -> Cancellable? {
+        dataSource.saveData(date: date, start: start, end: end, memo: memo) { result in
+            completion(result)
+        }
+    }
+    
 }

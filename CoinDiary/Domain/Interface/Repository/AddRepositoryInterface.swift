@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol AddRepositoryInterface {
-    
+    func saveData(date: String, start: String, end: String, memo: String, completion: @escaping (Bool) -> Void) -> Cancellable?
 }

@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import SnapKit
 
-class DiaryViewController: BaseViewController, Alertable {
+class DiaryViewController: BaseViewController {
     
     var menuStackView: UIStackView = {
         var sv = UIStackView()
@@ -39,10 +39,7 @@ class DiaryViewController: BaseViewController, Alertable {
         b.setImage(UIImage(systemName: "plus"), for: .normal)
         b.backgroundColor = .white
         b.layer.cornerRadius = 30
-        b.layer.shadowColor = UIColor.gray.cgColor
-        b.layer.shadowOpacity = 1.0
-        b.layer.shadowOffset = CGSize.zero
-        b.layer.shadowRadius = 6
+        b.addAllShadow()
         b.addTarget(self, action: #selector(clickAddBtn(_:)), for: .touchUpInside)
         return b
     }()
@@ -59,6 +56,15 @@ class DiaryViewController: BaseViewController, Alertable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if getStringUserDefaults(key: "unit") == "" {
+            selectMoneyUnitAlert(title: "", message: "단위를 선택해주세요", preferredStyle: .alert, completion: nil)
+        }else {
+            print(getStringUserDefaults(key: "unit"))
+        }
     }
     
     override func setupUI() {

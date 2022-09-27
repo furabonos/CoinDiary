@@ -50,6 +50,11 @@
 		871EF8E828D6D58B0010F197 /* ChartRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF8E728D6D58B0010F197 /* ChartRepository.swift */; };
 		871EF8EC28D6DE280010F197 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF8EB28D6DE280010F197 /* Alertable.swift */; };
 		871EF8EE28D6F6DC0010F197 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF8ED28D6F6DC0010F197 /* Colors.swift */; };
+		87D1328328E0850C00F35E49 /* ButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328228E0850C00F35E49 /* ButtonExtensions.swift */; };
+		87D1328728E08B5900F35E49 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328628E08B5900F35E49 /* UserDefault.swift */; };
+		87D1328928E1380000F35E49 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328828E1380000F35E49 /* IntExtensions.swift */; };
+		87D1328B28E1C03300F35E49 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328A28E1C03300F35E49 /* Cancelable.swift */; };
+		87D1328E28E1C07B00F35E49 /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328D28E1C07B00F35E49 /* RepositoryTask.swift */; };
 		A0555F81E2CBC3CAADB94168 /* Pods_CoinDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3722FB25E407BB242B8ABE4 /* Pods_CoinDiaryTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +127,11 @@
 		871EF8E728D6D58B0010F197 /* ChartRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRepository.swift; sourceTree = "<group>"; };
 		871EF8EB28D6DE280010F197 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		871EF8ED28D6F6DC0010F197 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		87D1328228E0850C00F35E49 /* ButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtensions.swift; sourceTree = "<group>"; };
+		87D1328628E08B5900F35E49 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		87D1328828E1380000F35E49 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
+		87D1328A28E1C03300F35E49 /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
+		87D1328D28E1C07B00F35E49 /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
 		C3722FB25E407BB242B8ABE4 /* Pods_CoinDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1955311D052081B6FB9721C /* Pods-CoinDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiary.release.xcconfig"; path = "Target Support Files/Pods-CoinDiary/Pods-CoinDiary.release.xcconfig"; sourceTree = "<group>"; };
 		F6FBB1D5BA41CE3F3BF644D3 /* Pods-CoinDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiary.debug.xcconfig"; path = "Target Support Files/Pods-CoinDiary/Pods-CoinDiary.debug.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +182,9 @@
 				0669685428DAB19900C51B91 /* DateExtensions.swift */,
 				06A74B8628DBF6AB000F7FE3 /* CustomLabel.swift */,
 				06A74B8828DBFDBD000F7FE3 /* TextFieldExtensions.swift */,
+				87D1328228E0850C00F35E49 /* ButtonExtensions.swift */,
+				87D1328828E1380000F35E49 /* IntExtensions.swift */,
+				87D1328A28E1C03300F35E49 /* Cancelable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -275,6 +288,7 @@
 		06122D1F28D2FA1D00792B87 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				87D1328C28E1C05A00F35E49 /* Util */,
 				871EF8DD28D5A4010010F197 /* DiaryRepository.swift */,
 				871EF8E728D6D58B0010F197 /* ChartRepository.swift */,
 				0669685028DAA48700C51B91 /* AddRepository.swift */,
@@ -430,8 +444,17 @@
 			isa = PBXGroup;
 			children = (
 				871EF8EB28D6DE280010F197 /* Alertable.swift */,
+				87D1328628E08B5900F35E49 /* UserDefault.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		87D1328C28E1C05A00F35E49 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				87D1328D28E1C07B00F35E49 /* RepositoryTask.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		B748F12072EF03438C7BA868 /* Pods */ = {
@@ -686,8 +709,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87D1328728E08B5900F35E49 /* UserDefault.swift in Sources */,
 				871EF8C928D57DCC0010F197 /* ChartViewModel.swift in Sources */,
 				0669684B28DAA41F00C51B91 /* AddUseCase.swift in Sources */,
+				87D1328928E1380000F35E49 /* IntExtensions.swift in Sources */,
 				871EF8E828D6D58B0010F197 /* ChartRepository.swift in Sources */,
 				06A74B8928DBFDBD000F7FE3 /* TextFieldExtensions.swift in Sources */,
 				871EF8C528D57DB40010F197 /* DiaryViewModel.swift in Sources */,
@@ -707,10 +732,13 @@
 				06B53C2328D2EFE1001B9BA2 /* AppDelegate.swift in Sources */,
 				871EF8CD28D5815D0010F197 /* AppFlowCoordinator.swift in Sources */,
 				06122D1A28D2F9B200792B87 /* entities.swift in Sources */,
+				87D1328328E0850C00F35E49 /* ButtonExtensions.swift in Sources */,
 				0669685128DAA48700C51B91 /* AddRepository.swift in Sources */,
 				0669684D28DAA44700C51B91 /* AddRepositoryInterface.swift in Sources */,
+				87D1328E28E1C07B00F35E49 /* RepositoryTask.swift in Sources */,
 				06122D1428D2F94100792B87 /* BaseViewController.swift in Sources */,
 				871EF8E028D5A4830010F197 /* DiaryDataSource.swift in Sources */,
+				87D1328B28E1C03300F35E49 /* Cancelable.swift in Sources */,
 				06A74B8C28DC3507000F7FE3 /* PictureView.swift in Sources */,
 				871EF8DE28D5A4010010F197 /* DiaryRepository.swift in Sources */,
 				871EF8E428D6D5410010F197 /* ChartRepositoryInterface.swift in Sources */,

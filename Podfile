@@ -6,12 +6,14 @@ target 'CoinDiary' do
   use_frameworks!
 
   # Pods for CoinDiary
-pod 'Alamofire'
+pod 'Alamofire', '~> 5.6.2'
 pod 'SnapKit'
 pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
 pod 'FirebaseAnalytics'
 pod 'Kingfisher'
+pod 'Firebase/Core' 
+pod 'Firebase/Storage' 
 
   target 'CoinDiaryTests' do
     inherit! :search_paths
