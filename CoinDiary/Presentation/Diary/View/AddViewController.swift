@@ -105,6 +105,11 @@ class AddViewController: BaseViewController {
         return b
     }()
     
+    var indicatorView: UIActivityIndicatorView = {
+        var iv = UIActivityIndicatorView()
+        return iv
+    }()
+    
     var images: UIImage!
     
     var pictureView = PictureView(frame: .zero, image: nil)
@@ -131,7 +136,7 @@ class AddViewController: BaseViewController {
     }
     
     override func setupUI() {
-        [dateLabel, dateField, startLabel, startField, endLabel, endField, memoLabel, memoField, photoBtn, imageView, addBtn, cancelBtn].forEach { self.view.addSubview($0) }
+        [dateLabel, dateField, startLabel, startField, endLabel, endField, memoLabel, memoField, photoBtn, imageView, addBtn, cancelBtn, indicatorView].forEach { self.view.addSubview($0) }
     }
     
     override func setupConstraints() {
@@ -212,6 +217,11 @@ class AddViewController: BaseViewController {
             $0.width.equalTo(80)
             $0.height.equalTo(30)
         }
+        
+        indicatorView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.height.equalTo(50)
+        }
     }
     
     override func bind() {
@@ -228,7 +238,7 @@ class AddViewController: BaseViewController {
                 if value {
                     saveDataSuccess(message: "저장되었습니다.")
                 }else {
-                    saveDataFailure(message: "저장에 실패하였습니다.\n잠시후 다시 시도해주세요.")
+                    saveDataFailure(message: "저장에 실패하였습니다.\n잠시후 다시 시도해주세요.", indicator: self.indicatorView)
                 }
             }.store(in: &subscriptions)
     }
@@ -258,21 +268,21 @@ class AddViewController: BaseViewController {
     
     @objc func clickAdd(_ sender: UIButton) {
         //날짜 시작금액 종료금액 메모
-//        var start = startField.text ?? ""
-//        var end = endField.text ?? ""
-//        var memo = memoField.text ?? ""
-//
-//        if start == "" {
-//            showAlert(message: "시작금액을 입력해주세요.")
-//        }else if end == "" {
-//            showAlert(message: "종료금액을 입력해주세요.")
-//        }else {
-//            viewModel.saveData(date: Date().getToday, start: start, end: end, memo: memo)
-//        }
-        if imageView.image != nil {
-            guard let images = imageView.image else { return }
-            print("ppppppp = \(images)")
+        var start = startField.text ?? ""
+        var end = endField.text ?? ""
+        var memo = memoField.text ?? ""
+        var images = imageView.image
+
+        if start == "" {
+            showAlert(message: "시작금액을 입력해주세요.")
+        }else if end == "" {
+            showAlert(message: "종료금액을 입력해주세요.")
+        }else {
+            indicatorView.startAnimating()
+            viewModel.saveData(date: Date().getToday, start: start, end: end, memo: memo, image: images)
+
         }
+        
     }
     
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController, UserDefault, Alertable {
+class BaseViewController: UIViewController, UserDefault, Alertable, Calculation {
     
     var keyboardHeight: CGFloat = 0
 

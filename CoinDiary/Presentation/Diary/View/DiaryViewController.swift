@@ -8,6 +8,9 @@
 import UIKit
 import Combine
 import SnapKit
+import Firebase
+import FirebaseCore
+import FirebaseStorage
 
 class DiaryViewController: BaseViewController {
     
@@ -22,15 +25,16 @@ class DiaryViewController: BaseViewController {
         return sv
     }()
     
+    var diaryCell = "DiaryCell"
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
 //        layout.estimatedItemSize.height = 10
         let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
 //        let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-//        cv.backgroundColor = .white
+        cv.backgroundColor = .red
 //        cv.delegate = self
 //        cv.dataSource = self
-//        cv.register(UserListCell.self, forCellWithReuseIdentifier: self.userListCell)
+        cv.register(DiaryCell.self, forCellWithReuseIdentifier: self.diaryCell)
         return cv
     }()
     
@@ -65,7 +69,69 @@ class DiaryViewController: BaseViewController {
         }else {
             print(getStringUserDefaults(key: "unit"))
         }
+        
+        //
+        let db = Firestore.firestore()
+        let decoder = JSONDecoder()
+        db.collection(UserDefaults.standard.string(forKey: "UUID")!).getDocuments { (snapshot, error) in
+            if error == nil && snapshot != nil {
+                for document in snapshot!.documents {
+//                    db.collection(UserDefaults.standard.string(forKey: "UUID")!).document(document.documentID)
+//                    print("씨발 = \(document.data())")
+                    do {
+                        let datas = document.data()
+                        let jsonData = try JSONSerialization.data(withJSONObject: datas)
+                        let dddd = try decoder.decode(DiaryDTO.self, from: jsonData)
+                        print("으라차 = \(dddd)")
+                    } catch {
+                        print(error)
+                    }
+                }
+            } else {
+                // error. do something
+            }
+        }
+        //
     }
+    
+    func aaa() {
+        //
+        let db = Firestore.firestore()
+        let decoder = JSONDecoder()
+        db.collection(UserDefaults.standard.string(forKey: "UUID")!).getDocuments { (snapshot, error) in
+            if error == nil && snapshot != nil {
+                for document in snapshot!.documents {
+//                    db.collection(UserDefaults.standard.string(forKey: "UUID")!).document(document.documentID)
+//                    print("씨발 = \(document.data())")
+                    do {
+                        let datas = document.data()
+                        let jsonData = try JSONSerialization.data(withJSONObject: datas)
+                        let dddd = try decoder.decode(DiaryDTO.self, from: jsonData)
+//                        print("으라차 = \(dddd)")
+                    } catch {
+                        print(error)
+                    }
+//                    public func fetchDailyWeather() -> AnyPublisher<[WeatherDTO], Error> {
+//                        return Just(dailyWeatherLocalData)
+//                            .tryMap { try JSONSerialization.data(withJSONObject: $0, options: .prettyPrinted) }
+//                            .decode(type: [WeatherDTO].self, decoder: JSONDecoder())
+//                            .eraseToAnyPublisher()
+//                    }
+                    
+                }
+            } else {
+                // error. do something
+            }
+        }
+        //
+    }
+    
+//    public func fetchDailyWeather() -> AnyPublisher<[WeatherDTO], Error> {
+//        return Just(dailyWeatherLocalData)
+//            .tryMap { try JSONSerialization.data(withJSONObject: $0, options: .prettyPrinted) }
+//            .decode(type: [WeatherDTO].self, decoder: JSONDecoder())
+//            .eraseToAnyPublisher()
+//    }
     
     override func setupUI() {
         [menuStackView, collectionView, addBtn].forEach { self.view.addSubview($0) }

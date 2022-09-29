@@ -35,9 +35,11 @@ public extension Alertable where Self: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func saveDataFailure(title: String = "", message: String, preferredStyle: UIAlertController.Style = .alert, completion: (() -> Void)? = nil) {
+    func saveDataFailure(title: String = "", message: String, preferredStyle: UIAlertController.Style = .alert, indicator: UIActivityIndicatorView, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { action in
+            indicator.stopAnimating()
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     

@@ -12,8 +12,8 @@ pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
 pod 'FirebaseAnalytics'
 pod 'Kingfisher'
-pod 'Firebase/Core' 
-pod 'Firebase/Storage' 
+pod 'Firebase/Core'
+pod 'Firebase/Storage'
 
   target 'CoinDiaryTests' do
     inherit! :search_paths

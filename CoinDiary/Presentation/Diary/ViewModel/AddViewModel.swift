@@ -19,7 +19,7 @@ protocol AddViewModelInput {
 }
 
 protocol AddViewModelOutput {
-    func saveData(date: String, start: String, end: String, memo: String)
+    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?)
     func clickCancel()
 }
 
@@ -36,6 +36,7 @@ public final class AddViewModel: AddViewModelInput, AddViewModelOutput, Observab
             saveDataPublisher.send(saveData)
         }
     }
+
     var viewDismissalModePublisher = PassthroughSubject<Bool, Never>()
     var saveDataPublisher = PassthroughSubject<Bool, Never>()
     
@@ -54,8 +55,8 @@ public final class AddViewModel: AddViewModelInput, AddViewModelOutput, Observab
         self.shouldPopView = true
     }
     
-    func saveData(date: String, start: String, end: String, memo: String) {
-        useCase.saveData(date: date, start: start, end: end, memo: memo) { result in
+    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?) {
+        useCase.saveData(date: date, start: start, end: end, memo: memo, image: image) { result in
             switch result {
             case true:
                 self.saveData = true
