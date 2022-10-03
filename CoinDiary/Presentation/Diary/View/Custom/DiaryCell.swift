@@ -30,20 +30,36 @@ class DiaryCell: BaseCollectionViewCell {
         }
     }
     
-    func fillStackView() {
-        var aa = ["220928", "400", "500", "memos"]
-        for i in 0..<5 {
+    func fillStackView(_ info: DiaryEntity) {
+        var starts = Double(info.start.replacingOccurrences(of: "KRW", with: "").replacingOccurrences(of: ",", with: ""))
+        var ends = Double(info.end.replacingOccurrences(of: "KRW", with: "").replacingOccurrences(of: ",", with: ""))
+        
+        var titleArr = [info.today, info.start, info.end, yieldCalculation(start: starts!, end: ends!), info.memo]
+        for i in 0..<titleArr.count {
             var valueLabel: UILabel = {
                 var l = UILabel()
-                if i == 3 {
-                    l.text = yieldCalculation(start: Double(aa[1])!, end: Double(aa[2])!)
+                if i == 4 {
+                    if let memos = info.memo {
+                        l.text = memos
+                    }else {
+                        l.text = ""
+                    }
                 }else {
-                    l.text = aa[i]
+                    l.text = titleArr[i]
                 }
+        
                 l.textAlignment = .center
                 l.font = l.font.withSize(13)
+                if i == 3 {
+                    if yieldCalculation(start: starts!, end: ends!).contains("-") {
+                        l.textColor = .red
+                    }else {
+                        l.textColor = .blue
+                    }
+                }
                 return l
             }()
+            StackView.addArrangedSubview(valueLabel)
         }
     }
     

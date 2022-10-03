@@ -16,4 +16,32 @@ public final class DiaryRepository: DiaryRepositoryInterface {
         self.dataSource = dataSource
     }
     
+    public func fetchData(completion: @escaping (AnyPublisher<[DiaryEntity], Error>) -> Void) {
+        dataSource.fetchData { result in
+            completion(
+                result.map({ diaryDTOList in
+                    var diaryEntities = [DiaryEntity]()
+                    for diary in diaryDTOList {
+                        diaryEntities.append(diary.dto())
+                    }
+                    return diaryEntities
+                })
+                .eraseToAnyPublisher()
+            )
+        }
+    }
+    
+    public func addSnapshot(completion: @escaping (AnyPublisher<DiaryEntity, Error>) -> Void) {
+        dataSource.addSnapshot { result in
+            completion(
+                result.map({ diaryDTO in
+                    var diaryEntity: DiaryEntity
+                    diaryEntity = diaryDTO.dto()
+                    return diaryEntity
+                })
+                .eraseToAnyPublisher()
+            )
+        }
+    }
+    
 }

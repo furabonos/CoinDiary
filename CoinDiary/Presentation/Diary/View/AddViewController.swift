@@ -9,16 +9,17 @@ import UIKit
 import SnapKit
 import Combine
 
+
 class AddViewController: BaseViewController {
     
-    var dateLabel: UILabel = {
+    lazy var dateLabel: UILabel = {
         var l = UILabel()
         l.text = "기록일"
         return l
         
     }()
     
-    var dateField: LeftPaddingLabel = {
+    lazy var dateField: LeftPaddingLabel = {
         var l = LeftPaddingLabel()
         l.text = "\(Date().getToday)"
         l.layer.borderColor = UIColor.gray.cgColor
@@ -27,7 +28,7 @@ class AddViewController: BaseViewController {
         return l
     }()
     
-    var startLabel: UILabel = {
+    lazy var startLabel: UILabel = {
         var l = UILabel()
         l.text = "시작시드"
         return l
@@ -44,7 +45,7 @@ class AddViewController: BaseViewController {
         return tf
     }()
     
-    var endLabel: UILabel = {
+    lazy var endLabel: UILabel = {
         var l = UILabel()
         l.text = "종료시드"
         return l
@@ -61,7 +62,7 @@ class AddViewController: BaseViewController {
         return tf
     }()
     
-    var memoLabel: UILabel = {
+    lazy var memoLabel: UILabel = {
         var l = UILabel()
         l.text = "메모"
         return l
@@ -75,7 +76,7 @@ class AddViewController: BaseViewController {
         return tf
     }()
     
-    var photoBtn: UIButton = {
+    lazy var photoBtn: UIButton = {
         var b = UIButton()
         b.setImage(UIImage(systemName: "photo"), for: .normal)
         b.imageView?.contentMode = .scaleAspectFit
@@ -89,7 +90,7 @@ class AddViewController: BaseViewController {
         return iv
     }()
     
-    var addBtn: UIButton = {
+    lazy var addBtn: UIButton = {
         var b = UIButton()
         b.setTitle("확인", for: .normal)
         b.setTitleColor(.systemBlue, for: .normal)
@@ -97,7 +98,7 @@ class AddViewController: BaseViewController {
         return b
     }()
     
-    var cancelBtn: UIButton = {
+    lazy var cancelBtn: UIButton = {
         var b = UIButton()
         b.setTitle("취소", for: .normal)
         b.setTitleColor(.systemBlue, for: .normal)
@@ -105,7 +106,7 @@ class AddViewController: BaseViewController {
         return b
     }()
     
-    var indicatorView: UIActivityIndicatorView = {
+    lazy var indicatorView: UIActivityIndicatorView = {
         var iv = UIActivityIndicatorView()
         return iv
     }()

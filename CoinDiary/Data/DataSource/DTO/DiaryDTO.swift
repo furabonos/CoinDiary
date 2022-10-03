@@ -19,7 +19,7 @@ public struct DiaryDTO: Codable {
         case imageURL, memo, start, end, today
     }
     
-//    public func dto() -> UserEntity {
-//        return UserEntity(id: login)
-//    }
+    public func dto() -> DiaryEntity {
+        return DiaryEntity(imageURL: imageURL, memo: memo, start: start, end: end, today: today)
+    }
 }

@@ -57,6 +57,7 @@
 		87D1328928E1380000F35E49 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328828E1380000F35E49 /* IntExtensions.swift */; };
 		87D1328B28E1C03300F35E49 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328A28E1C03300F35E49 /* Cancelable.swift */; };
 		87D1328E28E1C07B00F35E49 /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328D28E1C07B00F35E49 /* RepositoryTask.swift */; };
+		87FB634C28E6FD3F002C5C31 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB634B28E6FD3F002C5C31 /* SpinnerViewController.swift */; };
 		87FED14C28E4033100C258CF /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14B28E4033100C258CF /* DiaryCell.swift */; };
 		87FED14E28E4043B00C258CF /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14D28E4043B00C258CF /* BaseCollectionViewCell.swift */; };
 		87FED15028E43E6500C258CF /* Calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14F28E43E6500C258CF /* Calculation.swift */; };
@@ -139,6 +140,7 @@
 		87D1328828E1380000F35E49 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		87D1328A28E1C03300F35E49 /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
 		87D1328D28E1C07B00F35E49 /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
+		87FB634B28E6FD3F002C5C31 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		87FED14B28E4033100C258CF /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
 		87FED14D28E4043B00C258CF /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		87FED14F28E43E6500C258CF /* Calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculation.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				87D1328228E0850C00F35E49 /* ButtonExtensions.swift */,
 				87D1328828E1380000F35E49 /* IntExtensions.swift */,
 				87D1328A28E1C03300F35E49 /* Cancelable.swift */,
+				87FB634B28E6FD3F002C5C31 /* SpinnerViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 				06122D2328D2FA4400792B87 /* dto.swift in Sources */,
 				870FB68428E46F54000FF80A /* DiaryEntity.swift in Sources */,
 				871EF8D828D587FE0010F197 /* FlowCoordinator.swift in Sources */,
+				87FB634C28E6FD3F002C5C31 /* SpinnerViewController.swift in Sources */,
 				871EF8C328D57DA50010F197 /* DiaryViewController.swift in Sources */,
 				06A74B8728DBF6AB000F7FE3 /* CustomLabel.swift in Sources */,
 				871EF8DA28D5A2740010F197 /* DiaryUseCase.swift in Sources */,

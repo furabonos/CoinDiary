@@ -15,6 +15,7 @@ pod 'Kingfisher'
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
 
+
   target 'CoinDiaryTests' do
     inherit! :search_paths
     # Pods for testing

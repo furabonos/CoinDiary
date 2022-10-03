@@ -9,7 +9,8 @@ import Foundation
 import Combine
 
 public protocol DiaryUseCaseInterface {
-    
+    func fetchData(completion: @escaping (AnyPublisher<[DiaryEntity], Error>) -> Void)
+    func addSnapshot(completion: @escaping (AnyPublisher<DiaryEntity, Error>) -> Void)
 }
 
 public final class DiaryUseCase: DiaryUseCaseInterface {
@@ -18,6 +19,18 @@ public final class DiaryUseCase: DiaryUseCaseInterface {
     
     public init(repository: DiaryRepositoryInterface) {
         self.repository = repository
+    }
+    
+    public func fetchData(completion: @escaping (AnyPublisher<[DiaryEntity], Error>) -> Void) {
+        repository.fetchData { result in
+            completion(result)
+        }
+    }
+    
+    public func addSnapshot(completion: @escaping (AnyPublisher<DiaryEntity, Error>) -> Void) {
+        repository.addSnapshot { result in
+            completion(result)
+        }
     }
 }
 

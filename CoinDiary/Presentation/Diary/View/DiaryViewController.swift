@@ -12,29 +12,34 @@ import Firebase
 import FirebaseCore
 import FirebaseStorage
 
+
 class DiaryViewController: BaseViewController {
     
-    var menuStackView: UIStackView = {
+    lazy var menuStackView: UIStackView = {
         var sv = UIStackView()
         sv.axis = .horizontal
         sv.distribution = .fillEqually
         sv.alignment = .fill
         sv.spacing = 10
-//        sv.backgroundColor = Colors.iosGrey
+        //        sv.backgroundColor = Colors.iosGrey
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
     
     var diaryCell = "DiaryCell"
+    enum Section {
+        case main
+    }
+    typealias Item = DiaryEntity
+    var datasource: UICollectionViewDiffableDataSource<Section, Item>!
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-//        layout.estimatedItemSize.height = 10
+        layout.minimumLineSpacing = 10
         let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
-//        let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        cv.backgroundColor = .red
-//        cv.delegate = self
-//        cv.dataSource = self
+        cv.backgroundColor = .systemBackground
         cv.register(DiaryCell.self, forCellWithReuseIdentifier: self.diaryCell)
+        cv.delegate = self
+        cv.dataSource = self
         return cv
     }()
     
@@ -56,82 +61,22 @@ class DiaryViewController: BaseViewController {
         view.viewModel = viewModel
         return view
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
+//        configureCollectionView()
+        viewModel.fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if getStringUserDefaults(key: "unit") == "" {
             selectMoneyUnitAlert(title: "", message: "단위를 선택해주세요", preferredStyle: .alert, completion: nil)
-        }else {
-            print(getStringUserDefaults(key: "unit"))
         }
+        viewModel.addSnapshot()
         
-        //
-        let db = Firestore.firestore()
-        let decoder = JSONDecoder()
-        db.collection(UserDefaults.standard.string(forKey: "UUID")!).getDocuments { (snapshot, error) in
-            if error == nil && snapshot != nil {
-                for document in snapshot!.documents {
-//                    db.collection(UserDefaults.standard.string(forKey: "UUID")!).document(document.documentID)
-//                    print("씨발 = \(document.data())")
-                    do {
-                        let datas = document.data()
-                        let jsonData = try JSONSerialization.data(withJSONObject: datas)
-                        let dddd = try decoder.decode(DiaryDTO.self, from: jsonData)
-                        print("으라차 = \(dddd)")
-                    } catch {
-                        print(error)
-                    }
-                }
-            } else {
-                // error. do something
-            }
-        }
-        //
     }
-    
-    func aaa() {
-        //
-        let db = Firestore.firestore()
-        let decoder = JSONDecoder()
-        db.collection(UserDefaults.standard.string(forKey: "UUID")!).getDocuments { (snapshot, error) in
-            if error == nil && snapshot != nil {
-                for document in snapshot!.documents {
-//                    db.collection(UserDefaults.standard.string(forKey: "UUID")!).document(document.documentID)
-//                    print("씨발 = \(document.data())")
-                    do {
-                        let datas = document.data()
-                        let jsonData = try JSONSerialization.data(withJSONObject: datas)
-                        let dddd = try decoder.decode(DiaryDTO.self, from: jsonData)
-//                        print("으라차 = \(dddd)")
-                    } catch {
-                        print(error)
-                    }
-//                    public func fetchDailyWeather() -> AnyPublisher<[WeatherDTO], Error> {
-//                        return Just(dailyWeatherLocalData)
-//                            .tryMap { try JSONSerialization.data(withJSONObject: $0, options: .prettyPrinted) }
-//                            .decode(type: [WeatherDTO].self, decoder: JSONDecoder())
-//                            .eraseToAnyPublisher()
-//                    }
-                    
-                }
-            } else {
-                // error. do something
-            }
-        }
-        //
-    }
-    
-//    public func fetchDailyWeather() -> AnyPublisher<[WeatherDTO], Error> {
-//        return Just(dailyWeatherLocalData)
-//            .tryMap { try JSONSerialization.data(withJSONObject: $0, options: .prettyPrinted) }
-//            .decode(type: [WeatherDTO].self, decoder: JSONDecoder())
-//            .eraseToAnyPublisher()
-//    }
     
     override func setupUI() {
         [menuStackView, collectionView, addBtn].forEach { self.view.addSubview($0) }
@@ -157,6 +102,45 @@ class DiaryViewController: BaseViewController {
         }
     }
     
+    override func bind() {
+        viewModel.$diaryList
+            .receive(on: RunLoop.main)
+            .sink { diary in
+//                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+//                snapshot.appendSections([.main])
+//                snapshot.appendItems(diary, toSection: .main)
+//                self.datasource.apply(snapshot)
+                self.collectionView.reloadData()
+            }.store(in: &subscriptions)
+        
+        viewModel.$diary
+            .receive(on: RunLoop.main)
+            .sink { diary in
+//                self.collectionView.reloadData()
+            }.store(in: &subscriptions)
+    }
+    
+    private func configureCollectionView() {
+        datasource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.diaryCell, for: indexPath) as? DiaryCell else { return nil }
+            
+            cell.fillStackView(item)
+            return cell
+        })
+        
+        collectionView.collectionViewLayout = layout()
+    }
+    
+    private func layout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+    
     private func makeMenuStackView() {
         for i in 0..<viewModel.menuList.count {
             var menuLabel: UILabel = {
@@ -173,5 +157,29 @@ class DiaryViewController: BaseViewController {
     @objc func clickAddBtn(_ sender: UIButton) {
         viewModel.showAddViewController()
     }
+    
+}
 
+extension DiaryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.viewModel.diaryList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.diaryCell, for: indexPath) as! DiaryCell
+        cell.prepareForReuse()
+        cell.prepareForInterfaceBuilder()
+        cell.fillStackView(self.viewModel.diaryList[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("fdfdfdfdfdfd = \(self.viewModel.diaryList[indexPath.row])")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.view.bounds.width, height: 50)
+    }
+    
 }
