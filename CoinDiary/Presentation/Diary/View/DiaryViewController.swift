@@ -21,7 +21,7 @@ class DiaryViewController: BaseViewController {
         sv.distribution = .fillEqually
         sv.alignment = .fill
         sv.spacing = 10
-        //        sv.backgroundColor = Colors.iosGrey
+//                sv.backgroundColor = Colors.iosGrey
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
@@ -39,7 +39,6 @@ class DiaryViewController: BaseViewController {
         cv.backgroundColor = .systemBackground
         cv.register(DiaryCell.self, forCellWithReuseIdentifier: self.diaryCell)
         cv.delegate = self
-        cv.dataSource = self
         return cv
     }()
     
@@ -65,8 +64,7 @@ class DiaryViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-//        configureCollectionView()
-        viewModel.fetchData()
+        configureCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,8 +72,7 @@ class DiaryViewController: BaseViewController {
         if getStringUserDefaults(key: "unit") == "" {
             selectMoneyUnitAlert(title: "", message: "단위를 선택해주세요", preferredStyle: .alert, completion: nil)
         }
-        viewModel.addSnapshot()
-        
+        viewModel.fetchData()
     }
     
     override func setupUI() {
@@ -106,30 +103,24 @@ class DiaryViewController: BaseViewController {
         viewModel.$diaryList
             .receive(on: RunLoop.main)
             .sink { diary in
-//                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-//                snapshot.appendSections([.main])
-//                snapshot.appendItems(diary, toSection: .main)
-//                self.datasource.apply(snapshot)
-                self.collectionView.reloadData()
-            }.store(in: &subscriptions)
-        
-        viewModel.$diary
-            .receive(on: RunLoop.main)
-            .sink { diary in
-//                self.collectionView.reloadData()
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(diary, toSection: .main)
+                self.datasource.apply(snapshot)
             }.store(in: &subscriptions)
     }
     
     private func configureCollectionView() {
         datasource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.diaryCell, for: indexPath) as? DiaryCell else { return nil }
-            
             cell.fillStackView(item)
             return cell
         })
         
         collectionView.collectionViewLayout = layout()
     }
+    
+    
     
     private func layout() -> UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
@@ -154,32 +145,21 @@ class DiaryViewController: BaseViewController {
         }
     }
     
+    func makeCollectionView() {
+        self.view.addSubview(collectionView)
+        collectionView.snp.makeConstraints {
+            $0.top.leading.bottom.trailing.equalToSuperview()
+        }
+    }
+    
     @objc func clickAddBtn(_ sender: UIButton) {
         viewModel.showAddViewController()
     }
     
 }
 
-extension DiaryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.diaryList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.diaryCell, for: indexPath) as! DiaryCell
-        cell.prepareForReuse()
-        cell.prepareForInterfaceBuilder()
-        cell.fillStackView(self.viewModel.diaryList[indexPath.row])
-        return cell
-    }
-    
+extension DiaryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("fdfdfdfdfdfd = \(self.viewModel.diaryList[indexPath.row])")
+        print("fjdkfjdskfjkds = \(self.viewModel.diaryList[indexPath.row])")
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.bounds.width, height: 50)
-    }
-    
 }

@@ -52,11 +52,13 @@
 		871EF8E828D6D58B0010F197 /* ChartRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF8E728D6D58B0010F197 /* ChartRepository.swift */; };
 		871EF8EC28D6DE280010F197 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF8EB28D6DE280010F197 /* Alertable.swift */; };
 		871EF8EE28D6F6DC0010F197 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF8ED28D6F6DC0010F197 /* Colors.swift */; };
+		87896A1028EC1CFF000EA9AC /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87896A0F28EC1CFF000EA9AC /* StringExtensions.swift */; };
 		87D1328328E0850C00F35E49 /* ButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328228E0850C00F35E49 /* ButtonExtensions.swift */; };
 		87D1328728E08B5900F35E49 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328628E08B5900F35E49 /* UserDefault.swift */; };
 		87D1328928E1380000F35E49 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328828E1380000F35E49 /* IntExtensions.swift */; };
 		87D1328B28E1C03300F35E49 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328A28E1C03300F35E49 /* Cancelable.swift */; };
 		87D1328E28E1C07B00F35E49 /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1328D28E1C07B00F35E49 /* RepositoryTask.swift */; };
+		87FB55D328EB059D00F36DD5 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 87FB55D228EB059D00F36DD5 /* SwiftUICharts */; };
 		87FB634C28E6FD3F002C5C31 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB634B28E6FD3F002C5C31 /* SpinnerViewController.swift */; };
 		87FED14C28E4033100C258CF /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14B28E4033100C258CF /* DiaryCell.swift */; };
 		87FED14E28E4043B00C258CF /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14D28E4043B00C258CF /* BaseCollectionViewCell.swift */; };
@@ -135,6 +137,7 @@
 		871EF8E728D6D58B0010F197 /* ChartRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRepository.swift; sourceTree = "<group>"; };
 		871EF8EB28D6DE280010F197 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		871EF8ED28D6F6DC0010F197 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		87896A0F28EC1CFF000EA9AC /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		87D1328228E0850C00F35E49 /* ButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtensions.swift; sourceTree = "<group>"; };
 		87D1328628E08B5900F35E49 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		87D1328828E1380000F35E49 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08C86DDBA23D94DEDD73FF14 /* Pods_CoinDiary.framework in Frameworks */,
+				87FB55D328EB059D00F36DD5 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +202,7 @@
 				87D1328828E1380000F35E49 /* IntExtensions.swift */,
 				87D1328A28E1C03300F35E49 /* Cancelable.swift */,
 				87FB634B28E6FD3F002C5C31 /* SpinnerViewController.swift */,
+				87896A0F28EC1CFF000EA9AC /* StringExtensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -275,8 +280,8 @@
 			isa = PBXGroup;
 			children = (
 				871EF8DB28D5A36F0010F197 /* DiaryRepositoryInterface.swift */,
-				871EF8E328D6D5410010F197 /* ChartRepositoryInterface.swift */,
 				0669684C28DAA44700C51B91 /* AddRepositoryInterface.swift */,
+				871EF8E328D6D5410010F197 /* ChartRepositoryInterface.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -285,8 +290,8 @@
 			isa = PBXGroup;
 			children = (
 				871EF8D928D5A2740010F197 /* DiaryUseCase.swift */,
-				871EF8E128D6D4EF0010F197 /* ChartUseCase.swift */,
 				0669684A28DAA41F00C51B91 /* AddUseCase.swift */,
+				871EF8E128D6D4EF0010F197 /* ChartUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -305,8 +310,8 @@
 			children = (
 				87D1328C28E1C05A00F35E49 /* Util */,
 				871EF8DD28D5A4010010F197 /* DiaryRepository.swift */,
-				871EF8E728D6D58B0010F197 /* ChartRepository.swift */,
 				0669685028DAA48700C51B91 /* AddRepository.swift */,
+				871EF8E728D6D58B0010F197 /* ChartRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -316,8 +321,8 @@
 			children = (
 				06122D2128D2FA3C00792B87 /* DTO */,
 				871EF8DF28D5A4830010F197 /* DiaryDataSource.swift */,
-				871EF8E528D6D56E0010F197 /* ChartDataSource.swift */,
 				0669684E28DAA46200C51B91 /* AddDataSource.swift */,
+				871EF8E528D6D56E0010F197 /* ChartDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -436,7 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				871EF8C628D57DC20010F197 /* ChartViewController.swift */,
-				871EF8C828D57DCC0010F197 /* ChartViewModel.swift */,
+				87896A0E28EBDC0A000EA9AC /* ViewModel */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -465,6 +470,14 @@
 				87FED14F28E43E6500C258CF /* Calculation.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		87896A0E28EBDC0A000EA9AC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				871EF8C828D57DCC0010F197 /* ChartViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		87D1328C28E1C05A00F35E49 /* Util */ = {
@@ -506,6 +519,9 @@
 			dependencies = (
 			);
 			name = CoinDiary;
+			packageProductDependencies = (
+				87FB55D228EB059D00F36DD5 /* SwiftUICharts */,
+			);
 			productName = CoinDiary;
 			productReference = 06B53C1F28D2EFE1001B9BA2 /* CoinDiary.app */;
 			productType = "com.apple.product-type.application";
@@ -581,6 +597,9 @@
 				Base,
 			);
 			mainGroup = 06B53C1628D2EFE1001B9BA2;
+			packageReferences = (
+				87FB55D128EB059D00F36DD5 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 06B53C2028D2EFE1001B9BA2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -760,6 +779,7 @@
 				87D1328E28E1C07B00F35E49 /* RepositoryTask.swift in Sources */,
 				06122D1428D2F94100792B87 /* BaseViewController.swift in Sources */,
 				871EF8E028D5A4830010F197 /* DiaryDataSource.swift in Sources */,
+				87896A1028EC1CFF000EA9AC /* StringExtensions.swift in Sources */,
 				87FED14E28E4043B00C258CF /* BaseCollectionViewCell.swift in Sources */,
 				87D1328B28E1C03300F35E49 /* Cancelable.swift in Sources */,
 				06A74B8C28DC3507000F7FE3 /* PictureView.swift in Sources */,
@@ -1110,6 +1130,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		87FB55D128EB059D00F36DD5 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		87FB55D228EB059D00F36DD5 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 87FB55D128EB059D00F36DD5 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		06B53C2B28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld */ = {

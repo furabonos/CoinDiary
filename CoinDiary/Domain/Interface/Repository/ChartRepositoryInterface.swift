@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 public protocol ChartRepositoryInterface {
-    
+    func fetchData(completion: @escaping (AnyPublisher<[[String]], Error>) -> Void)
 }

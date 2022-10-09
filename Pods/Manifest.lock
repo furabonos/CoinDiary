@@ -1,4 +1,5 @@
 PODS:
+  - AAInfographics (7.3.0)
   - abseil/algorithm (1.20211102.0):
     - abseil/algorithm/algorithm (= 1.20211102.0)
     - abseil/algorithm/container (= 1.20211102.0)
@@ -789,6 +790,7 @@ PODS:
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - AAInfographics (from `https://github.com/AAChartModel/AAChartKit-Swift.git`)
   - Alamofire (~> 5.6.2)
   - Firebase/Core
   - Firebase/Storage
@@ -829,7 +831,17 @@ SPEC REPOS:
     - PromisesObjC
     - SnapKit
 
+EXTERNAL SOURCES:
+  AAInfographics:
+    :git: https://github.com/AAChartModel/AAChartKit-Swift.git
+
+CHECKOUT OPTIONS:
+  AAInfographics:
+    :commit: bd67644eb18134ae3874b597a742cfa85931951e
+    :git: https://github.com/AAChartModel/AAChartKit-Swift.git
+
 SPEC CHECKSUMS:
+  AAInfographics: ee2a7959acdd0a00243b7f5a3f03a1fa2bdf0781
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
@@ -859,6 +871,6 @@ SPEC CHECKSUMS:
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: caf07ad90d0d8e5c3424ee7f48721db7c3134c06
+PODFILE CHECKSUM: 7689099b80d825aa9d61691d77f8cbb8b25c3e0f
 
 COCOAPODS: 1.11.3

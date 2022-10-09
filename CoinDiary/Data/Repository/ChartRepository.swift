@@ -16,4 +16,12 @@ public final class ChartRepository: ChartRepositoryInterface {
         self.dataSource = dataSource
     }
     
+    public func fetchData(completion: @escaping (AnyPublisher<[[String]], Error>) -> Void) {
+        dataSource.fetchData { result in
+            completion(
+                result
+            )
+        }
+    }
+    
 }

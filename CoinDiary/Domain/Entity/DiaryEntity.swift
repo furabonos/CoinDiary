@@ -9,7 +9,7 @@ import Foundation
 
 public struct DiaryEntity: Hashable, Identifiable {
     
-    public var id = ""
+    public var id = UUID()
     public let imageURL: String?
     public let memo: String?
     public let start: String

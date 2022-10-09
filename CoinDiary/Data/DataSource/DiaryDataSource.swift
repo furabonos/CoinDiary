@@ -29,6 +29,7 @@ public final class DiaryDataSource: DiaryDataSourceInterface {
                         promise(.failure(error))
                     } else if let documents = documents {
                         var diaries = [DiaryDTO]()
+                        diaries.removeAll()
                         for document in documents.documents {
                             do {
                                 let datas = document.data()
@@ -48,8 +49,9 @@ public final class DiaryDataSource: DiaryDataSourceInterface {
     }
     
     public func addSnapshot(completion: @escaping (AnyPublisher<DiaryDTO, Error>) -> Void) {
-        let db = Firestore.firestore().collection(UserDefaults.standard.string(forKey: "UUID")!).document(Date().getToday)
+        let db = Firestore.firestore().collection(UserDefaults.standard.string(forKey: "UUID")!)
         let decoder = JSONDecoder()
+        var diary = [DiaryDTO]()
         
         completion(
             Future<DiaryDTO, Error> { promise in
@@ -57,16 +59,35 @@ public final class DiaryDataSource: DiaryDataSourceInterface {
                     if let error = error {
                         promise(.failure(error))
                     } else if let documents = documents {
-                        var diary = [DiaryDTO]()
-                        do {
-                            guard let datas = documents.data() else { return }
-                            let jsonData = try JSONSerialization.data(withJSONObject: datas)
-                            let dtoData = try decoder.decode(DiaryDTO.self, from: jsonData)
-                            diary.append(dtoData)
-                        }catch let error {
-                            promise(.failure(error))
+                        documents.documentChanges.forEach { change in
+                            switch change.type {
+                            case .added, .modified:
+                                print("add, modi? = \(change.type), valueS~ = \(change.document.data())")
+                                do {
+                                    let datas = change.document.data()
+                                    let jsonData = try JSONSerialization.data(withJSONObject: datas)
+                                    let dtoData = try decoder.decode(DiaryDTO.self, from: jsonData)
+                                    print("왜안탐시발;; = \(dtoData)")
+                                    diary.append(dtoData)
+                                }catch let error {
+                                    promise(.failure(error))
+                                }
+                            default:
+                                break
+                            }
+                            promise(.success(diary[0]))
                         }
-                        promise(.success(diary[0]))
+//                        var diary = [DiaryDTO]()
+//                        do {
+//                            guard let datas = documents.data() else { return }
+//                            let jsonData = try JSONSerialization.data(withJSONObject: datas)
+//                            let dtoData = try decoder.decode(DiaryDTO.self, from: jsonData)
+//                            print("스냅샷온 = \(dtoData)")
+//                            diary.append(dtoData)
+//                        }catch let error {
+//                            promise(.failure(error))
+//                        }
+//                        promise(.success(diary[0]))
                     }
                 }
             }.eraseToAnyPublisher()

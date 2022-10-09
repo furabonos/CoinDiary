@@ -15,6 +15,7 @@ struct DiaryViewModelAction {
 protocol DiaryViewModelInput {
     func fetchData()
     func addSnapshot()
+    func fetchData2(completions: @escaping(String) -> Void)
 }
 
 protocol DiaryViewModelOutput {
@@ -40,7 +41,6 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
     }
     
     func fetchData() {
-        print("또타진않지?")
         useCase.fetchData {[unowned self] result in
             result.sink { completion in
                 switch completion {
@@ -56,8 +56,25 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
         }
     }
     
+    func fetchData2(completions: @escaping (String) -> Void) {
+        useCase.fetchData {[unowned self] result in
+            result.sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+//                    self.diaryList = []
+                    completions("failure")
+                }
+            } receiveValue: { diaryList in
+                self.diaryList = diaryList
+                completions("success")
+            }
+            .store(in: &bag)
+        }
+    }
+    
     func addSnapshot() {
-        print("addsnsnsnsnsnsnsnsnsnsnsnsnsnsns")
         useCase.addSnapshot {[unowned self] result in
             result.sink { completion in
                 switch completion {
@@ -67,17 +84,7 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
                     print("errors = \(error)")
                 }
             } receiveValue: { diaries in
-                print("몇번타냐")
-                if diaries != nil {
-                    if self.diaryList.count != 0 {
-                        if diaries != self.diaryList[0] {
-                            self.diary = diaries
-                            self.diaryList.remove(at: 0)
-                            self.diaryList.insert(diaries, at: 0)
-                        }
-                    }
-                }
-                print("최종데이타? = \(self.diaryList)")
+                print("snapshotData = \(diaries)")
             }
             .store(in: &bag)
         }
