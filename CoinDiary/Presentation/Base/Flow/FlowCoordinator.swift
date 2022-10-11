@@ -9,14 +9,11 @@ import Foundation
 import UIKit
 
 protocol FlowCoordinatorDependencies  {
-//    func makeUserViewController(actions: UsersViewModelActions) -> UserViewController
-//    func makeNextViewController() -> UIViewController
-//    func makeTabbarController(diary: DiaryViewController, chart: ChartViewController) -> TabbarController
-//    func makeDiaryViewController() -> DiaryViewController
     func makeTabbarController(diary: DiaryViewController, chart: ChartViewController, actions: DiaryViewModelAction) -> TabbarController
     func makeDiaryViewController(actions: DiaryViewModelAction) -> DiaryViewController
     func makeChartViewController() -> ChartViewController
     func makeAddViewController() -> AddViewController
+    func makeEditViewController(diary: DiaryEntity) -> UIViewController
 }
 
 final class FlowCoordinator {
@@ -32,14 +29,14 @@ final class FlowCoordinator {
     }
     
     func start() {
-        let actions = DiaryViewModelAction(showAddViewController: showAddViewController)
+        let actions = DiaryViewModelAction(showAddViewController: showAddViewController, showEditViewController: showEditViewController)
         let vc = dependencies.makeTabbarController(diary: makeDiaryViewController(), chart: makeChartViewController(), actions: actions)
         navigationController?.pushViewController(vc, animated: false)
         StartVC = vc
     }
     
     func makeDiaryViewController() -> DiaryViewController {
-        let actions = DiaryViewModelAction(showAddViewController: showAddViewController)
+        let actions = DiaryViewModelAction(showAddViewController: showAddViewController, showEditViewController: showEditViewController)
         let vc = dependencies.makeDiaryViewController(actions: actions)
         return vc
     }
@@ -53,6 +50,13 @@ final class FlowCoordinator {
         let vc = dependencies.makeAddViewController()
         vc.modalPresentationStyle = .fullScreen
         navigationController?.present(vc, animated: true)
+    }
+    
+    private func showEditViewController(diary: DiaryEntity) {
+        let vc = dependencies.makeEditViewController(diary: diary)
+        navigationController?.pushViewController(vc, animated: true)
+//        vc.modalPresentationStyle = .fullScreen
+//        navigationController?.present(vc, animated: true)
     }
     
 }

@@ -29,8 +29,12 @@
 		06B53C3D28D2EFE2001B9BA2 /* CoinDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C3C28D2EFE2001B9BA2 /* CoinDiaryTests.swift */; };
 		06B53C4728D2EFE2001B9BA2 /* CoinDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C4628D2EFE2001B9BA2 /* CoinDiaryUITests.swift */; };
 		06B53C4928D2EFE2001B9BA2 /* CoinDiaryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C4828D2EFE2001B9BA2 /* CoinDiaryUITestsLaunchTests.swift */; };
-		08C86DDBA23D94DEDD73FF14 /* Pods_CoinDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B22307EE945FC0D1468836F /* Pods_CoinDiary.framework */; };
-		60483AC43489CCB31D79BAF0 /* Pods_CoinDiary_CoinDiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E76ADCCCEC94D355215FFB0 /* Pods_CoinDiary_CoinDiaryUITests.framework */; };
+		06FAC63C28F4F0A100DEEF14 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC63B28F4F0A100DEEF14 /* EditViewController.swift */; };
+		06FAC63E28F4F0B200DEEF14 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC63D28F4F0B200DEEF14 /* EditViewModel.swift */; };
+		06FAC64028F4F2DF00DEEF14 /* EditUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC63F28F4F2DF00DEEF14 /* EditUseCase.swift */; };
+		06FAC64228F4F31900DEEF14 /* EditRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC64128F4F31900DEEF14 /* EditRepositoryInterface.swift */; };
+		06FAC64428F4F33100DEEF14 /* EditDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC64328F4F33100DEEF14 /* EditDataSource.swift */; };
+		06FAC64628F4F37000DEEF14 /* EditRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC64528F4F37000DEEF14 /* EditRepository.swift */; };
 		870FB68228E46A94000FF80A /* DiaryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870FB68128E46A94000FF80A /* DiaryDTO.swift */; };
 		870FB68428E46F54000FF80A /* DiaryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870FB68328E46F54000FF80A /* DiaryEntity.swift */; };
 		871EF8C328D57DA50010F197 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF8C228D57DA50010F197 /* DiaryViewController.swift */; };
@@ -63,7 +67,6 @@
 		87FED14C28E4033100C258CF /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14B28E4033100C258CF /* DiaryCell.swift */; };
 		87FED14E28E4043B00C258CF /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14D28E4043B00C258CF /* BaseCollectionViewCell.swift */; };
 		87FED15028E43E6500C258CF /* Calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14F28E43E6500C258CF /* Calculation.swift */; };
-		A0555F81E2CBC3CAADB94168 /* Pods_CoinDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3722FB25E407BB242B8ABE4 /* Pods_CoinDiaryTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,10 +113,14 @@
 		06B53C4228D2EFE2001B9BA2 /* CoinDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B53C4628D2EFE2001B9BA2 /* CoinDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDiaryUITests.swift; sourceTree = "<group>"; };
 		06B53C4828D2EFE2001B9BA2 /* CoinDiaryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDiaryUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		2B22307EE945FC0D1468836F /* Pods_CoinDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06FAC63B28F4F0A100DEEF14 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		06FAC63D28F4F0B200DEEF14 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
+		06FAC63F28F4F2DF00DEEF14 /* EditUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUseCase.swift; sourceTree = "<group>"; };
+		06FAC64128F4F31900DEEF14 /* EditRepositoryInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRepositoryInterface.swift; sourceTree = "<group>"; };
+		06FAC64328F4F33100DEEF14 /* EditDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDataSource.swift; sourceTree = "<group>"; };
+		06FAC64528F4F37000DEEF14 /* EditRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRepository.swift; sourceTree = "<group>"; };
 		395D1C89153AB689BC043A6D /* Pods-CoinDiary-CoinDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiary-CoinDiaryUITests.debug.xcconfig"; path = "Target Support Files/Pods-CoinDiary-CoinDiaryUITests/Pods-CoinDiary-CoinDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		488438B225E91B1CF60A6256 /* Pods-CoinDiary-CoinDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiary-CoinDiaryUITests.release.xcconfig"; path = "Target Support Files/Pods-CoinDiary-CoinDiaryUITests/Pods-CoinDiary-CoinDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
-		4E76ADCCCEC94D355215FFB0 /* Pods_CoinDiary_CoinDiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinDiary_CoinDiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59A11911870B7A2ECCB18A89 /* Pods-CoinDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-CoinDiaryTests/Pods-CoinDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A1C892D8B2D75924DB510B7 /* Pods-CoinDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-CoinDiaryTests/Pods-CoinDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
 		870FB68128E46A94000FF80A /* DiaryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDTO.swift; sourceTree = "<group>"; };
@@ -147,7 +154,6 @@
 		87FED14B28E4033100C258CF /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
 		87FED14D28E4043B00C258CF /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		87FED14F28E43E6500C258CF /* Calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculation.swift; sourceTree = "<group>"; };
-		C3722FB25E407BB242B8ABE4 /* Pods_CoinDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1955311D052081B6FB9721C /* Pods-CoinDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiary.release.xcconfig"; path = "Target Support Files/Pods-CoinDiary/Pods-CoinDiary.release.xcconfig"; sourceTree = "<group>"; };
 		F6FBB1D5BA41CE3F3BF644D3 /* Pods-CoinDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiary.debug.xcconfig"; path = "Target Support Files/Pods-CoinDiary/Pods-CoinDiary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,7 +163,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08C86DDBA23D94DEDD73FF14 /* Pods_CoinDiary.framework in Frameworks */,
 				87FB55D328EB059D00F36DD5 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,7 +171,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0555F81E2CBC3CAADB94168 /* Pods_CoinDiaryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +178,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60483AC43489CCB31D79BAF0 /* Pods_CoinDiary_CoinDiaryUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				871EF8DB28D5A36F0010F197 /* DiaryRepositoryInterface.swift */,
+				06FAC64128F4F31900DEEF14 /* EditRepositoryInterface.swift */,
 				0669684C28DAA44700C51B91 /* AddRepositoryInterface.swift */,
 				871EF8E328D6D5410010F197 /* ChartRepositoryInterface.swift */,
 			);
@@ -290,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				871EF8D928D5A2740010F197 /* DiaryUseCase.swift */,
+				06FAC63F28F4F2DF00DEEF14 /* EditUseCase.swift */,
 				0669684A28DAA41F00C51B91 /* AddUseCase.swift */,
 				871EF8E128D6D4EF0010F197 /* ChartUseCase.swift */,
 			);
@@ -310,6 +315,7 @@
 			children = (
 				87D1328C28E1C05A00F35E49 /* Util */,
 				871EF8DD28D5A4010010F197 /* DiaryRepository.swift */,
+				06FAC64528F4F37000DEEF14 /* EditRepository.swift */,
 				0669685028DAA48700C51B91 /* AddRepository.swift */,
 				871EF8E728D6D58B0010F197 /* ChartRepository.swift */,
 			);
@@ -321,6 +327,7 @@
 			children = (
 				06122D2128D2FA3C00792B87 /* DTO */,
 				871EF8DF28D5A4830010F197 /* DiaryDataSource.swift */,
+				06FAC64328F4F33100DEEF14 /* EditDataSource.swift */,
 				0669684E28DAA46200C51B91 /* AddDataSource.swift */,
 				871EF8E528D6D56E0010F197 /* ChartDataSource.swift */,
 			);
@@ -340,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				871EF8C228D57DA50010F197 /* DiaryViewController.swift */,
+				06FAC63B28F4F0A100DEEF14 /* EditViewController.swift */,
 				0669684428DA986900C51B91 /* AddViewController.swift */,
 				06A74B8A28DC34DA000F7FE3 /* Custom */,
 			);
@@ -350,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				871EF8C428D57DB40010F197 /* DiaryViewModel.swift */,
+				06FAC63D28F4F0B200DEEF14 /* EditViewModel.swift */,
 				0669684628DA9F2C00C51B91 /* AddViewModel.swift */,
 			);
 			path = ViewModel;
@@ -372,7 +381,6 @@
 				06B53C4528D2EFE2001B9BA2 /* CoinDiaryUITests */,
 				06B53C2028D2EFE1001B9BA2 /* Products */,
 				B748F12072EF03438C7BA868 /* Pods */,
-				6B600F3ACA26BCA7178B77DB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -416,16 +424,6 @@
 				06B53C4828D2EFE2001B9BA2 /* CoinDiaryUITestsLaunchTests.swift */,
 			);
 			path = CoinDiaryUITests;
-			sourceTree = "<group>";
-		};
-		6B600F3ACA26BCA7178B77DB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2B22307EE945FC0D1468836F /* Pods_CoinDiary.framework */,
-				4E76ADCCCEC94D355215FFB0 /* Pods_CoinDiary_CoinDiaryUITests.framework */,
-				C3722FB25E407BB242B8ABE4 /* Pods_CoinDiaryTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		871EF8C028D57D7B0010F197 /* Diary */ = {
@@ -754,8 +752,11 @@
 				06A74B8928DBFDBD000F7FE3 /* TextFieldExtensions.swift in Sources */,
 				871EF8C528D57DB40010F197 /* DiaryViewModel.swift in Sources */,
 				871EF8C728D57DC20010F197 /* ChartViewController.swift in Sources */,
+				06FAC64428F4F33100DEEF14 /* EditDataSource.swift in Sources */,
+				06FAC63C28F4F0A100DEEF14 /* EditViewController.swift in Sources */,
 				06122D1128D2F84500792B87 /* AppDIContainer.swift in Sources */,
 				0669684F28DAA46200C51B91 /* AddDataSource.swift in Sources */,
+				06FAC64228F4F31900DEEF14 /* EditRepositoryInterface.swift in Sources */,
 				871EF8E628D6D56E0010F197 /* ChartDataSource.swift in Sources */,
 				0669684728DA9F2C00C51B91 /* AddViewModel.swift in Sources */,
 				06B53C2D28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld in Sources */,
@@ -772,7 +773,9 @@
 				06B53C2328D2EFE1001B9BA2 /* AppDelegate.swift in Sources */,
 				871EF8CD28D5815D0010F197 /* AppFlowCoordinator.swift in Sources */,
 				06122D1A28D2F9B200792B87 /* entities.swift in Sources */,
+				06FAC64028F4F2DF00DEEF14 /* EditUseCase.swift in Sources */,
 				87D1328328E0850C00F35E49 /* ButtonExtensions.swift in Sources */,
+				06FAC63E28F4F0B200DEEF14 /* EditViewModel.swift in Sources */,
 				870FB68228E46A94000FF80A /* DiaryDTO.swift in Sources */,
 				0669685128DAA48700C51B91 /* AddRepository.swift in Sources */,
 				0669684D28DAA44700C51B91 /* AddRepositoryInterface.swift in Sources */,
@@ -786,6 +789,7 @@
 				871EF8DE28D5A4010010F197 /* DiaryRepository.swift in Sources */,
 				871EF8E428D6D5410010F197 /* ChartRepositoryInterface.swift in Sources */,
 				871EF8EE28D6F6DC0010F197 /* Colors.swift in Sources */,
+				06FAC64628F4F37000DEEF14 /* EditRepository.swift in Sources */,
 				87FED14C28E4033100C258CF /* DiaryCell.swift in Sources */,
 				871EF8D328D585E40010F197 /* TabbarController.swift in Sources */,
 				871EF8CB28D5814A0010F197 /* AppAppearance.swift in Sources */,

@@ -29,6 +29,12 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
         return AddRepository(dataSource: dataSource)
     }
     
+    func makeEditRepository() -> EditRepository {
+        let dataSource: EditDataSourceInterface
+        dataSource = EditDataSource()
+        return EditRepository(dataSource: dataSource)
+    }
+    
     // MARK: - UseCase
     func makeDiaryUseCase() -> DiaryUseCase {
         return DiaryUseCase(repository: makeDiaryRepository())
@@ -40,6 +46,10 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
     
     func makeAddUseCase() -> AddUseCase {
         return AddUseCase(repository: makeAddRepository())
+    }
+    
+    func makeEditUseCase() -> EditUseCase {
+        return EditUseCase(repository: makeEditRepository())
     }
     
     // MARK: - Presentation
@@ -59,6 +69,10 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
         return AddViewModel(useCase: makeAddUseCase())
     }
     
+    func makeEditViewModel(diary: DiaryEntity) -> EditViewModel {
+        return EditViewModel(useCase: makeEditUseCase(), diary: diary)
+    }
+    
     func makeDiaryViewController(actions: DiaryViewModelAction) -> DiaryViewController {
         return DiaryViewController.create(with: DiaryViewModel(useCase: makeDiaryUseCase(), actions: actions))
     }
@@ -69,6 +83,10 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
     
     func makeAddViewController() -> AddViewController {
         return AddViewController.create(with: makeAddViewModel())
+    }
+    
+    func makeEditViewController(diary: DiaryEntity) -> UIViewController {
+        return EditViewController.create(with: makeEditViewModel(diary: diary))
     }
     
     // MARK: - Flow Coordinators

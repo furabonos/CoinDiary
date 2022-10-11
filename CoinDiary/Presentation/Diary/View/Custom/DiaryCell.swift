@@ -14,22 +14,25 @@ class DiaryCell: BaseCollectionViewCell {
         l.adjustsFontSizeToFitWidth = true
         l.textAlignment = .center
         l.font = l.font.withSize(13)
+//        l.backgroundColor = .red
         return l
     }()
     
-    lazy var startLabel: UILabel = {
-        var l = UILabel()
+    lazy var startLabel: PaddingLabel = {
+        var l = PaddingLabel()
         l.adjustsFontSizeToFitWidth = true
         l.textAlignment = .center
         l.font = l.font.withSize(13)
+//        l.backgroundColor = .yellow
         return l
     }()
     
-    lazy var endLabel: UILabel = {
-        var l = UILabel()
+    lazy var endLabel: PaddingLabel = {
+        var l = PaddingLabel()
         l.adjustsFontSizeToFitWidth = true
         l.textAlignment = .center
         l.font = l.font.withSize(13)
+//        l.backgroundColor = .red
         return l
     }()
     
@@ -38,6 +41,7 @@ class DiaryCell: BaseCollectionViewCell {
         l.adjustsFontSizeToFitWidth = true
         l.textAlignment = .center
         l.font = l.font.withSize(13)
+//        l.backgroundColor = .yellow
         return l
     }()
     
@@ -45,6 +49,7 @@ class DiaryCell: BaseCollectionViewCell {
         var l = UILabel()
         l.textAlignment = .center
         l.font = l.font.withSize(13)
+//        l.backgroundColor = .red
         return l
     }()
     
@@ -87,7 +92,7 @@ class DiaryCell: BaseCollectionViewCell {
         
     }
     
-    func fillStackView(_ info: DiaryEntity) {
+    func configuration(_ info: DiaryEntity) {
         var starts = Double(info.start.replacingOccurrences(of: "KRW", with: "").replacingOccurrences(of: ",", with: "").replacingOccurrences(of: "USDT", with: ""))
         var ends = Double(info.end.replacingOccurrences(of: "KRW", with: "").replacingOccurrences(of: ",", with: "").replacingOccurrences(of: "USDT", with: ""))
         

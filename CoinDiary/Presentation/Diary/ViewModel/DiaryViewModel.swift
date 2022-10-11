@@ -10,6 +10,7 @@ import Combine
 
 struct DiaryViewModelAction {
     let showAddViewController: () -> Void
+    let showEditViewController: (DiaryEntity) -> Void
 }
 
 protocol DiaryViewModelInput {
@@ -92,6 +93,11 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
     
     public func showAddViewController() {
         action?.showAddViewController()
+    }
+    
+    public func showEditViewController(diary: DiaryEntity) {
+//        print("didididia = \(diary)")
+        action?.showEditViewController(diary)
     }
     
 }

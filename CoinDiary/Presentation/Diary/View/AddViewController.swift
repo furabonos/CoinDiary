@@ -232,7 +232,7 @@ class AddViewController: BaseViewController {
                 if value {
                     self.dismiss(animated: true)
                 }
-        }.store(in: &subscriptions)
+            }.store(in: &subscriptions)
         
         viewModel.saveDataPublisher.receive(on: RunLoop.main)
             .sink { [unowned self] value in
@@ -273,7 +273,7 @@ class AddViewController: BaseViewController {
         var end = endField.text ?? ""
         var memo = memoField.text ?? ""
         var images = imageView.image
-
+        
         if start == "" {
             showAlert(message: "시작금액을 입력해주세요.")
         }else if end == "" {
@@ -281,7 +281,7 @@ class AddViewController: BaseViewController {
         }else {
             indicatorView.startAnimating()
             viewModel.saveData(date: Date().getToday, start: start, end: end, memo: memo, image: images)
-
+            
         }
         
     }
@@ -289,24 +289,17 @@ class AddViewController: BaseViewController {
 }
 
 extension AddViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
             self.images = image
             imageView.image = image
         }
-        
         picker.dismiss(animated: true, completion: nil)
-        
-        
     }
-    
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension AddViewController: PictureDelegate {
@@ -324,7 +317,6 @@ extension AddViewController: UITextFieldDelegate {
         
         text = text.replacingOccurrences(of: getStringUserDefaults(key: "unit"), with: "")
         text = text.replacingOccurrences(of: ",", with: "")
-        
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal

@@ -113,7 +113,7 @@ class DiaryViewController: BaseViewController {
     private func configureCollectionView() {
         datasource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.diaryCell, for: indexPath) as? DiaryCell else { return nil }
-            cell.fillStackView(item)
+            cell.configuration(item)
             return cell
         })
         
@@ -160,6 +160,7 @@ class DiaryViewController: BaseViewController {
 
 extension DiaryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("fjdkfjdskfjkds = \(self.viewModel.diaryList[indexPath.row])")
+//        print("fjdkfjdskfjkds = \(self.viewModel.diaryList[indexPath.row])")
+        viewModel.showEditViewController(diary: self.viewModel.diaryList[indexPath.row])
     }
 }
