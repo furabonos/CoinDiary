@@ -13,9 +13,12 @@ import SnapKit
 
 class EditViewController: BaseViewController {
     
-//    lazy var titleLabel: UILabel = {
-//
-//    }()
+    lazy var titleLabel: UILabel = {
+        var l = UILabel()
+        l.textAlignment = .center
+        l.font = .boldSystemFont(ofSize: 16)
+        return l
+    }()
     
     lazy var imageView: UIImageView = {
         var iv = UIImageView()
@@ -85,9 +88,14 @@ class EditViewController: BaseViewController {
         return tf
     }()
     
+    lazy var indicatorView: UIActivityIndicatorView = {
+        var iv = UIActivityIndicatorView()
+        return iv
+    }()
+    
     public var viewModel: EditViewModel!
     var subscriptions = Set<AnyCancellable>()
-//    var viewMode = ViewMode.View
+    var images: UIImage!
     
     static func create(with viewModel: EditViewModel) -> EditViewController {
         let view = EditViewController()
@@ -108,12 +116,18 @@ class EditViewController: BaseViewController {
     }
     
     override func setupUI() {
-        [imageView, memoView, startField, arrowView, endField, photoBtn, addBtn, cancelBtn].forEach { self.view.addSubview($0) }
+        [titleLabel, imageView, memoView, startField, arrowView, endField, photoBtn, addBtn, cancelBtn, indicatorView].forEach { self.view.addSubview($0) }
     }
     
     override func setupConstraints() {
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            $0.centerX.equalToSuperview()
+        }
+        
         imageView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+//            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
             $0.height.equalTo(200)
@@ -123,7 +137,8 @@ class EditViewController: BaseViewController {
             if viewModel.diary.imageURL != nil {
                 $0.top.equalTo(imageView.snp.bottom).offset(20)
             }else {
-                $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+//                $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             }
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
@@ -170,13 +185,19 @@ class EditViewController: BaseViewController {
             $0.width.equalTo(80)
             $0.height.equalTo(30)
         }
+        
+        indicatorView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.height.equalTo(50)
+        }
     }
     
     override func bind() {
         viewModel.$diary
             .receive(on: RunLoop.main)
             .sink { diary in
-                self.navigationItem.title = diary.today
+//                self.navigationItem.title = diary.today
+                self.titleLabel.text = diary.today
                 self.memoView.text = diary.memo
                 self.startField.text = diary.start
                 self.endField.text = diary.end
@@ -188,13 +209,6 @@ class EditViewController: BaseViewController {
         viewModel.viewModePublisher
             .receive(on: RunLoop.main)
             .sink { [unowned self] value in
-//                if value == .View {
-//                    self.navigationController?.popViewController(animated: true)
-//                }else {
-//                    self.cancelBtn.setTitle("취소", for: .normal)
-//                    self.addBtn.setTitle("수정", for: .normal)
-//                    [memoView, startField, endField, photoBtn].forEach { $0.isUserInteractionEnabled = true }
-//                }
                 if value == .View {
                     self.cancelBtn.setTitle("수정", for: .normal)
                     self.addBtn.setTitle("확인", for: .normal)
@@ -205,13 +219,39 @@ class EditViewController: BaseViewController {
                     [memoView, startField, endField, photoBtn].forEach { $0.isUserInteractionEnabled = true }
                 }else {
                     //None
-                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true)
                 }
         }.store(in: &subscriptions)
+        
+        viewModel.saveDataPublisher.receive(on: RunLoop.main)
+            .sink { [unowned self] value in
+                if value {
+                    saveDataSuccess(message: "저장되었습니다.")
+                }else {
+                    saveDataFailure(message: "저장에 실패하였습니다.\n잠시후 다시 시도해주세요.", indicator: self.indicatorView)
+                }
+            }.store(in: &subscriptions)
     }
     
     @objc func clickAdd(_ sender: UIButton) {
-        viewModel.clickAdd()
+        if viewModel.viewMode == .Edit {
+            var today = titleLabel.text!
+            var start = startField.text ?? ""
+            var end = endField.text ?? ""
+            var memo = memoView.text ?? ""
+            var images = imageView.image
+            
+            if start == "" {
+                showAlert(message: "시작금액을 입력해주세요.")
+            }else if end == "" {
+                showAlert(message: "종료금액을 입력해주세요.")
+            }else {
+                indicatorView.startAnimating()
+                viewModel.saveData(date: today, start: start, end: end, memo: memo, image: images)
+            }
+        }else {
+            viewModel.clickAdd()
+        }
     }
     
     @objc func clickCancel(_ sender: UIButton) {
@@ -231,8 +271,14 @@ class EditViewController: BaseViewController {
 extension EditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
-//            self.images = image
-//            imageView.image = image
+            self.images = image
+            self.imageView.image = image
+            self.memoView.snp.remakeConstraints {
+                $0.top.equalTo(imageView.snp.bottom).offset(20)
+                $0.leading.equalToSuperview().offset(20)
+                $0.trailing.equalToSuperview().offset(-20)
+                $0.height.equalTo(100)
+            }
         }
         picker.dismiss(animated: true, completion: nil)
     }

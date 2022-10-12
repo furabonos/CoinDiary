@@ -54,9 +54,9 @@ final class FlowCoordinator {
     
     private func showEditViewController(diary: DiaryEntity) {
         let vc = dependencies.makeEditViewController(diary: diary)
-        navigationController?.pushViewController(vc, animated: true)
-//        vc.modalPresentationStyle = .fullScreen
-//        navigationController?.present(vc, animated: true)
+//        navigationController?.pushViewController(vc, animated: true)
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.present(vc, animated: true)
     }
     
 }
