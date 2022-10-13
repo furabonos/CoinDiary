@@ -15,6 +15,7 @@ pod 'Kingfisher'
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
 pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git'
+pod 'DropDown'
 
 
 

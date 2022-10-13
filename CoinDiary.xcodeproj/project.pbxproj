@@ -19,6 +19,8 @@
 		0669684F28DAA46200C51B91 /* AddDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669684E28DAA46200C51B91 /* AddDataSource.swift */; };
 		0669685128DAA48700C51B91 /* AddRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669685028DAA48700C51B91 /* AddRepository.swift */; };
 		0669685528DAB19900C51B91 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669685428DAB19900C51B91 /* DateExtensions.swift */; };
+		069F0F7928F7E96600141635 /* CoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F0F7828F7E96600141635 /* CoinViewController.swift */; };
+		069F0F7C28F7E98F00141635 /* CoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F0F7B28F7E98F00141635 /* CoinViewModel.swift */; };
 		06A74B8728DBF6AB000F7FE3 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A74B8628DBF6AB000F7FE3 /* CustomLabel.swift */; };
 		06A74B8928DBFDBD000F7FE3 /* TextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A74B8828DBFDBD000F7FE3 /* TextFieldExtensions.swift */; };
 		06A74B8C28DC3507000F7FE3 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A74B8B28DC3507000F7FE3 /* PictureView.swift */; };
@@ -35,6 +37,8 @@
 		06FAC64228F4F31900DEEF14 /* EditRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC64128F4F31900DEEF14 /* EditRepositoryInterface.swift */; };
 		06FAC64428F4F33100DEEF14 /* EditDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC64328F4F33100DEEF14 /* EditDataSource.swift */; };
 		06FAC64628F4F37000DEEF14 /* EditRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC64528F4F37000DEEF14 /* EditRepository.swift */; };
+		147521B8CE713D8BBFD0382F /* Pods_CoinDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA8D9BEDBC9EDACA8E42C16 /* Pods_CoinDiary.framework */; };
+		2C63C8E72D34651E87524A96 /* Pods_CoinDiary_CoinDiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAC3AE55C7EB739958794D1 /* Pods_CoinDiary_CoinDiaryUITests.framework */; };
 		870FB68228E46A94000FF80A /* DiaryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870FB68128E46A94000FF80A /* DiaryDTO.swift */; };
 		870FB68428E46F54000FF80A /* DiaryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870FB68328E46F54000FF80A /* DiaryEntity.swift */; };
 		871EF8C328D57DA50010F197 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF8C228D57DA50010F197 /* DiaryViewController.swift */; };
@@ -67,6 +71,7 @@
 		87FED14C28E4033100C258CF /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14B28E4033100C258CF /* DiaryCell.swift */; };
 		87FED14E28E4043B00C258CF /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14D28E4043B00C258CF /* BaseCollectionViewCell.swift */; };
 		87FED15028E43E6500C258CF /* Calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FED14F28E43E6500C258CF /* Calculation.swift */; };
+		E9B40F6DA84E926C71579DC3 /* Pods_CoinDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B1A42AEBE9AEB09EFBCC70 /* Pods_CoinDiaryTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +104,8 @@
 		0669684E28DAA46200C51B91 /* AddDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataSource.swift; sourceTree = "<group>"; };
 		0669685028DAA48700C51B91 /* AddRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRepository.swift; sourceTree = "<group>"; };
 		0669685428DAB19900C51B91 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		069F0F7828F7E96600141635 /* CoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewController.swift; sourceTree = "<group>"; };
+		069F0F7B28F7E98F00141635 /* CoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewModel.swift; sourceTree = "<group>"; };
 		06A74B8628DBF6AB000F7FE3 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		06A74B8828DBFDBD000F7FE3 /* TextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtensions.swift; sourceTree = "<group>"; };
 		06A74B8B28DC3507000F7FE3 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
@@ -120,9 +127,11 @@
 		06FAC64328F4F33100DEEF14 /* EditDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDataSource.swift; sourceTree = "<group>"; };
 		06FAC64528F4F37000DEEF14 /* EditRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRepository.swift; sourceTree = "<group>"; };
 		395D1C89153AB689BC043A6D /* Pods-CoinDiary-CoinDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiary-CoinDiaryUITests.debug.xcconfig"; path = "Target Support Files/Pods-CoinDiary-CoinDiaryUITests/Pods-CoinDiary-CoinDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		40B1A42AEBE9AEB09EFBCC70 /* Pods_CoinDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		488438B225E91B1CF60A6256 /* Pods-CoinDiary-CoinDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiary-CoinDiaryUITests.release.xcconfig"; path = "Target Support Files/Pods-CoinDiary-CoinDiaryUITests/Pods-CoinDiary-CoinDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		59A11911870B7A2ECCB18A89 /* Pods-CoinDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-CoinDiaryTests/Pods-CoinDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A1C892D8B2D75924DB510B7 /* Pods-CoinDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-CoinDiaryTests/Pods-CoinDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
+		7AAC3AE55C7EB739958794D1 /* Pods_CoinDiary_CoinDiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinDiary_CoinDiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		870FB68128E46A94000FF80A /* DiaryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDTO.swift; sourceTree = "<group>"; };
 		870FB68328E46F54000FF80A /* DiaryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntity.swift; sourceTree = "<group>"; };
 		871EF8C228D57DA50010F197 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +163,7 @@
 		87FED14B28E4033100C258CF /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
 		87FED14D28E4043B00C258CF /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		87FED14F28E43E6500C258CF /* Calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculation.swift; sourceTree = "<group>"; };
+		BCA8D9BEDBC9EDACA8E42C16 /* Pods_CoinDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1955311D052081B6FB9721C /* Pods-CoinDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiary.release.xcconfig"; path = "Target Support Files/Pods-CoinDiary/Pods-CoinDiary.release.xcconfig"; sourceTree = "<group>"; };
 		F6FBB1D5BA41CE3F3BF644D3 /* Pods-CoinDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinDiary.debug.xcconfig"; path = "Target Support Files/Pods-CoinDiary/Pods-CoinDiary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87FB55D328EB059D00F36DD5 /* SwiftUICharts in Frameworks */,
+				147521B8CE713D8BBFD0382F /* Pods_CoinDiary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9B40F6DA84E926C71579DC3 /* Pods_CoinDiaryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C63C8E72D34651E87524A96 /* Pods_CoinDiary_CoinDiaryUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +248,7 @@
 				06122D1228D2F92F00792B87 /* Base */,
 				871EF8C028D57D7B0010F197 /* Diary */,
 				871EF8C128D57D850010F197 /* Chart */,
+				069F0F7728F7E95700141635 /* Coin */,
 				871EF8E928D6DDEE0010F197 /* Util */,
 			);
 			path = Presentation;
@@ -364,6 +378,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		069F0F7728F7E95700141635 /* Coin */ = {
+			isa = PBXGroup;
+			children = (
+				069F0F7828F7E96600141635 /* CoinViewController.swift */,
+				069F0F7A28F7E97700141635 /* ViewModel */,
+			);
+			path = Coin;
+			sourceTree = "<group>";
+		};
+		069F0F7A28F7E97700141635 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				069F0F7B28F7E98F00141635 /* CoinViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		06A74B8A28DC34DA000F7FE3 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +412,7 @@
 				06B53C4528D2EFE2001B9BA2 /* CoinDiaryUITests */,
 				06B53C2028D2EFE1001B9BA2 /* Products */,
 				B748F12072EF03438C7BA868 /* Pods */,
+				B9D7694C1E2BE682FDAFCC9D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -497,6 +529,16 @@
 				7A1C892D8B2D75924DB510B7 /* Pods-CoinDiaryTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B9D7694C1E2BE682FDAFCC9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BCA8D9BEDBC9EDACA8E42C16 /* Pods_CoinDiary.framework */,
+				7AAC3AE55C7EB739958794D1 /* Pods_CoinDiary_CoinDiaryUITests.framework */,
+				40B1A42AEBE9AEB09EFBCC70 /* Pods_CoinDiaryTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -765,6 +807,7 @@
 				871EF8D828D587FE0010F197 /* FlowCoordinator.swift in Sources */,
 				87FB634C28E6FD3F002C5C31 /* SpinnerViewController.swift in Sources */,
 				871EF8C328D57DA50010F197 /* DiaryViewController.swift in Sources */,
+				069F0F7928F7E96600141635 /* CoinViewController.swift in Sources */,
 				06A74B8728DBF6AB000F7FE3 /* CustomLabel.swift in Sources */,
 				871EF8DA28D5A2740010F197 /* DiaryUseCase.swift in Sources */,
 				871EF8E228D6D4EF0010F197 /* ChartUseCase.swift in Sources */,
@@ -773,6 +816,7 @@
 				06B53C2328D2EFE1001B9BA2 /* AppDelegate.swift in Sources */,
 				871EF8CD28D5815D0010F197 /* AppFlowCoordinator.swift in Sources */,
 				06122D1A28D2F9B200792B87 /* entities.swift in Sources */,
+				069F0F7C28F7E98F00141635 /* CoinViewModel.swift in Sources */,
 				06FAC64028F4F2DF00DEEF14 /* EditUseCase.swift in Sources */,
 				87D1328328E0850C00F35E49 /* ButtonExtensions.swift in Sources */,
 				06FAC63E28F4F0B200DEEF14 /* EditViewModel.swift in Sources */,

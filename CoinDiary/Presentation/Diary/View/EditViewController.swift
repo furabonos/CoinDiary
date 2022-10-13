@@ -204,6 +204,7 @@ class EditViewController: BaseViewController {
                 guard let imageURL = diary.imageURL else { return }
                 self.imageView.kf.setImage(with: URL(string: imageURL))
                 
+                
             }.store(in: &subscriptions)
         
         viewModel.viewModePublisher

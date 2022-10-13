@@ -12,10 +12,12 @@ class TabbarController: UITabBarController {
 //    var appFlowCoordinator: AppFlowCoordinator?
     var diary: DiaryViewController
     var chart: ChartViewController
+    var coin: CoinViewController
     
-    init(diary: DiaryViewController, chart: ChartViewController) {
+    init(diary: DiaryViewController, chart: ChartViewController, coin: CoinViewController) {
         self.diary = diary
         self.chart = chart
+        self.coin = coin
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,16 +30,21 @@ class TabbarController: UITabBarController {
         
         let first = self.diary
         let second = self.chart
+        let third = self.coin
         
-        let tabList = [first, second]
+        let tabList = [first, second, third]
         
         tabList[0].title = "매매일지"
         tabList[1].title = "자산그래프"
+        tabList[2].title = "차트"
         
         viewControllers = tabList
         self.tabBar.backgroundColor = Colors.iosGrey
-        self.tabBar.items![0].image = UIImage(systemName: "dollarsign.circle")
-        self.tabBar.items![1].image = UIImage(systemName: "chart.line.uptrend.xyaxis")
+        self.tabBar.items![0].image = UIImage(systemName: "list.dash")
+        self.tabBar.items![1].image = UIImage(systemName: "dollarsign.circle")
+        self.tabBar.items![2].image = UIImage(systemName: "chart.xyaxis.line")
+        //dollarsign.circle
+        //list.dash
     }
 
 }

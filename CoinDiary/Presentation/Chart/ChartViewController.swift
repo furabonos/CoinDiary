@@ -8,8 +8,15 @@
 import UIKit
 import Combine
 import AAInfographics
+import SnapKit
+import WebKit
 
 class ChartViewController: BaseViewController {
+    
+//    lazy var webView: WKWebView = {
+//        var wv = WKWebView()
+//        return wv
+//    }()
     
     lazy var chartView: AAChartView = {
         var cv = AAChartView()
@@ -24,13 +31,43 @@ class ChartViewController: BaseViewController {
     static func create(with viewModel: ChartViewModel) -> ChartViewController {
         let view = ChartViewController()
         view.viewModel = viewModel
-
         return view
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
+//        self.view.addSubview(webView)
+//        webView.snp.makeConstraints {
+//            $0.top.leading.bottom.trailing.equalToSuperview()
+//        }
+//        webView.loadHTMLString("""
+//                               <!-- TradingView Widget BEGIN -->
+//                               <div class="tradingview-widget-container">
+//                                 <div id="tradingview_c4588"></div>
+//                                 <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDTPERP/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDTPERP Chart</span></a> by TradingView</div>
+//                                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+//                                 <script type="text/javascript">
+//                                 new TradingView.widget(
+//                                 {
+//                                 "autosize": true,
+//                                 "symbol": "BINANCE:XRPUSDTPERP",
+//                                 "interval": "D",
+//                                 "timezone": "Asia/Seoul",
+//                                 "theme": "dark",
+//                                 "style": "1",
+//                                 "locale": "en",
+//                                 "toolbar_bg": "#f1f3f6",
+//                                 "enable_publishing": false,
+//                                 "allow_symbol_change": true,
+//                                 "container_id": "tradingview_c4588"
+//                               }
+//                                 );
+//                                 </script>
+//                               </div>
+//
+//""", baseURL: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

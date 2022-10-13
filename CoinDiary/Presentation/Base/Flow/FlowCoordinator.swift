@@ -9,11 +9,12 @@ import Foundation
 import UIKit
 
 protocol FlowCoordinatorDependencies  {
-    func makeTabbarController(diary: DiaryViewController, chart: ChartViewController, actions: DiaryViewModelAction) -> TabbarController
+    func makeTabbarController(diary: DiaryViewController, chart: ChartViewController, coin: CoinViewController, actions: DiaryViewModelAction) -> TabbarController
     func makeDiaryViewController(actions: DiaryViewModelAction) -> DiaryViewController
     func makeChartViewController() -> ChartViewController
     func makeAddViewController() -> AddViewController
     func makeEditViewController(diary: DiaryEntity) -> UIViewController
+    func makeCoinViewController() -> CoinViewController
 }
 
 final class FlowCoordinator {
@@ -30,7 +31,7 @@ final class FlowCoordinator {
     
     func start() {
         let actions = DiaryViewModelAction(showAddViewController: showAddViewController, showEditViewController: showEditViewController)
-        let vc = dependencies.makeTabbarController(diary: makeDiaryViewController(), chart: makeChartViewController(), actions: actions)
+        let vc = dependencies.makeTabbarController(diary: makeDiaryViewController(), chart: makeChartViewController(), coin: makeCoinViewController(), actions: actions)
         navigationController?.pushViewController(vc, animated: false)
         StartVC = vc
     }
@@ -43,6 +44,11 @@ final class FlowCoordinator {
     
     func makeChartViewController() -> ChartViewController {
         let vc = dependencies.makeChartViewController()
+        return vc
+    }
+    
+    func makeCoinViewController() -> CoinViewController {
+        let vc = dependencies.makeCoinViewController()
         return vc
     }
     

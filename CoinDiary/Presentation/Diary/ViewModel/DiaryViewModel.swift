@@ -64,7 +64,7 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
                 case .finished:
                     break
                 case .failure(let error):
-//                    self.diaryList = []
+                    self.diaryList = []
                     completions("failure")
                 }
             } receiveValue: { diaryList in
