@@ -15,16 +15,3 @@ extension Date {
         return today
     }
 }
-
-//    extension Double {
-//        var groupingSeparator: String {
-//            let numberFormatter = NumberFormatter()
-//            numberFormatter.groupingSeparator = ","
-//            numberFormatter.groupingSize = 3
-//            numberFormatter.usesGroupingSeparator = true
-//            numberFormatter.decimalSeparator = "."
-//            numberFormatter.numberStyle = .decimal
-//            numberFormatter.maximumFractionDigits = 0
-//            return "\(numberFormatter.string(from: self as NSNumber)!)"
-//        }
-//    }

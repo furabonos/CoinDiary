@@ -10,19 +10,47 @@ import Combine
 import UIKit
 
 protocol CoinViewModelInput {
-//    var viewMode: ViewMode { get }
-//    var viewModePublisher: PassthroughSubject<ViewMode, Never> { get }
-//    var saveData: Bool { get }
-//    var saveDataPublisher: PassthroughSubject<Bool, Never> { get }
+    var ticker: String { get }
+    var coins: Array<String> { get }
 }
 
 protocol CoinViewModelOutput {
-//    func clickAdd()
-//    func clickCancel()
-//    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?)
+    func loadChart(ticker: String) -> String
 }
 
 public final class CoinViewModel: CoinViewModelInput, CoinViewModelOutput, ObservableObject {
+    
+    @Published public var ticker = ""
+    public var coins = ["XRPUSDTPERP", "BTCUSDTPERP", "BCHUSDTPERP"]
+    
+    func loadChart(ticker: String) -> String {
+        return """
+                               <!-- TradingView Widget BEGIN -->
+                               <div class="tradingview-widget-container">
+                                 <div id="tradingview_c4588"></div>
+                                 <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDTPERP/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDTPERP Chart</span></a> by TradingView</div>
+                                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                 <script type="text/javascript">
+                                 new TradingView.widget(
+                                 {
+                                 "autosize": true,
+                                 "symbol": "BINANCE:\(ticker)",
+                                 "interval": "D",
+                                 "timezone": "Asia/Seoul",
+                                 "theme": "dark",
+                                 "style": "1",
+                                 "locale": "en",
+                                 "toolbar_bg": "#f1f3f6",
+                                 "enable_publishing": false,
+                                 "allow_symbol_change": true,
+                                 "container_id": "tradingview_c4588"
+                               }
+                                 );
+                                 </script>
+                               </div>
+
+"""
+    }
     
 //    var viewModePublisher = PassthroughSubject<ViewMode, Never>()
 //    public var viewMode = ViewMode.None {

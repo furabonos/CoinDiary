@@ -10,8 +10,9 @@
 		06050D6C28D834B500443156 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06050D6B28D834B500443156 /* GoogleService-Info.plist */; };
 		06122D1128D2F84500792B87 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1028D2F84500792B87 /* AppDIContainer.swift */; };
 		06122D1428D2F94100792B87 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1328D2F94100792B87 /* BaseViewController.swift */; };
-		06122D1A28D2F9B200792B87 /* entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D1928D2F9B200792B87 /* entities.swift */; };
-		06122D2328D2FA4400792B87 /* dto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06122D2228D2FA4400792B87 /* dto.swift */; };
+		06168E4F28F923D7009B036D /* CoinDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06168E4E28F923D7009B036D /* CoinDTO.swift */; };
+		06168E5128F92476009B036D /* CoinEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06168E5028F92476009B036D /* CoinEntity.swift */; };
+		06168E5328F925F5009B036D /* CoinDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06168E5228F925F5009B036D /* CoinDataSource.swift */; };
 		0669684528DA986900C51B91 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669684428DA986900C51B91 /* AddViewController.swift */; };
 		0669684728DA9F2C00C51B91 /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669684628DA9F2C00C51B91 /* AddViewModel.swift */; };
 		0669684B28DAA41F00C51B91 /* AddUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0669684A28DAA41F00C51B91 /* AddUseCase.swift */; };
@@ -95,8 +96,9 @@
 		06050D6B28D834B500443156 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06122D1028D2F84500792B87 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		06122D1328D2F94100792B87 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		06122D1928D2F9B200792B87 /* entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = entities.swift; sourceTree = "<group>"; };
-		06122D2228D2FA4400792B87 /* dto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dto.swift; sourceTree = "<group>"; };
+		06168E4E28F923D7009B036D /* CoinDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDTO.swift; sourceTree = "<group>"; };
+		06168E5028F92476009B036D /* CoinEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinEntity.swift; sourceTree = "<group>"; };
+		06168E5228F925F5009B036D /* CoinDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDataSource.swift; sourceTree = "<group>"; };
 		0669684428DA986900C51B91 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		0669684628DA9F2C00C51B91 /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
 		0669684A28DAA41F00C51B91 /* AddUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUseCase.swift; sourceTree = "<group>"; };
@@ -318,8 +320,8 @@
 		06122D1828D2F97A00792B87 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				06122D1928D2F9B200792B87 /* entities.swift */,
 				870FB68328E46F54000FF80A /* DiaryEntity.swift */,
+				06168E5028F92476009B036D /* CoinEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -344,6 +346,7 @@
 				06FAC64328F4F33100DEEF14 /* EditDataSource.swift */,
 				0669684E28DAA46200C51B91 /* AddDataSource.swift */,
 				871EF8E528D6D56E0010F197 /* ChartDataSource.swift */,
+				06168E5228F925F5009B036D /* CoinDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -351,8 +354,8 @@
 		06122D2128D2FA3C00792B87 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				06122D2228D2FA4400792B87 /* dto.swift */,
 				870FB68128E46A94000FF80A /* DiaryDTO.swift */,
+				06168E4E28F923D7009B036D /* CoinDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -797,12 +800,12 @@
 				06FAC64428F4F33100DEEF14 /* EditDataSource.swift in Sources */,
 				06FAC63C28F4F0A100DEEF14 /* EditViewController.swift in Sources */,
 				06122D1128D2F84500792B87 /* AppDIContainer.swift in Sources */,
+				06168E5328F925F5009B036D /* CoinDataSource.swift in Sources */,
 				0669684F28DAA46200C51B91 /* AddDataSource.swift in Sources */,
 				06FAC64228F4F31900DEEF14 /* EditRepositoryInterface.swift in Sources */,
 				871EF8E628D6D56E0010F197 /* ChartDataSource.swift in Sources */,
 				0669684728DA9F2C00C51B91 /* AddViewModel.swift in Sources */,
 				06B53C2D28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld in Sources */,
-				06122D2328D2FA4400792B87 /* dto.swift in Sources */,
 				870FB68428E46F54000FF80A /* DiaryEntity.swift in Sources */,
 				871EF8D828D587FE0010F197 /* FlowCoordinator.swift in Sources */,
 				87FB634C28E6FD3F002C5C31 /* SpinnerViewController.swift in Sources */,
@@ -810,12 +813,12 @@
 				069F0F7928F7E96600141635 /* CoinViewController.swift in Sources */,
 				06A74B8728DBF6AB000F7FE3 /* CustomLabel.swift in Sources */,
 				871EF8DA28D5A2740010F197 /* DiaryUseCase.swift in Sources */,
+				06168E4F28F923D7009B036D /* CoinDTO.swift in Sources */,
 				871EF8E228D6D4EF0010F197 /* ChartUseCase.swift in Sources */,
 				871EF8CF28D584000010F197 /* SceneDIContainer.swift in Sources */,
 				87FED15028E43E6500C258CF /* Calculation.swift in Sources */,
 				06B53C2328D2EFE1001B9BA2 /* AppDelegate.swift in Sources */,
 				871EF8CD28D5815D0010F197 /* AppFlowCoordinator.swift in Sources */,
-				06122D1A28D2F9B200792B87 /* entities.swift in Sources */,
 				069F0F7C28F7E98F00141635 /* CoinViewModel.swift in Sources */,
 				06FAC64028F4F2DF00DEEF14 /* EditUseCase.swift in Sources */,
 				87D1328328E0850C00F35E49 /* ButtonExtensions.swift in Sources */,
@@ -833,6 +836,7 @@
 				871EF8DE28D5A4010010F197 /* DiaryRepository.swift in Sources */,
 				871EF8E428D6D5410010F197 /* ChartRepositoryInterface.swift in Sources */,
 				871EF8EE28D6F6DC0010F197 /* Colors.swift in Sources */,
+				06168E5128F92476009B036D /* CoinEntity.swift in Sources */,
 				06FAC64628F4F37000DEEF14 /* EditRepository.swift in Sources */,
 				87FED14C28E4033100C258CF /* DiaryCell.swift in Sources */,
 				871EF8D328D585E40010F197 /* TabbarController.swift in Sources */,
