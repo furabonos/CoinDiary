@@ -43,8 +43,6 @@ class TabbarController: UITabBarController {
         self.tabBar.items![0].image = UIImage(systemName: "list.dash")
         self.tabBar.items![1].image = UIImage(systemName: "dollarsign.circle")
         self.tabBar.items![2].image = UIImage(systemName: "chart.xyaxis.line")
-        //dollarsign.circle
-        //list.dash
     }
 
 }

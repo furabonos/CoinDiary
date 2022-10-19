@@ -16,12 +16,26 @@ public struct CoinDTO: Codable {
     }
 }
 
-public struct Symbols: Codable {
-    let symbol: String
-    let contractType: String
-    
-    
-    enum CodingKeys: String, CodingKey {
-        case symbol, contractType
+extension CoinDTO {
+    struct Symbols: Codable {
+        let symbol: String
+        let contractType: String
+        
+        
+        enum CodingKeys: String, CodingKey {
+            case symbol, contractType
+        }
+    }
+}
+
+extension CoinDTO {
+    func toDomain() -> CoinEntity {
+        return .init(symbols: symbols.map { $0.toDomain() })
+    }
+}
+
+extension CoinDTO.Symbols {
+    func toDomain() -> Coin{
+        return .init(symbol: symbol, contractType: contractType)
     }
 }

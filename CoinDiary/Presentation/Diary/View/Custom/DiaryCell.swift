@@ -14,7 +14,6 @@ class DiaryCell: BaseCollectionViewCell {
         l.adjustsFontSizeToFitWidth = true
         l.textAlignment = .center
         l.font = l.font.withSize(13)
-//        l.backgroundColor = .red
         return l
     }()
     
@@ -23,7 +22,6 @@ class DiaryCell: BaseCollectionViewCell {
         l.adjustsFontSizeToFitWidth = true
         l.textAlignment = .center
         l.font = l.font.withSize(13)
-//        l.backgroundColor = .yellow
         return l
     }()
     
@@ -32,7 +30,6 @@ class DiaryCell: BaseCollectionViewCell {
         l.adjustsFontSizeToFitWidth = true
         l.textAlignment = .center
         l.font = l.font.withSize(13)
-//        l.backgroundColor = .red
         return l
     }()
     
@@ -41,7 +38,6 @@ class DiaryCell: BaseCollectionViewCell {
         l.adjustsFontSizeToFitWidth = true
         l.textAlignment = .center
         l.font = l.font.withSize(13)
-//        l.backgroundColor = .yellow
         return l
     }()
     
@@ -49,7 +45,6 @@ class DiaryCell: BaseCollectionViewCell {
         var l = UILabel()
         l.textAlignment = .center
         l.font = l.font.withSize(13)
-//        l.backgroundColor = .red
         return l
     }()
     

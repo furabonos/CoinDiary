@@ -7,21 +7,13 @@
 
 import Foundation
 
-public struct CoinEntity: Hashable, Identifiable {
-    
+public struct Coin: Equatable, Identifiable {
     public var id = UUID()
-    public let imageURL: String?
-    public let memo: String?
-    public let start: String
-    public let end: String
-    public let today: String
-    
-    public init(imageURL: String?, memo: String?, start: String, end: String, today: String)
-    {
-        self.imageURL = imageURL
-        self.memo = memo
-        self.start = start
-        self.end = end
-        self.today = today
-    }
+     let symbol: String
+     let contractType: String
+}
+
+public struct CoinEntity: Equatable, Identifiable {
+    public var id = UUID()
+    let symbols: [Coin]
 }

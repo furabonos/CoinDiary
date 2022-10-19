@@ -10,21 +10,24 @@ import Combine
 import Alamofire
 
 public protocol CoinDataSourceInterface {
-    func getTicker() -> AnyPublisher<CoinDTO, AFError>
+    func getTicker(completion: @escaping (AnyPublisher<CoinDTO, AFError>) -> Void)
+    
 }
 
 public final class CoinDataSource: CoinDataSourceInterface {
     
-    public func getTicker() -> AnyPublisher<CoinDTO, AFError> {
+    public func getTicker(completion: @escaping (AnyPublisher<CoinDTO, AFError>) -> Void) {
         
         let urls = "https://fapi.binance.com/fapi/v1/exchangeInfo"
         
-        return AF.request(urls, method: .get, encoding: URLEncoding.default)
-            .validate()
-            .publishDecodable(type: CoinDTO.self)
-            .value()
-            .receive(on: RunLoop.main)
-            .eraseToAnyPublisher()
+        completion(
+            AF.request(urls, method: .get, encoding: URLEncoding.default)
+                .validate()
+                .publishDecodable(type: CoinDTO.self)
+                .value()
+                .receive(on: RunLoop.main)
+                .eraseToAnyPublisher()
+        )
     }
     
 }

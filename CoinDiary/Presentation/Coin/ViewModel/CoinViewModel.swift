@@ -8,20 +8,50 @@
 import Foundation
 import Combine
 import UIKit
+import Alamofire
 
 protocol CoinViewModelInput {
-    var ticker: String { get }
-    var coins: Array<String> { get }
+    func loadChart(ticker: String) -> String
+    func getTicker()
 }
 
 protocol CoinViewModelOutput {
-    func loadChart(ticker: String) -> String
+    var ticker: String { get }
+    var coins: Array<String> { get }
+    var coin: CoinEntity? { get }
+    var filterCoins: Array<String> { get }
 }
 
 public final class CoinViewModel: CoinViewModelInput, CoinViewModelOutput, ObservableObject {
     
+    private let useCase: CoinUseCaseInterface
+    private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
+    
+    @Published public var coin: CoinEntity? = nil
+    
     @Published public var ticker = ""
-    public var coins = ["XRPUSDTPERP", "BTCUSDTPERP", "BCHUSDTPERP"]
+    public var coins = Array<String>()
+    public var filterCoins = Array<String>()
+    
+    init(useCase: CoinUseCaseInterface) {
+        self.useCase = useCase
+    }
+    
+    func getTicker() {
+        useCase.getTicker {[unowned self] result in
+            result.sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("getticker Error = \(error)")
+                }
+            } receiveValue: { coin in
+                self.coin = coin
+            }
+            .store(in: &bag)
+        }
+    }
     
     func loadChart(ticker: String) -> String {
         return """
@@ -51,24 +81,6 @@ public final class CoinViewModel: CoinViewModelInput, CoinViewModelOutput, Obser
 
 """
     }
-    
-//    var viewModePublisher = PassthroughSubject<ViewMode, Never>()
-//    public var viewMode = ViewMode.None {
-//        didSet {
-//            viewModePublisher.send(viewMode)
-//        }
-//    }
-//
-//    var saveDataPublisher = PassthroughSubject<Bool, Never>()
-//    public var saveData = false {
-//        didSet {
-//            saveDataPublisher.send(saveData)
-//        }
-//    }
-//
-//    private let useCase: EditUseCaseInterface
-//    private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
-//    @Published var diary: DiaryEntity
     
     
 }

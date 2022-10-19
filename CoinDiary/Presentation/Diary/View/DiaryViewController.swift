@@ -21,7 +21,6 @@ class DiaryViewController: BaseViewController {
         sv.distribution = .fillEqually
         sv.alignment = .fill
         sv.spacing = 10
-//                sv.backgroundColor = Colors.iosGrey
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
@@ -45,7 +44,7 @@ class DiaryViewController: BaseViewController {
     lazy var addBtn: UIButton = {
         var b = UIButton()
         b.setImage(UIImage(systemName: "plus"), for: .normal)
-        b.backgroundColor = .white
+        b.backgroundColor = .systemBackground
         b.layer.cornerRadius = 30
         b.addAllShadow()
         b.addTarget(self, action: #selector(clickAddBtn(_:)), for: .touchUpInside)
@@ -95,7 +94,7 @@ class DiaryViewController: BaseViewController {
         addBtn.snp.makeConstraints {
             $0.width.height.equalTo(60)
             $0.trailing.equalToSuperview().offset(-10)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
         }
     }
     
@@ -160,7 +159,6 @@ class DiaryViewController: BaseViewController {
 
 extension DiaryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("fjdkfjdskfjkds = \(self.viewModel.diaryList[indexPath.row])")
         viewModel.showEditViewController(diary: self.viewModel.diaryList[indexPath.row])
     }
 }

@@ -25,6 +25,10 @@
 		06A74B8728DBF6AB000F7FE3 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A74B8628DBF6AB000F7FE3 /* CustomLabel.swift */; };
 		06A74B8928DBFDBD000F7FE3 /* TextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A74B8828DBFDBD000F7FE3 /* TextFieldExtensions.swift */; };
 		06A74B8C28DC3507000F7FE3 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A74B8B28DC3507000F7FE3 /* PictureView.swift */; };
+		06AE277D28FE296D00A5B898 /* CoinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AE277C28FE296D00A5B898 /* CoinRepository.swift */; };
+		06AE277F28FE2A3D00A5B898 /* CoinRepositoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AE277E28FE2A3D00A5B898 /* CoinRepositoryInterface.swift */; };
+		06AE278128FE384200A5B898 /* CoinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AE278028FE384200A5B898 /* CoinUseCase.swift */; };
+		06AE278428FF76C200A5B898 /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AE278328FF76C200A5B898 /* CoinCell.swift */; };
 		06B53C2328D2EFE1001B9BA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C2228D2EFE1001B9BA2 /* AppDelegate.swift */; };
 		06B53C2D28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C2B28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld */; };
 		06B53C2F28D2EFE2001B9BA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06B53C2E28D2EFE2001B9BA2 /* Assets.xcassets */; };
@@ -111,6 +115,10 @@
 		06A74B8628DBF6AB000F7FE3 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		06A74B8828DBFDBD000F7FE3 /* TextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtensions.swift; sourceTree = "<group>"; };
 		06A74B8B28DC3507000F7FE3 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
+		06AE277C28FE296D00A5B898 /* CoinRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRepository.swift; sourceTree = "<group>"; };
+		06AE277E28FE2A3D00A5B898 /* CoinRepositoryInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRepositoryInterface.swift; sourceTree = "<group>"; };
+		06AE278028FE384200A5B898 /* CoinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUseCase.swift; sourceTree = "<group>"; };
+		06AE278328FF76C200A5B898 /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
 		06B53C1F28D2EFE1001B9BA2 /* CoinDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B53C2228D2EFE1001B9BA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06B53C2C28D2EFE1001B9BA2 /* CoinDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoinDiary.xcdatamodel; sourceTree = "<group>"; };
@@ -302,6 +310,7 @@
 				06FAC64128F4F31900DEEF14 /* EditRepositoryInterface.swift */,
 				0669684C28DAA44700C51B91 /* AddRepositoryInterface.swift */,
 				871EF8E328D6D5410010F197 /* ChartRepositoryInterface.swift */,
+				06AE277E28FE2A3D00A5B898 /* CoinRepositoryInterface.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -313,6 +322,7 @@
 				06FAC63F28F4F2DF00DEEF14 /* EditUseCase.swift */,
 				0669684A28DAA41F00C51B91 /* AddUseCase.swift */,
 				871EF8E128D6D4EF0010F197 /* ChartUseCase.swift */,
+				06AE278028FE384200A5B898 /* CoinUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -334,6 +344,7 @@
 				06FAC64528F4F37000DEEF14 /* EditRepository.swift */,
 				0669685028DAA48700C51B91 /* AddRepository.swift */,
 				871EF8E728D6D58B0010F197 /* ChartRepository.swift */,
+				06AE277C28FE296D00A5B898 /* CoinRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -386,6 +397,7 @@
 			children = (
 				069F0F7828F7E96600141635 /* CoinViewController.swift */,
 				069F0F7A28F7E97700141635 /* ViewModel */,
+				06AE278228FF766F00A5B898 /* Custom */,
 			);
 			path = Coin;
 			sourceTree = "<group>";
@@ -403,6 +415,14 @@
 			children = (
 				06A74B8B28DC3507000F7FE3 /* PictureView.swift */,
 				87FED14B28E4033100C258CF /* DiaryCell.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		06AE278228FF766F00A5B898 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				06AE278328FF76C200A5B898 /* CoinCell.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -801,8 +821,10 @@
 				06FAC63C28F4F0A100DEEF14 /* EditViewController.swift in Sources */,
 				06122D1128D2F84500792B87 /* AppDIContainer.swift in Sources */,
 				06168E5328F925F5009B036D /* CoinDataSource.swift in Sources */,
+				06AE277F28FE2A3D00A5B898 /* CoinRepositoryInterface.swift in Sources */,
 				0669684F28DAA46200C51B91 /* AddDataSource.swift in Sources */,
 				06FAC64228F4F31900DEEF14 /* EditRepositoryInterface.swift in Sources */,
+				06AE277D28FE296D00A5B898 /* CoinRepository.swift in Sources */,
 				871EF8E628D6D56E0010F197 /* ChartDataSource.swift in Sources */,
 				0669684728DA9F2C00C51B91 /* AddViewModel.swift in Sources */,
 				06B53C2D28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld in Sources */,
@@ -833,9 +855,11 @@
 				87FED14E28E4043B00C258CF /* BaseCollectionViewCell.swift in Sources */,
 				87D1328B28E1C03300F35E49 /* Cancelable.swift in Sources */,
 				06A74B8C28DC3507000F7FE3 /* PictureView.swift in Sources */,
+				06AE278428FF76C200A5B898 /* CoinCell.swift in Sources */,
 				871EF8DE28D5A4010010F197 /* DiaryRepository.swift in Sources */,
 				871EF8E428D6D5410010F197 /* ChartRepositoryInterface.swift in Sources */,
 				871EF8EE28D6F6DC0010F197 /* Colors.swift in Sources */,
+				06AE278128FE384200A5B898 /* CoinUseCase.swift in Sources */,
 				06168E5128F92476009B036D /* CoinEntity.swift in Sources */,
 				06FAC64628F4F37000DEEF14 /* EditRepository.swift in Sources */,
 				87FED14C28E4033100C258CF /* DiaryCell.swift in Sources */,
@@ -942,7 +966,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -996,7 +1020,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

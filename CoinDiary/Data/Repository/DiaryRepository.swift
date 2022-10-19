@@ -32,7 +32,6 @@ public final class DiaryRepository: DiaryRepositoryInterface {
     }
     
     public func addSnapshot(completion: @escaping (AnyPublisher<DiaryEntity, Error>) -> Void) {
-        print("아씨발 왜안타냐고")
         dataSource.addSnapshot { result in
             completion(
                 result.map({ diaryDTO in

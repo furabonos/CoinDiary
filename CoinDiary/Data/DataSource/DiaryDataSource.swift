@@ -77,17 +77,6 @@ public final class DiaryDataSource: DiaryDataSourceInterface {
                             }
                             promise(.success(diary[0]))
                         }
-//                        var diary = [DiaryDTO]()
-//                        do {
-//                            guard let datas = documents.data() else { return }
-//                            let jsonData = try JSONSerialization.data(withJSONObject: datas)
-//                            let dtoData = try decoder.decode(DiaryDTO.self, from: jsonData)
-//                            print("스냅샷온 = \(dtoData)")
-//                            diary.append(dtoData)
-//                        }catch let error {
-//                            promise(.failure(error))
-//                        }
-//                        promise(.success(diary[0]))
                     }
                 }
             }.eraseToAnyPublisher()

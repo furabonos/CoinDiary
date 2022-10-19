@@ -96,7 +96,6 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
     }
     
     public func showEditViewController(diary: DiaryEntity) {
-//        print("didididia = \(diary)")
         action?.showEditViewController(diary)
     }
     

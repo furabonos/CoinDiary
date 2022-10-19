@@ -16,16 +16,16 @@ public enum ViewMode {
 }
 
 protocol EditViewModelInput {
+    func clickAdd()
+    func clickCancel()
+    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?)
+}
+
+protocol EditViewModelOutput {
     var viewMode: ViewMode { get }
     var viewModePublisher: PassthroughSubject<ViewMode, Never> { get }
     var saveData: Bool { get }
     var saveDataPublisher: PassthroughSubject<Bool, Never> { get }
-}
-
-protocol EditViewModelOutput {
-    func clickAdd()
-    func clickCancel()
-    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?)
 }
 
 public final class EditViewModel: EditViewModelInput, EditViewModelOutput, ObservableObject {

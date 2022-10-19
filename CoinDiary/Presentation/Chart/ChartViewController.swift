@@ -15,6 +15,8 @@ class ChartViewController: BaseViewController {
     
     lazy var chartView: AAChartView = {
         var cv = AAChartView()
+//        cv.backgroundColor = .systemBackground
+        cv.tintColor = .systemBackground
         return cv
     }()
     
@@ -63,6 +65,8 @@ class ChartViewController: BaseViewController {
                             ])
                 self.chartView.aa_drawChartWithChartModel(self.aaChartModel)
             }.store(in: &subscriptions)
+        
+        
     }
     
     func makeChartView() {

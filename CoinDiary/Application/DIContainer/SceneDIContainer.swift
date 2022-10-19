@@ -35,6 +35,12 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
         return EditRepository(dataSource: dataSource)
     }
     
+    func makeCoinRepository() -> CoinRepository {
+        let dataSource: CoinDataSourceInterface
+        dataSource = CoinDataSource()
+        return CoinRepository(dataSource: dataSource)
+    }
+    
     // MARK: - UseCase
     func makeDiaryUseCase() -> DiaryUseCase {
         return DiaryUseCase(repository: makeDiaryRepository())
@@ -50,6 +56,10 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
     
     func makeEditUseCase() -> EditUseCase {
         return EditUseCase(repository: makeEditRepository())
+    }
+    
+    func makeCoinUseCase() -> CoinUseCase {
+        return CoinUseCase(repository: makeCoinRepository())
     }
     
     // MARK: - Presentation
@@ -74,7 +84,7 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
     }
     
     func makeCoinViewModel() -> CoinViewModel {
-        return CoinViewModel()
+        return CoinViewModel(useCase: makeCoinUseCase())
     }
     
     func makeDiaryViewController(actions: DiaryViewModelAction) -> DiaryViewController {

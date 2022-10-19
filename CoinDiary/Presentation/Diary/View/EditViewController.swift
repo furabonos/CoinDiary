@@ -126,7 +126,6 @@ class EditViewController: BaseViewController {
         }
         
         imageView.snp.makeConstraints {
-//            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
@@ -137,7 +136,6 @@ class EditViewController: BaseViewController {
             if viewModel.diary.imageURL != nil {
                 $0.top.equalTo(imageView.snp.bottom).offset(20)
             }else {
-//                $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
                 $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             }
             $0.leading.equalToSuperview().offset(20)
@@ -196,15 +194,12 @@ class EditViewController: BaseViewController {
         viewModel.$diary
             .receive(on: RunLoop.main)
             .sink { diary in
-//                self.navigationItem.title = diary.today
                 self.titleLabel.text = diary.today
                 self.memoView.text = diary.memo
                 self.startField.text = diary.start
                 self.endField.text = diary.end
                 guard let imageURL = diary.imageURL else { return }
                 self.imageView.kf.setImage(with: URL(string: imageURL))
-                
-                
             }.store(in: &subscriptions)
         
         viewModel.viewModePublisher

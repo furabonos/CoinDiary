@@ -10,17 +10,15 @@ import Combine
 import UIKit
 
 protocol AddViewModelInput {
-//    var userProfile: UserEntity? { get }
-//    var viewDismissalModePublisher = PassthroughSubject<Bool, Never>()
+    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?)
+    func clickCancel()
+}
+
+protocol AddViewModelOutput {
     var viewDismissalModePublisher: PassthroughSubject<Bool, Never> { get }
     var saveDataPublisher: PassthroughSubject<Bool, Never> { get }
     var shouldPopView: Bool { get }
     var saveData: Bool { get }
-}
-
-protocol AddViewModelOutput {
-    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?)
-    func clickCancel()
 }
 
 public final class AddViewModel: AddViewModelInput, AddViewModelOutput, ObservableObject {
@@ -42,9 +40,6 @@ public final class AddViewModel: AddViewModelInput, AddViewModelOutput, Observab
     
     private let useCase: AddUseCaseInterface
     private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
-    
-//    private let action: DiaryViewModelAction?
-//    let menuList = ["날짜", "시작금액", "종료금액", "수익률", "메모"]
     
     
     init(useCase: AddUseCaseInterface) {
