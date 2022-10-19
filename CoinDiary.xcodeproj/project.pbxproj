@@ -124,7 +124,7 @@
 		06B53C2C28D2EFE1001B9BA2 /* CoinDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoinDiary.xcdatamodel; sourceTree = "<group>"; };
 		06B53C2E28D2EFE2001B9BA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06B53C3128D2EFE2001B9BA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		06B53C3328D2EFE2001B9BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06B53C3328D2EFE2001B9BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resource/Info.plist; sourceTree = "<group>"; };
 		06B53C3828D2EFE2001B9BA2 /* CoinDiaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinDiaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B53C3C28D2EFE2001B9BA2 /* CoinDiaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDiaryTests.swift; sourceTree = "<group>"; };
 		06B53C4228D2EFE2001B9BA2 /* CoinDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,7 +210,6 @@
 		06122D0328D2F0C000792B87 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				06B53C3328D2EFE2001B9BA2 /* Info.plist */,
 				06B53C3028D2EFE2001B9BA2 /* LaunchScreen.storyboard */,
 				06B53C2E28D2EFE2001B9BA2 /* Assets.xcassets */,
 			);
@@ -460,6 +459,7 @@
 				06122D0428D2F0D000792B87 /* Common */,
 				06122D0328D2F0C000792B87 /* Resource */,
 				06B53C2B28D2EFE1001B9BA2 /* CoinDiary.xcdatamodeld */,
+				06B53C3328D2EFE2001B9BA2 /* Info.plist */,
 			);
 			path = CoinDiary;
 			sourceTree = "<group>";
@@ -966,7 +966,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1020,7 +1020,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1041,6 +1041,7 @@
 				DEVELOPMENT_TEAM = 9UT8US6W3V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoinDiary/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범접근권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1069,6 +1070,7 @@
 				DEVELOPMENT_TEAM = 9UT8US6W3V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoinDiary/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범접근권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

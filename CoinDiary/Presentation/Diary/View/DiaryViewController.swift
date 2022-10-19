@@ -11,7 +11,7 @@ import SnapKit
 import Firebase
 import FirebaseCore
 import FirebaseStorage
-
+import Photos
 
 class DiaryViewController: BaseViewController {
     
@@ -72,6 +72,10 @@ class DiaryViewController: BaseViewController {
             selectMoneyUnitAlert(title: "", message: "단위를 선택해주세요", preferredStyle: .alert, completion: nil)
         }
         viewModel.fetchData()
+        
+        PHPhotoLibrary.requestAuthorization { (state) in
+                print(state)
+            }
     }
     
     override func setupUI() {
