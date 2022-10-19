@@ -23,6 +23,7 @@ class CoinViewController: BaseViewController {
     lazy var searchBar: UISearchBar = {
         var sb = UISearchBar()
         sb.delegate = self
+        sb.placeholder = "검색"
         return sb
     }()
     
