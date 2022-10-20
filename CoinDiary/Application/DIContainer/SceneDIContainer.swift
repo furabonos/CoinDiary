@@ -63,8 +63,8 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
     }
     
     // MARK: - Presentation
-    func makeTabbarController(diary: DiaryViewController, chart: ChartViewController, coin: CoinViewController, actions: DiaryViewModelAction) -> TabbarController {
-        return TabbarController(diary: makeDiaryViewController(actions: actions), chart: makeChartViewController(), coin: makeCoinViewController())
+    func makeTabbarController(diary: DiaryViewController, chart: ChartViewController, coin: CoinViewController, calculator: CalculatorViewController, actions: DiaryViewModelAction) -> TabbarController {
+        return TabbarController(diary: makeDiaryViewController(actions: actions), chart: makeChartViewController(), coin: makeCoinViewController(), calculator: makeCalculatorViewController())
     }
     
     func makeDiaryViewModel(actions: DiaryViewModelAction) -> DiaryViewModel {
@@ -87,6 +87,10 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
         return CoinViewModel(useCase: makeCoinUseCase())
     }
     
+    func makeCalculatorViewModel() -> CalculatorViewModel {
+        return CalculatorViewModel()
+    }
+    
     func makeDiaryViewController(actions: DiaryViewModelAction) -> DiaryViewController {
         return DiaryViewController.create(with: DiaryViewModel(useCase: makeDiaryUseCase(), actions: actions))
     }
@@ -105,6 +109,10 @@ final class SceneDIContainer: FlowCoordinatorDependencies {
     
     func makeCoinViewController() -> CoinViewController {
         return CoinViewController.create(with: makeCoinViewModel())
+    }
+    
+    func makeCalculatorViewController() -> CalculatorViewController {
+        return CalculatorViewController.create(with: makeCalculatorViewModel())
     }
     
     // MARK: - Flow Coordinators

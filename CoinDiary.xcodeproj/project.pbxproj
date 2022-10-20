@@ -36,6 +36,8 @@
 		06B53C3D28D2EFE2001B9BA2 /* CoinDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C3C28D2EFE2001B9BA2 /* CoinDiaryTests.swift */; };
 		06B53C4728D2EFE2001B9BA2 /* CoinDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C4628D2EFE2001B9BA2 /* CoinDiaryUITests.swift */; };
 		06B53C4928D2EFE2001B9BA2 /* CoinDiaryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B53C4828D2EFE2001B9BA2 /* CoinDiaryUITestsLaunchTests.swift */; };
+		06BA84BC2900E02F0071686F /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BA84BB2900E02F0071686F /* CalculatorViewController.swift */; };
+		06BA84BF2900E0BA0071686F /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BA84BE2900E0BA0071686F /* CalculatorViewModel.swift */; };
 		06FAC63C28F4F0A100DEEF14 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC63B28F4F0A100DEEF14 /* EditViewController.swift */; };
 		06FAC63E28F4F0B200DEEF14 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC63D28F4F0B200DEEF14 /* EditViewModel.swift */; };
 		06FAC64028F4F2DF00DEEF14 /* EditUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAC63F28F4F2DF00DEEF14 /* EditUseCase.swift */; };
@@ -130,6 +132,8 @@
 		06B53C4228D2EFE2001B9BA2 /* CoinDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B53C4628D2EFE2001B9BA2 /* CoinDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDiaryUITests.swift; sourceTree = "<group>"; };
 		06B53C4828D2EFE2001B9BA2 /* CoinDiaryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDiaryUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		06BA84BB2900E02F0071686F /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
+		06BA84BE2900E0BA0071686F /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		06FAC63B28F4F0A100DEEF14 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		06FAC63D28F4F0B200DEEF14 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		06FAC63F28F4F2DF00DEEF14 /* EditUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUseCase.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 				871EF8C028D57D7B0010F197 /* Diary */,
 				871EF8C128D57D850010F197 /* Chart */,
 				069F0F7728F7E95700141635 /* Coin */,
+				06BA84BA2900E0100071686F /* Calculator */,
 				871EF8E928D6DDEE0010F197 /* Util */,
 			);
 			path = Presentation;
@@ -479,6 +484,23 @@
 				06B53C4828D2EFE2001B9BA2 /* CoinDiaryUITestsLaunchTests.swift */,
 			);
 			path = CoinDiaryUITests;
+			sourceTree = "<group>";
+		};
+		06BA84BA2900E0100071686F /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				06BA84BB2900E02F0071686F /* CalculatorViewController.swift */,
+				06BA84BD2900E0AD0071686F /* ViewModel */,
+			);
+			path = Calculator;
+			sourceTree = "<group>";
+		};
+		06BA84BD2900E0AD0071686F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				06BA84BE2900E0BA0071686F /* CalculatorViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		871EF8C028D57D7B0010F197 /* Diary */ = {
@@ -831,6 +853,7 @@
 				870FB68428E46F54000FF80A /* DiaryEntity.swift in Sources */,
 				871EF8D828D587FE0010F197 /* FlowCoordinator.swift in Sources */,
 				87FB634C28E6FD3F002C5C31 /* SpinnerViewController.swift in Sources */,
+				06BA84BC2900E02F0071686F /* CalculatorViewController.swift in Sources */,
 				871EF8C328D57DA50010F197 /* DiaryViewController.swift in Sources */,
 				069F0F7928F7E96600141635 /* CoinViewController.swift in Sources */,
 				06A74B8728DBF6AB000F7FE3 /* CustomLabel.swift in Sources */,
@@ -860,6 +883,7 @@
 				871EF8E428D6D5410010F197 /* ChartRepositoryInterface.swift in Sources */,
 				871EF8EE28D6F6DC0010F197 /* Colors.swift in Sources */,
 				06AE278128FE384200A5B898 /* CoinUseCase.swift in Sources */,
+				06BA84BF2900E0BA0071686F /* CalculatorViewModel.swift in Sources */,
 				06168E5128F92476009B036D /* CoinEntity.swift in Sources */,
 				06FAC64628F4F37000DEEF14 /* EditRepository.swift in Sources */,
 				87FED14C28E4033100C258CF /* DiaryCell.swift in Sources */,

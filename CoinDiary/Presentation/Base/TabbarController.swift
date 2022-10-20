@@ -13,11 +13,13 @@ class TabbarController: UITabBarController {
     var diary: DiaryViewController
     var chart: ChartViewController
     var coin: CoinViewController
+    var calculator: CalculatorViewController
     
-    init(diary: DiaryViewController, chart: ChartViewController, coin: CoinViewController) {
+    init(diary: DiaryViewController, chart: ChartViewController, coin: CoinViewController, calculator: CalculatorViewController) {
         self.diary = diary
         self.chart = chart
         self.coin = coin
+        self.calculator = calculator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -31,18 +33,22 @@ class TabbarController: UITabBarController {
         let first = self.diary
         let second = self.chart
         let third = self.coin
+        let fourth = self.calculator
         
-        let tabList = [first, second, third]
+        let tabList = [first, second, third, fourth]
         
         tabList[0].title = "매매일지"
         tabList[1].title = "자산그래프"
         tabList[2].title = "차트"
+        tabList[3].title = "계산기"
         
         viewControllers = tabList
         self.tabBar.backgroundColor = Colors.iosGrey
-        self.tabBar.items![0].image = UIImage(systemName: "list.dash")
+        
+        self.tabBar.items![0].image = UIImage(systemName: "square.and.pencil")
         self.tabBar.items![1].image = UIImage(systemName: "dollarsign.circle")
         self.tabBar.items![2].image = UIImage(systemName: "chart.xyaxis.line")
+        self.tabBar.items![3].image = UIImage(systemName: "wonsign.circle")
     }
 
 }
