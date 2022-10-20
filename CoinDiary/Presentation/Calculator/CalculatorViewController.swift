@@ -21,6 +21,7 @@ class CalculatorViewController: BaseViewController {
         sv.isPagingEnabled = true
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.backgroundColor = .yellow
+        sv.showsHorizontalScrollIndicator = false
         return sv
     }()
     
@@ -30,12 +31,47 @@ class CalculatorViewController: BaseViewController {
         b.setTitle("목표가", for: .normal)
         b.setTitleColor(.systemBlue, for: .normal)
         b.titleLabel?.textAlignment = .center
+        b.tag = 0
         return b
     }()
     
-    var targetView: UIView = {
+    lazy var targetView: UIView = {
         var v = UIView()
         v.backgroundColor = .red
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+    
+    //물타기
+    lazy var combineBtn: UIButton = {
+        var b = UIButton()
+        b.setTitle("물타기", for: .normal)
+        b.setTitleColor(.systemBlue, for: .normal)
+        b.titleLabel?.textAlignment = .center
+        b.tag = 1
+        return b
+    }()
+    
+    lazy var combineView: UIView = {
+        var v = UIView()
+        v.backgroundColor = .blue
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+    
+    //percent
+    lazy var percentBtn: UIButton = {
+        var b = UIButton()
+        b.setTitle("퍼센트", for: .normal)
+        b.setTitleColor(.systemBlue, for: .normal)
+        b.titleLabel?.textAlignment = .center
+        b.tag = 2
+        return b
+    }()
+    
+    lazy var percentView: UIView = {
+        var v = UIView()
+        v.backgroundColor = .orange
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
@@ -57,8 +93,8 @@ class CalculatorViewController: BaseViewController {
     
     override func setupUI() {
         [buttonView, scrollView].forEach { self.view.addSubview($0) }
-        [targetBtn].forEach { self.buttonView.addSubview($0) }
-        [targetView].forEach { self.scrollView.addSubview($0) }
+        [targetBtn, combineBtn, percentBtn].forEach { self.buttonView.addSubview($0) }
+        [targetView, combineView, percentView].forEach { self.scrollView.addSubview($0) }
     }
     
     override func setupConstraints() {
@@ -76,12 +112,25 @@ class CalculatorViewController: BaseViewController {
             $0.trailing.equalToSuperview()
         }
         self.scrollView.contentSize = CGSize(width: Int(self.view.bounds.width) * 3, height: 0)
-//        CGRect(x: Int(self.view.bounds.width) * i, y: 0, width: Int(self.view.bounds.width), height: 70)
         targetView.frame = CGRect(x: 0, y: 0, width: Int(self.view.bounds.width), height: Int(self.view.bounds.height))
+        combineView.frame = CGRect(x: Int(self.view.bounds.width), y: 0, width: Int(self.view.bounds.width), height: Int(self.view.bounds.height))
+        percentView.frame = CGRect(x: Int(self.view.bounds.width) * 2, y: 0, width: Int(self.view.bounds.width), height: Int(self.view.bounds.height))
         
         targetBtn.snp.makeConstraints {
             $0.top.leading.bottom.equalToSuperview()
             $0.width.equalTo(100)
+        }
+        
+        combineBtn.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalTo(targetBtn.snp.trailing)
+            $0.width.equalTo(100)
+        }
+        
+        percentBtn.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalTo(combineBtn.snp.trailing)
+            $0.trailing.equalToSuperview()
         }
     }
 
