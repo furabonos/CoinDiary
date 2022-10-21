@@ -329,7 +329,6 @@ extension AddViewController: UITextFieldDelegate {
                 guard let result = numberFormatter.string(for: price) else {
                     return true
                 }
-                
                 textField.text = "\(result)"
             }
             else {
@@ -346,9 +345,7 @@ extension AddViewController: UITextFieldDelegate {
             }
             textField.text = "\(result)\(getStringUserDefaults(key: "unit"))"
         }
-        
         return false
-        
     }
     
 }
