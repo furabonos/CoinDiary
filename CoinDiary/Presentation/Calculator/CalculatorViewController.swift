@@ -49,7 +49,7 @@ class CalculatorViewController: BaseViewController {
         tf.layer.borderWidth = 0.5
         tf.layer.cornerRadius = 10
         tf.placeholder = "구매한 코인의 평단가를 입력해주세요."
-        tf.keyboardType = .decimalPad
+        tf.keyboardType = .numberPad
         tf.delegate = self
         return tf
     }()
@@ -61,7 +61,7 @@ class CalculatorViewController: BaseViewController {
         tf.layer.borderWidth = 0.5
         tf.layer.cornerRadius = 10
         tf.placeholder = "매수금액을 입력해주세요."
-        tf.keyboardType = .decimalPad
+        tf.keyboardType = .numberPad
         tf.delegate = self
         return tf
     }()
@@ -73,17 +73,15 @@ class CalculatorViewController: BaseViewController {
         tf.layer.borderWidth = 0.5
         tf.layer.cornerRadius = 10
         tf.placeholder = "목표금액을 입력해주세요."
-        tf.keyboardType = .decimalPad
+        tf.keyboardType = .numberPad
         tf.delegate = self
         return tf
     }()
     
     lazy var targetLabel: UILabel = {
         var l = UILabel()
-        l.text = "목표금액에 도달하려면 코인의 평단가가 1000원(23%)상승해야 합니다."
         l.numberOfLines = 0
         l.textAlignment = .center
-//        l.adjustsFontSizeToFitWidth = true
         return l
     }()
     
@@ -100,9 +98,75 @@ class CalculatorViewController: BaseViewController {
     
     lazy var combineView: UIView = {
         var v = UIView()
-        v.backgroundColor = .blue
-        v.translatesAutoresizingMaskIntoConstraints = false
         return v
+    }()
+    
+    lazy var combineBeforeLabel: UILabel = {
+        var l = UILabel()
+        l.text = "현재 보유 코인"
+        return l
+    }()
+    
+    lazy var combineAfterLabel: UILabel = {
+        var l = UILabel()
+        l.text = "추가 매수 코인"
+        return l
+    }()
+    
+    lazy var combineBeforeAvgField: UITextField = {
+        var tf = UITextField()
+        tf.addLeftPadding()
+        tf.layer.borderColor = UIColor.gray.cgColor
+        tf.layer.borderWidth = 0.5
+        tf.layer.cornerRadius = 10
+        tf.placeholder = "기존 평단가"
+        tf.keyboardType = .numberPad
+        tf.delegate = self
+        return tf
+    }()
+    
+    lazy var combineBeforeBuyField: UITextField = {
+        var tf = UITextField()
+        tf.addLeftPadding()
+        tf.layer.borderColor = UIColor.gray.cgColor
+        tf.layer.borderWidth = 0.5
+        tf.layer.cornerRadius = 10
+        tf.placeholder = "기존 투자금액"
+        tf.keyboardType = .numberPad
+        tf.delegate = self
+        return tf
+    }()
+    
+    lazy var combineAfterAvgField: UITextField = {
+        var tf = UITextField()
+        tf.addLeftPadding()
+        tf.layer.borderColor = UIColor.gray.cgColor
+        tf.layer.borderWidth = 0.5
+        tf.layer.cornerRadius = 10
+        tf.placeholder = "새로운 평단가"
+        tf.keyboardType = .numberPad
+        tf.delegate = self
+        return tf
+    }()
+    
+    lazy var combineAfterBuyField: UITextField = {
+        var tf = UITextField()
+        tf.addLeftPadding()
+        tf.layer.borderColor = UIColor.gray.cgColor
+        tf.layer.borderWidth = 0.5
+        tf.layer.cornerRadius = 10
+        tf.placeholder = "새로운 투자금액"
+        tf.keyboardType = .numberPad
+        tf.delegate = self
+        return tf
+    }()
+    
+    lazy var combineResultBtn: UIButton = {
+        var b = UIButton()
+        b.setTitle("계산", for: .normal)
+        b.setTitleColor(.systemBlue, for: .normal)
+        b.addTarget(self, action: #selector(combineClick), for: .touchUpInside)
+        return b
     }()
     
     //percent
@@ -139,6 +203,8 @@ class CalculatorViewController: BaseViewController {
         self.view.backgroundColor = .systemBackground
         // 1.목표가 2.물타기 3.퍼센트
         //목표가뷰 - 입력: 평단가(필수), 투자금액(필수), 목표금액(선택), 목표퍼센트(선택) -> 아웃풋: 목표금액까지가려면 코인가격이 얼마나 올라야하는가, 목표금액이 내현재투자금액의 몇퍼센트인가, 내가 목표한 퍼센트가 되려면 얼마가 되야하는가
+        //물타기뷰 - 입력: 기존매수평단, 구매금액 새로운매수평단, 구매금액 -> 아웃풋: 뉴평단, 뉴 수량, 금액?
+        //
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -156,6 +222,9 @@ class CalculatorViewController: BaseViewController {
         
         //MARK: TargetView addsubView
         [targetAvgField, targetBuyField, targetGoalField, targetLabel].forEach { self.targetView.addSubview($0) }
+        
+        //MARK: CombineView addsubView
+        [combineBeforeAvgField, combineBeforeBuyField, combineAfterAvgField, combineAfterBuyField, combineResultBtn, combineBeforeLabel, combineAfterLabel].forEach { self.combineView.addSubview($0) }
         
     }
     
@@ -225,6 +294,56 @@ class CalculatorViewController: BaseViewController {
             $0.width.equalTo(targetAvgField.snp.width)
             
         }
+        
+        //MARK: CombineView snp
+        combineBeforeLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().offset(30)
+            $0.height.equalTo(30)
+        }
+        
+        combineBeforeAvgField.snp.makeConstraints {
+            $0.top.equalTo(combineBeforeLabel).offset(60)
+            $0.width.equalTo(Int(self.view.bounds.width) - 60)
+            $0.height.equalTo(30)
+            $0.leading.equalToSuperview().offset(30)
+            $0.trailing.equalToSuperview().offset(-30)
+        }
+
+        combineBeforeBuyField.snp.makeConstraints {
+            $0.top.equalTo(combineBeforeAvgField.snp.bottom).offset(30)
+            $0.centerX.equalTo(combineBeforeAvgField.snp.centerX)
+            $0.width.equalTo(combineBeforeAvgField.snp.width)
+            $0.height.equalTo(30)
+        }
+        
+        combineAfterLabel.snp.makeConstraints {
+            $0.top.equalTo(combineBeforeBuyField.snp.bottom).offset(30)
+            $0.leading.equalToSuperview().offset(30)
+            $0.height.equalTo(30)
+        }
+        
+        combineAfterAvgField.snp.makeConstraints {
+            $0.top.equalTo(combineAfterLabel.snp.bottom).offset(30)
+            $0.centerX.equalTo(combineBeforeBuyField.snp.centerX)
+            $0.width.equalTo(combineBeforeBuyField.snp.width)
+            $0.height.equalTo(30)
+        }
+        
+        combineAfterBuyField.snp.makeConstraints {
+            $0.top.equalTo(combineAfterAvgField.snp.bottom).offset(30)
+            $0.leading.equalToSuperview().offset(30)
+            $0.trailing.equalToSuperview().offset(-30)
+            $0.width.equalTo(combineAfterAvgField.snp.width)
+            $0.height.equalTo(30)
+        }
+        
+        combineResultBtn.snp.makeConstraints {
+            $0.top.equalTo(combineAfterBuyField.snp.bottom).offset(30)
+            $0.centerX.equalTo(combineBeforeBuyField.snp.centerX)
+            $0.width.equalTo(combineAfterAvgField.snp.width)
+            $0.height.equalTo(30)
+        }
     }
     
     @objc func clickMenu(_ sender: UIButton) {
@@ -254,6 +373,24 @@ class CalculatorViewController: BaseViewController {
             break
         }
     }
+    
+    @objc func combineClick() {
+        
+        self.view.endEditing(true)
+        
+        guard let beforeAVG = combineBeforeAvgField.text else { return }
+        guard let beforeBUY = combineBeforeBuyField.text else { return }
+        guard let afterAVG = combineAfterAvgField.text else { return }
+        guard let afterBUY = combineAfterBuyField.text else { return }
+        
+        var beforeQuanity = Double(beforeBUY.replacingOccurrences(of: ",", with: ""))! / Double(beforeAVG.replacingOccurrences(of: ",", with: ""))! // 기존 구매수량
+        var afterQuanity = Double(afterBUY.replacingOccurrences(of: ",", with: ""))! / Double(afterAVG.replacingOccurrences(of: ",", with: ""))! // 새로운 구매수량
+        
+        var total = (Double(afterBUY.replacingOccurrences(of: ",", with: ""))! + Double(beforeBUY.replacingOccurrences(of: ",", with: ""))!) / (beforeQuanity + afterQuanity)
+        
+        showAlert(message: "최종 평단가는 \(total)이며 수량은 \(beforeQuanity + afterQuanity)개 이다.")
+        
+    }
 
 }
 
@@ -281,40 +418,49 @@ extension CalculatorViewController: UITextFieldDelegate {
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 1
         
-//        if (string.isEmpty) {
-//            // delete
-//            if text.count > 1 {
-//                guard let price = Double.init("\(text.prefix(text.count - 1))") else {
-//                    return true
-//                }
-//                guard let result = numberFormatter.string(for: price) else {
-//                    return true
-//                }
-//                textField.text = "\(result)"
-//            }
-//            else {
-//                textField.text = ""
-//            }
-//        }
-//        else {
-//            // add
+        if (string.isEmpty) {
+            // delete
+            if text.count > 1 {
+                guard let price = Double.init("\(text.prefix(text.count - 1))") else {
+                    return true
+                }
+                guard let result = numberFormatter.string(for: price) else {
+                    return true
+                }
+                textField.text = "\(result)"
+            }
+            else {
+                textField.text = ""
+            }
+        }
+        else {
+            // add
             guard let price = Double.init("\(text)\(string)") else {
                 return true
             }
-//            print("fsfsfds = \(price)")
-//            guard let result = numberFormatter.string(for: price) else {
-//                return true
-//            }
-//            print("fsfsfds222222 = \(result)")
-//            textField.text = "\(result)"
-//        }
-//        return false
-        guard let aa = numberFormatter.string(for: price) else { return true }
-        print("fdsfdsfsd = \(aa)")
-        textField.text = text
-        return true
+            guard let result = numberFormatter.string(for: price) else {
+                return true
+            }
+            textField.text = "\(result)"
+        }
+        
+        
+        if textField == self.targetGoalField {
+            guard let avg = self.targetAvgField.text else { return true }
+            guard let buy = self.targetBuyField.text else { return true }
+            guard let goal = self.targetGoalField.text else { return true }
+            
+            var quanity = Double(buy.replacingOccurrences(of: ",", with: ""))! / Double(avg.replacingOccurrences(of: ",", with: ""))!
+            if goal != "" {
+                var target = Double(goal.replacingOccurrences(of: ",", with: ""))! / quanity
+                var percent = ((target - Double(avg.replacingOccurrences(of: ",", with: ""))!) / Double(avg.replacingOccurrences(of: ",", with: ""))! ) * 100
+                targetLabel.text = "목표금액에 도달하려면 코인의 평단가가 \(Int(target))원(\(Int(percent))%) 변화해야 합니다."
+            }
+        }
+        
+        
+        return false
     }
     
 }

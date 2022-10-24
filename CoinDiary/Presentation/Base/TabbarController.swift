@@ -46,8 +46,8 @@ class TabbarController: UITabBarController {
         self.tabBar.backgroundColor = Colors.iosGrey
         
         self.tabBar.items![0].image = UIImage(systemName: "square.and.pencil")
-        self.tabBar.items![1].image = UIImage(systemName: "dollarsign.circle")
-        self.tabBar.items![2].image = UIImage(systemName: "chart.xyaxis.line")
+        self.tabBar.items![1].image = UIImage(systemName: "chart.xyaxis.line")
+        self.tabBar.items![2].image = UIImage(systemName: "chart.bar.xaxis")
         self.tabBar.items![3].image = UIImage(systemName: "wonsign.circle")
     }
 
