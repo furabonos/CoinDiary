@@ -182,9 +182,58 @@ class CalculatorViewController: BaseViewController {
     
     lazy var percentView: UIView = {
         var v = UIView()
-        v.backgroundColor = .orange
-        v.translatesAutoresizingMaskIntoConstraints = false
         return v
+    }()
+    
+    lazy var percentField: UITextField = {
+        var tf = UITextField()
+        tf.addLeftPadding()
+        tf.layer.borderColor = UIColor.gray.cgColor
+        tf.layer.borderWidth = 0.5
+        tf.layer.cornerRadius = 10
+        tf.placeholder = "기준값"
+        tf.keyboardType = .decimalPad
+        return tf
+    }()
+    
+    lazy var percentAfterField: UITextField = {
+        var tf = UITextField()
+        tf.addLeftPadding()
+        tf.layer.borderColor = UIColor.gray.cgColor
+        tf.layer.borderWidth = 0.5
+        tf.layer.cornerRadius = 10
+        tf.placeholder = "변화할 퍼센트"
+        tf.keyboardType = .numberPad
+        return tf
+    }()
+    
+    lazy var percentPlusBtn: UIButton = {
+        var b = UIButton()
+        b.setTitle("+", for: .normal)
+        b.setTitleColor(.systemBlue, for: .normal)
+        b.layer.borderColor = UIColor.systemBlue.cgColor
+        b.layer.borderWidth = 0.5
+        b.layer.cornerRadius = 10
+        b.tag = 0
+        return b
+    }()
+    
+    lazy var percentminusBtn: UIButton = {
+        var b = UIButton()
+        b.setTitle("-", for: .normal)
+        b.setTitleColor(.systemPink, for: .normal)
+        b.layer.borderColor = UIColor.systemPink.cgColor
+        b.layer.borderWidth = 0.5
+        b.layer.cornerRadius = 10
+        b.tag = 1
+        return b
+    }()
+    
+    lazy var percentLabel: UILabel = {
+        var l = UILabel()
+        l.textAlignment = .center
+        l.backgroundColor = .red
+        return l
     }()
     
     public var viewModel: CalculatorViewModel!
@@ -204,7 +253,7 @@ class CalculatorViewController: BaseViewController {
         // 1.목표가 2.물타기 3.퍼센트
         //목표가뷰 - 입력: 평단가(필수), 투자금액(필수), 목표금액(선택), 목표퍼센트(선택) -> 아웃풋: 목표금액까지가려면 코인가격이 얼마나 올라야하는가, 목표금액이 내현재투자금액의 몇퍼센트인가, 내가 목표한 퍼센트가 되려면 얼마가 되야하는가
         //물타기뷰 - 입력: 기존매수평단, 구매금액 새로운매수평단, 구매금액 -> 아웃풋: 뉴평단, 뉴 수량, 금액?
-        //
+        //퍼센트뷰- 입력: 기준값, 변화할 퍼센트값 -> 아웃풋: 변화된 퍼센트값
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -225,6 +274,9 @@ class CalculatorViewController: BaseViewController {
         
         //MARK: CombineView addsubView
         [combineBeforeAvgField, combineBeforeBuyField, combineAfterAvgField, combineAfterBuyField, combineResultBtn, combineBeforeLabel, combineAfterLabel].forEach { self.combineView.addSubview($0) }
+        
+        //MARK: PercentView addsubView
+        [percentField, percentAfterField, percentPlusBtn, percentminusBtn, percentLabel].forEach { self.percentView.addSubview($0) }
         
     }
     
@@ -344,6 +396,42 @@ class CalculatorViewController: BaseViewController {
             $0.width.equalTo(combineAfterAvgField.snp.width)
             $0.height.equalTo(30)
         }
+        
+        //MARK: Percentview snp
+        percentField.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().offset(30)
+            $0.trailing.equalToSuperview().offset(-30)
+            $0.height.equalTo(30)
+        }
+        
+        percentAfterField.snp.makeConstraints {
+            $0.top.equalTo(percentField.snp.bottom).offset(30)
+            $0.leading.equalToSuperview().offset(30)
+            $0.trailing.equalToSuperview().offset(-30)
+            $0.height.equalTo(30)
+        }
+        
+        percentPlusBtn.snp.makeConstraints {
+            $0.top.equalTo(percentAfterField.snp.bottom).offset(30)
+            $0.leading.equalTo(percentAfterField.snp.leading).offset(-10)
+            $0.width.equalTo(percentAfterField.snp.width).dividedBy(2)
+            $0.height.equalTo(30)
+        }
+        
+        percentminusBtn.snp.makeConstraints {
+            $0.top.equalTo(percentAfterField.snp.bottom).offset(30)
+            $0.trailing.equalTo(percentAfterField.snp.trailing).offset(10)
+            $0.width.equalTo(percentAfterField.snp.width).dividedBy(2)
+            $0.height.equalTo(30)
+        }
+        
+        percentLabel.snp.makeConstraints {
+            $0.top.equalTo(percentminusBtn.snp.bottom).offset(50)
+            $0.leading.equalToSuperview().offset(30)
+            $0.trailing.equalToSuperview().offset(-30)
+            $0.height.equalTo(50)
+        }
     }
     
     @objc func clickMenu(_ sender: UIButton) {
@@ -375,8 +463,10 @@ class CalculatorViewController: BaseViewController {
     }
     
     @objc func combineClick() {
-        
         self.view.endEditing(true)
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 2
         
         guard let beforeAVG = combineBeforeAvgField.text else { return }
         guard let beforeBUY = combineBeforeBuyField.text else { return }
@@ -387,8 +477,12 @@ class CalculatorViewController: BaseViewController {
         var afterQuanity = Double(afterBUY.replacingOccurrences(of: ",", with: ""))! / Double(afterAVG.replacingOccurrences(of: ",", with: ""))! // 새로운 구매수량
         
         var total = (Double(afterBUY.replacingOccurrences(of: ",", with: ""))! + Double(beforeBUY.replacingOccurrences(of: ",", with: ""))!) / (beforeQuanity + afterQuanity)
+        var totalQuanity = beforeQuanity + afterQuanity
         
-        showAlert(message: "최종 평단가는 \(total)이며 수량은 \(beforeQuanity + afterQuanity)개 이다.")
+        showAlert(message: "최종 평단가는 \(numberFormatter.string(for: total)!)이며 수량은 \(numberFormatter.string(for: totalQuanity)!)개 이다.")
+    }
+    
+    @objc func clickPercent(_ sender: UIButton) {
         
     }
 
