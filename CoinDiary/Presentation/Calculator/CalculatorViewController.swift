@@ -203,7 +203,7 @@ class CalculatorViewController: BaseViewController {
         tf.layer.borderWidth = 0.5
         tf.layer.cornerRadius = 10
         tf.placeholder = "변화할 퍼센트"
-        tf.keyboardType = .numberPad
+        tf.keyboardType = .decimalPad
         return tf
     }()
     
@@ -215,6 +215,7 @@ class CalculatorViewController: BaseViewController {
         b.layer.borderWidth = 0.5
         b.layer.cornerRadius = 10
         b.tag = 0
+        b.addTarget(self, action: #selector(clickPercent(_:)), for: .touchUpInside)
         return b
     }()
     
@@ -226,13 +227,13 @@ class CalculatorViewController: BaseViewController {
         b.layer.borderWidth = 0.5
         b.layer.cornerRadius = 10
         b.tag = 1
+        b.addTarget(self, action: #selector(clickPercent(_:)), for: .touchUpInside)
         return b
     }()
     
     lazy var percentLabel: UILabel = {
         var l = UILabel()
         l.textAlignment = .center
-        l.backgroundColor = .red
         return l
     }()
     
@@ -434,6 +435,34 @@ class CalculatorViewController: BaseViewController {
         }
     }
     
+    override func bind() {
+        viewModel.$combineMSG
+            .receive(on: RunLoop.main)
+            .sink { combineMSG in
+                switch combineMSG {
+                case "":
+                    break
+                case "Alert":
+                    self.showAlert(message: "빈칸을 모두 채워주세요.")
+                default:
+                    self.showAlert(message: combineMSG)
+                }
+            }.store(in: &subscriptions)
+        
+        viewModel.$percentMSG
+            .receive(on: RunLoop.main)
+            .sink { percentMSG in
+                switch percentMSG {
+                case "":
+                    break
+                case "Alert":
+                    self.showAlert(message: "빈칸을 모두 채워주세요.")
+                default:
+                    self.percentLabel.text = percentMSG
+                }
+            }.store(in: &subscriptions)
+    }
+    
     @objc func clickMenu(_ sender: UIButton) {
         self.view.endEditing(true)
         moveBorder(tag: sender.tag)
@@ -473,17 +502,14 @@ class CalculatorViewController: BaseViewController {
         guard let afterAVG = combineAfterAvgField.text else { return }
         guard let afterBUY = combineAfterBuyField.text else { return }
         
-        var beforeQuanity = Double(beforeBUY.replacingOccurrences(of: ",", with: ""))! / Double(beforeAVG.replacingOccurrences(of: ",", with: ""))! // 기존 구매수량
-        var afterQuanity = Double(afterBUY.replacingOccurrences(of: ",", with: ""))! / Double(afterAVG.replacingOccurrences(of: ",", with: ""))! // 새로운 구매수량
-        
-        var total = (Double(afterBUY.replacingOccurrences(of: ",", with: ""))! + Double(beforeBUY.replacingOccurrences(of: ",", with: ""))!) / (beforeQuanity + afterQuanity)
-        var totalQuanity = beforeQuanity + afterQuanity
-        
-        showAlert(message: "최종 평단가는 \(numberFormatter.string(for: total)!)이며 수량은 \(numberFormatter.string(for: totalQuanity)!)개 이다.")
+        self.viewModel.combineClick(beforeAVG: beforeAVG, beforeBUY: beforeBUY, afterAVG: afterAVG, afterBUY: afterBUY)
     }
     
     @objc func clickPercent(_ sender: UIButton) {
+        guard let before = percentField.text else { return }
+        guard let percent = percentAfterField.text else { return }
         
+        self.viewModel.percentClick(before: before, percent: percent, tag: sender.tag)
     }
 
 }
