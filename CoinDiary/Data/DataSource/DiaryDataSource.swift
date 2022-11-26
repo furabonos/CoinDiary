@@ -13,6 +13,7 @@ import FirebaseStorage
 
 public protocol DiaryDataSourceInterface {
     func fetchData(completion: @escaping (AnyPublisher<[DiaryDTO], Error>) -> Void)
+    func removeAllData(completion: @escaping (Bool) -> Void) -> Cancellable?
     func addSnapshot(completion: @escaping (AnyPublisher<DiaryDTO, Error>) -> Void)
 }
 
@@ -31,6 +32,7 @@ public final class DiaryDataSource: DiaryDataSourceInterface {
                         var diaries = [DiaryDTO]()
                         diaries.removeAll()
                         for document in documents.documents {
+                            print("ssibabababa: \(document)")
                             do {
                                 let datas = document.data()
                                 let jsonData = try JSONSerialization.data(withJSONObject: datas)
@@ -46,6 +48,24 @@ public final class DiaryDataSource: DiaryDataSourceInterface {
             }.eraseToAnyPublisher()
         )
         
+    }
+    
+    public func removeAllData(completion: @escaping (Bool) -> Void) -> Cancellable? {
+        let db = Firestore.firestore().collection(UserDefaults.standard.string(forKey: "UUID")!)
+        let task = RepositoryTask()
+        
+        db.getDocuments { documents, error in
+            if let error = error {
+                completion(false)
+            } else if let documents = documents {
+                for document in documents.documents {
+                    print("ssibabababa: \(document.documentID)")
+                    db.document(document.documentID).delete()
+                }
+                completion(true)
+            }
+        }
+        return task
     }
     
     public func addSnapshot(completion: @escaping (AnyPublisher<DiaryDTO, Error>) -> Void) {

@@ -19,6 +19,7 @@ protocol EditViewModelInput {
     func clickAdd()
     func clickCancel()
     func saveData(date: String, start: String, end: String, memo: String, image: UIImage?)
+    func removeData(date: String)
 }
 
 protocol EditViewModelOutput {
@@ -26,6 +27,8 @@ protocol EditViewModelOutput {
     var viewModePublisher: PassthroughSubject<ViewMode, Never> { get }
     var saveData: Bool { get }
     var saveDataPublisher: PassthroughSubject<Bool, Never> { get }
+    var removeData: Bool { get }
+    var removeDataPublisher: PassthroughSubject<Bool, Never> { get }
 }
 
 public final class EditViewModel: EditViewModelInput, EditViewModelOutput, ObservableObject {
@@ -41,6 +44,13 @@ public final class EditViewModel: EditViewModelInput, EditViewModelOutput, Obser
     public var saveData = false {
         didSet {
             saveDataPublisher.send(saveData)
+        }
+    }
+    
+    var removeDataPublisher = PassthroughSubject<Bool, Never>()
+    public var removeData = false {
+        didSet {
+            removeDataPublisher.send(removeData)
         }
     }
     
@@ -81,6 +91,17 @@ public final class EditViewModel: EditViewModelInput, EditViewModelOutput, Obser
                 self.saveData = true
             case false:
                 self.saveData = false
+            }
+        }
+    }
+    
+    func removeData(date: String) {
+        useCase.removeData(date: date) { result in
+            switch result {
+            case true:
+                self.removeData = true
+            case false:
+                self.removeData = false
             }
         }
     }

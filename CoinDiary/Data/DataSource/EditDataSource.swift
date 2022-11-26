@@ -15,6 +15,7 @@ import FirebaseStorage
 public protocol EditDataSourceInterface {
     func saveData(date: String, start: String, end: String, memo: String, image: UIImage?,
                   completion: @escaping (Bool) -> Void) -> Cancellable?
+    func removeData(date: String, completion: @escaping (Bool) -> Void) -> Cancellable?
 }
 
 public final class EditDataSource: EditDataSourceInterface {
@@ -73,6 +74,20 @@ public final class EditDataSource: EditDataSourceInterface {
                 }
         }
                 return task
+    }
+    
+    public func removeData(date: String, completion: @escaping (Bool) -> Void) -> Cancellable? {
+        let db = Firestore.firestore().collection(UserDefaults.standard.string(forKey: "UUID")!).document(date)
+        let task = RepositoryTask()
+        
+        db.delete { error in
+            if let error = error {
+                completion(false)
+            }else {
+                completion(true)
+            }
+        }
+        return task
     }
     
 }

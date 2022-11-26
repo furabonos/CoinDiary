@@ -31,6 +31,12 @@ public final class DiaryRepository: DiaryRepositoryInterface {
         }
     }
     
+    public func removeAllData(completion: @escaping (Bool) -> Void) -> Cancellable? {
+        dataSource.removeAllData { result in
+            completion(result)
+        }
+    }
+    
     public func addSnapshot(completion: @escaping (AnyPublisher<DiaryEntity, Error>) -> Void) {
         dataSource.addSnapshot { result in
             completion(

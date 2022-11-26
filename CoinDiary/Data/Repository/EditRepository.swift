@@ -23,4 +23,10 @@ public final class EditRepository: EditRepositoryInterface {
         }
     }
     
+    public func removeData(date: String, completion: @escaping (Bool) -> Void) -> Cancellable? {
+        dataSource.removeData(date: date) { result in
+            completion(result)
+        }
+    }
+    
 }

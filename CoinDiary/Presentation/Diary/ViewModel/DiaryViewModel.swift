@@ -17,12 +17,17 @@ protocol DiaryViewModelInput {
     func fetchData()
     func addSnapshot()
     func fetchData2(completions: @escaping(String) -> Void)
+    func removeAllData()
 }
 
 protocol DiaryViewModelOutput {
     var menuList: Array<String> { get }
     var diaryList: [DiaryEntity] { get }
     var diary: DiaryEntity { get }
+    var menuBoolsPublisher: PassthroughSubject<Bool, Never> { get }
+    var menuBools: Bool { get }
+    var removeBoolPublisher: PassthroughSubject<Bool, Never> { get }
+    var removeBool: Bool { get }
 }
 
 public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, ObservableObject {
@@ -32,6 +37,20 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
     
     private let action: DiaryViewModelAction?
     let menuList = ["날짜", "시작금액", "종료금액", "수익률", "메모"]
+    
+    public var menuBools = false {
+        didSet {
+            menuBoolsPublisher.send(menuBools)
+        }
+    }
+    var menuBoolsPublisher = PassthroughSubject<Bool, Never>()
+    
+    public var removeBool = false {
+        didSet {
+            removeBoolPublisher.send(removeBool)
+        }
+    }
+    var removeBoolPublisher = PassthroughSubject<Bool, Never>()
     
     @Published public var diaryList: [DiaryEntity] = []
     @Published public var diary = DiaryEntity(imageURL: nil, memo: nil, start: "", end: "", today: "")
@@ -54,6 +73,17 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
                 self.diaryList = diaryList
             }
             .store(in: &bag)
+        }
+    }
+    
+    func removeAllData() {
+        useCase.removeAllData { result in
+            switch result {
+            case true:
+                self.removeBool = true
+            case false:
+                self.removeBool = true
+            }
         }
     }
     
@@ -97,6 +127,10 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
     
     public func showEditViewController(diary: DiaryEntity) {
         action?.showEditViewController(diary)
+    }
+    
+    public func toggleMenuBools() {
+        self.menuBools.toggle()
     }
     
 }

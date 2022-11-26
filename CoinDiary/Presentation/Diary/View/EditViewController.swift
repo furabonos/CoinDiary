@@ -59,6 +59,14 @@ class EditViewController: BaseViewController {
         return b
     }()
     
+    lazy var removeBtn: UIButton = {
+        var b = UIButton()
+        b.setTitle("삭제", for: .normal)
+        b.setTitleColor(.systemBlue, for: .normal)
+        b.addTarget(self, action: #selector(clickRemove(_:)), for: .touchUpInside)
+        return b
+    }()
+    
     lazy var startField: UITextField = {
         var tf = UITextField()
         tf.delegate = self
@@ -116,7 +124,7 @@ class EditViewController: BaseViewController {
     }
     
     override func setupUI() {
-        [titleLabel, imageView, memoView, startField, arrowView, endField, photoBtn, addBtn, cancelBtn, indicatorView].forEach { self.view.addSubview($0) }
+        [titleLabel, imageView, memoView, startField, arrowView, endField, photoBtn, addBtn, cancelBtn, removeBtn, indicatorView].forEach { self.view.addSubview($0) }
     }
     
     override func setupConstraints() {
@@ -173,14 +181,21 @@ class EditViewController: BaseViewController {
         addBtn.snp.makeConstraints {
             $0.centerY.equalTo(photoBtn.snp.centerY)
             $0.trailing.equalToSuperview().offset(-20)
-            $0.width.equalTo(80)
+            $0.width.equalTo(60)
+            $0.height.equalTo(30)
+        }
+        
+        removeBtn.snp.makeConstraints {
+            $0.centerY.equalTo(photoBtn.snp.centerY)
+            $0.trailing.equalTo(addBtn.snp.leading).offset(-10)
+            $0.width.equalTo(60)
             $0.height.equalTo(30)
         }
         
         cancelBtn.snp.makeConstraints {
             $0.centerY.equalTo(photoBtn.snp.centerY)
-            $0.trailing.equalTo(addBtn.snp.leading).offset(-10)
-            $0.width.equalTo(80)
+            $0.trailing.equalTo(removeBtn.snp.leading).offset(-10)
+            $0.width.equalTo(60)
             $0.height.equalTo(30)
         }
         
@@ -227,6 +242,15 @@ class EditViewController: BaseViewController {
                     saveDataFailure(message: "저장에 실패하였습니다.\n잠시후 다시 시도해주세요.", indicator: self.indicatorView)
                 }
             }.store(in: &subscriptions)
+        
+        viewModel.removeDataPublisher.receive(on: RunLoop.main)
+            .sink { [unowned self] value in
+                if value {
+                    removeDataSuccess(message: "삭제되었습니다.")
+                }else {
+                    removeDataFailure(message: "삭제에 실패하였습니다.\n잠시후 다시 시도해주세요.", indicator: self.indicatorView)
+                }
+            }.store(in: &subscriptions)
     }
     
     @objc func clickAdd(_ sender: UIButton) {
@@ -248,6 +272,19 @@ class EditViewController: BaseViewController {
         }else {
             viewModel.clickAdd()
         }
+    }
+    
+    @objc func clickRemove(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "", message: "기록을 삭제하시겠습니까?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: { action in
+            self.indicatorView.startAnimating()
+            self.viewModel.removeData(date: self.titleLabel.text!)
+        })
+        let cancelAction = UIAlertAction(title: "취소", style: .default)
+        [okAction, cancelAction].forEach { alert.addAction($0) }
+
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func clickCancel(_ sender: UIButton) {

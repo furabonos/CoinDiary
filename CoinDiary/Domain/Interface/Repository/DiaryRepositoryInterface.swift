@@ -11,4 +11,5 @@ import Combine
 public protocol DiaryRepositoryInterface {
     func fetchData(completion: @escaping (AnyPublisher<[DiaryEntity], Error>) -> Void)
     func addSnapshot(completion: @escaping (AnyPublisher<DiaryEntity, Error>) -> Void)
+    func removeAllData(completion: @escaping (Bool) -> Void) -> Cancellable?
 }

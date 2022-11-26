@@ -11,6 +11,7 @@ import Combine
 
 public protocol EditUseCaseInterface {
     func saveData(date: String, start: String, end: String, memo: String, image: UIImage?, completion: @escaping (Bool) -> Void) -> Cancellable?
+    func removeData(date: String, completion: @escaping (Bool) -> Void) -> Cancellable?
 }
 
 public final class EditUseCase: EditUseCaseInterface {
@@ -23,6 +24,12 @@ public final class EditUseCase: EditUseCaseInterface {
     
     public func saveData(date: String, start: String, end: String, memo: String, image: UIImage?, completion: @escaping (Bool) -> Void) -> Cancellable? {
         repository.saveData(date: date, start: start, end: end, memo: memo, image: image) { result in
+            completion(result)
+        }
+    }
+    
+    public func removeData(date: String, completion: @escaping (Bool) -> Void) -> Cancellable? {
+        repository.removeData(date: date) { result in
             completion(result)
         }
     }

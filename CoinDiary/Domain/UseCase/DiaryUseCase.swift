@@ -11,6 +11,7 @@ import Combine
 public protocol DiaryUseCaseInterface {
     func fetchData(completion: @escaping (AnyPublisher<[DiaryEntity], Error>) -> Void)
     func addSnapshot(completion: @escaping (AnyPublisher<DiaryEntity, Error>) -> Void)
+    func removeAllData(completion: @escaping (Bool) -> Void) -> Cancellable?
 }
 
 public final class DiaryUseCase: DiaryUseCaseInterface {
@@ -23,6 +24,12 @@ public final class DiaryUseCase: DiaryUseCaseInterface {
     
     public func fetchData(completion: @escaping (AnyPublisher<[DiaryEntity], Error>) -> Void) {
         repository.fetchData { result in
+            completion(result)
+        }
+    }
+    
+    public func removeAllData(completion: @escaping (Bool) -> Void) -> Cancellable? {
+        repository.removeAllData { result in
             completion(result)
         }
     }

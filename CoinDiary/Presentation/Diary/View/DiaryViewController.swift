@@ -41,14 +41,39 @@ class DiaryViewController: BaseViewController {
         return cv
     }()
     
+    lazy var menuBtn: UIButton = {
+        var b = UIButton()
+        b.setImage(UIImage(named: "dots"), for: .normal)
+        b.backgroundColor = .systemBackground
+        b.layer.cornerRadius = 30
+        b.addAllShadow()
+        b.addTarget(self, action: #selector(clickMenuBtn(_:)), for: .touchUpInside)
+        return b
+    }()
+    
+    lazy var removeBtn: UIButton = {
+        var b = UIButton()
+        b.setImage(UIImage(systemName: "trash.slash")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        b.backgroundColor = .systemBackground
+        b.layer.cornerRadius = 30
+        b.addAllShadow()
+        b.addTarget(self, action: #selector(clickRemoveBtn(_:)), for: .touchUpInside)
+        return b
+    }()
+    
     lazy var addBtn: UIButton = {
         var b = UIButton()
-        b.setImage(UIImage(systemName: "plus"), for: .normal)
+        b.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
         b.backgroundColor = .systemBackground
         b.layer.cornerRadius = 30
         b.addAllShadow()
         b.addTarget(self, action: #selector(clickAddBtn(_:)), for: .touchUpInside)
         return b
+    }()
+    
+    lazy var indicatorView: UIActivityIndicatorView = {
+        var iv = UIActivityIndicatorView()
+        return iv
     }()
     
     public var viewModel: DiaryViewModel!
@@ -78,8 +103,30 @@ class DiaryViewController: BaseViewController {
             }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        
+        self.viewModel.menuBools = false
+        
+        self.removeBtn.snp.remakeConstraints {
+            $0.width.height.equalTo(60)
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+        }
+
+        self.addBtn.snp.remakeConstraints {
+            $0.width.height.equalTo(60)
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+        }
+        [self.removeBtn, self.addBtn].forEach { $0.isHidden = true }
+        
+        
+    }
+    
     override func setupUI() {
-        [menuStackView, collectionView, addBtn].forEach { self.view.addSubview($0) }
+        [menuStackView, collectionView, menuBtn, removeBtn, addBtn, indicatorView].forEach { self.view.addSubview($0) }
+        [removeBtn, addBtn].forEach { $0.isHidden = true }
         makeMenuStackView()
     }
     
@@ -95,10 +142,27 @@ class DiaryViewController: BaseViewController {
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
+        menuBtn.snp.makeConstraints {
+            $0.width.height.equalTo(60)
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+        }
+        
+        removeBtn.snp.makeConstraints {
+            $0.width.height.equalTo(60)
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+        }
+        
         addBtn.snp.makeConstraints {
             $0.width.height.equalTo(60)
             $0.trailing.equalToSuperview().offset(-10)
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+        }
+        
+        indicatorView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.height.equalTo(50)
         }
     }
     
@@ -110,6 +174,25 @@ class DiaryViewController: BaseViewController {
                 snapshot.appendSections([.main])
                 snapshot.appendItems(diary, toSection: .main)
                 self.datasource.apply(snapshot)
+            }.store(in: &subscriptions)
+        
+        viewModel.menuBoolsPublisher
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] value in
+                if value {
+                    self.menuInOut(bools: value)
+                }else {
+                    self.menuInOut(bools: value)
+                }
+            }.store(in: &subscriptions)
+        
+        viewModel.removeBoolPublisher
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] value in
+                self.indicatorView.stopAnimating()
+                if !value {
+                    showAlert(message: "삭제에 실패했습니다. 잠시후에 다시 시도해주세요.")
+                }
             }.store(in: &subscriptions)
     }
     
@@ -155,8 +238,74 @@ class DiaryViewController: BaseViewController {
         }
     }
     
+    @objc func clickMenuBtn(_ sender: UIButton) {
+        self.viewModel.toggleMenuBools()
+    }
+    
     @objc func clickAddBtn(_ sender: UIButton) {
-        viewModel.showAddViewController()
+        self.viewModel.showAddViewController()
+    }
+    
+    @objc func clickRemoveBtn(_ sender: UIButton) {
+        
+        if self.viewModel.diaryList.count == 0 {
+            showAlert(message: "삭제할 기록이 없습니다.")
+        }else {
+            let alert = UIAlertController(title: "", message: "기록을 초기화 하시겠습니까?", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: { action in
+                self.indicatorView.startAnimating()
+                self.viewModel.removeAllData()
+            })
+            let cancelAction = UIAlertAction(title: "취소", style: .default)
+            [okAction, cancelAction].forEach { alert.addAction($0) }
+
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        
+    }
+    
+    func menuInOut(bools: Bool) {
+        if bools {
+            
+            [self.removeBtn, self.addBtn].forEach { $0.isHidden = false }
+
+            self.removeBtn.snp.remakeConstraints {
+                $0.width.height.equalTo(60)
+                $0.trailing.equalToSuperview().offset(-10)
+                $0.bottom.equalTo(self.menuBtn.snp.top).offset(-20)
+            }
+
+            self.addBtn.snp.remakeConstraints {
+                $0.width.height.equalTo(60)
+                $0.trailing.equalToSuperview().offset(-10)
+                $0.bottom.equalTo(self.removeBtn.snp.top).offset(-20)
+            }
+
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+            }
+        }else {
+
+            self.removeBtn.snp.remakeConstraints {
+                $0.width.height.equalTo(60)
+                $0.trailing.equalToSuperview().offset(-10)
+                $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            }
+
+            self.addBtn.snp.remakeConstraints {
+                $0.width.height.equalTo(60)
+                $0.trailing.equalToSuperview().offset(-10)
+                $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            }
+            
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+            } completion: { value in
+                [self.removeBtn, self.addBtn].forEach { $0.isHidden = true }
+            }
+
+        }
     }
     
 }
