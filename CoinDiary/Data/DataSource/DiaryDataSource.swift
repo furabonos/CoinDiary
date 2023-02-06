@@ -32,7 +32,6 @@ public final class DiaryDataSource: DiaryDataSourceInterface {
                         var diaries = [DiaryDTO]()
                         diaries.removeAll()
                         for document in documents.documents {
-                            print("ssibabababa: \(document)")
                             do {
                                 let datas = document.data()
                                 let jsonData = try JSONSerialization.data(withJSONObject: datas)
@@ -59,7 +58,6 @@ public final class DiaryDataSource: DiaryDataSourceInterface {
                 completion(false)
             } else if let documents = documents {
                 for document in documents.documents {
-                    print("ssibabababa: \(document.documentID)")
                     db.document(document.documentID).delete()
                 }
                 completion(true)
@@ -82,12 +80,10 @@ public final class DiaryDataSource: DiaryDataSourceInterface {
                         documents.documentChanges.forEach { change in
                             switch change.type {
                             case .added, .modified:
-                                print("add, modi? = \(change.type), valueS~ = \(change.document.data())")
                                 do {
                                     let datas = change.document.data()
                                     let jsonData = try JSONSerialization.data(withJSONObject: datas)
                                     let dtoData = try decoder.decode(DiaryDTO.self, from: jsonData)
-                                    print("왜안탐시발;; = \(dtoData)")
                                     diary.append(dtoData)
                                 }catch let error {
                                     promise(.failure(error))

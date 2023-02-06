@@ -12,6 +12,7 @@ import Firebase
 import FirebaseCore
 import FirebaseStorage
 import Photos
+import CryptoKit
 
 class DiaryViewController: BaseViewController {
     

@@ -47,10 +47,8 @@ public final class AddDataSource: AddDataSourceInterface {
             reference
                 .putData(imageData, metadata: metaData){
                     (metaData,error) in if let error = error { //실패
-                        print("에러에러 = \(error)")
                         completion(false)
                     }else{ //성공
-                        print("일단 사진업로드성공")
                         reference.downloadURL { url, _ in
                             let urlString = url!.absoluteString
                             db.collection(UserDefaults.standard.string(forKey: "UUID")!).document(date).setData([

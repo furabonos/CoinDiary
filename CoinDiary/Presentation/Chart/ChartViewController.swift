@@ -15,8 +15,8 @@ class ChartViewController: BaseViewController {
     
     lazy var chartView: AAChartView = {
         var cv = AAChartView()
-//        cv.backgroundColor = .systemBackground
-        cv.tintColor = .systemBackground
+        cv.backgroundColor = .systemBackground
+//        cv.tintColor = .systemBackground
         return cv
     }()
     

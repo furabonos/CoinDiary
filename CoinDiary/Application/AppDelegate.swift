@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appFlowCoordinator?.start()
         window?.makeKeyAndVisible()
         
-        UserDefaults.standard.set(UIDevice.current.identifierForVendor!.uuidString, forKey: "UUID")
+        UserDefaults.standard.set(UIDevice.current.identifierForVendor!.uuidString.sha256, forKey: "UUID")
         
         return true
     }
