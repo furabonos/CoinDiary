@@ -43,7 +43,7 @@ class DiaryViewController: BaseViewController {
     
     lazy var menuBtn: UIButton = {
         var b = UIButton()
-        b.setImage(UIImage(named: "dots"), for: .normal)
+        b.setImage(UIImage(systemName: "line.3.horizontal")?.withRenderingMode(.alwaysTemplate), for: .normal)
         b.backgroundColor = .systemBackground
         b.layer.cornerRadius = 30
         b.addAllShadow()
