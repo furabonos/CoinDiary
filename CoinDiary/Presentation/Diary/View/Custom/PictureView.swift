@@ -10,6 +10,7 @@ import SnapKit
 
 protocol PictureDelegate {
     func clickMore(_ sender: UIButton)
+    func clickDelete(_ sender: UIButton)
 }
 
 class PictureView: UIView {
@@ -24,11 +25,20 @@ class PictureView: UIView {
         return iv
     }()
     
-    var closeBtn: UIButton = {
+    lazy var closeBtn: UIButton = {
         var b = UIButton()
         b.backgroundColor = .black
         b.setImage(UIImage(systemName: "xmark"), for: .normal)
         b.addTarget(self, action: #selector(clickClose(_:)), for: .touchUpInside)
+        b.tintColor = .white
+        return b
+    }()
+    
+    lazy var deleteBtn: UIButton = {
+        var b = UIButton()
+        b.backgroundColor = .black
+        b.setTitle("삭제", for: .normal)
+        b.addTarget(self, action: #selector(clickDelete(_:)), for: .touchUpInside)
         b.tintColor = .white
         return b
     }()
@@ -48,6 +58,7 @@ class PictureView: UIView {
         
         self.addSubview(imageView)
         self.addSubview(closeBtn)
+        self.addSubview(deleteBtn)
         
         imageView.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -61,11 +72,20 @@ class PictureView: UIView {
             $0.width.height.equalTo(30)
         }
         
+        deleteBtn.snp.makeConstraints {
+            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.trailing.equalToSuperview().offset(-20)
+        }
+        
         imageView.image = self.image
     }
     
     @objc func clickClose(_ sender: UIButton) {
         delegate?.clickMore(sender)
+    }
+    
+    @objc func clickDelete(_ sender: UIButton) {
+        delegate?.clickDelete(sender)
     }
 
 }

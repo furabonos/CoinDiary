@@ -85,7 +85,7 @@ class AddViewController: BaseViewController {
     
     lazy var imageView: UIImageView = {
         var iv = UIImageView()
-        iv.isUserInteractionEnabled = true
+        iv.isUserInteractionEnabled = false
         return iv
     }()
     
@@ -292,6 +292,7 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
             self.images = image
             imageView.image = image
+            imageView.isUserInteractionEnabled = true
         }
         picker.dismiss(animated: true, completion: nil)
     }
@@ -304,6 +305,12 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
 extension AddViewController: PictureDelegate {
     func clickMore(_ sender: UIButton) {
         pictureView.removeFromSuperview()
+    }
+    
+    func clickDelete(_ sender: UIButton) {
+        pictureView.removeFromSuperview()
+        imageView.image = nil
+        imageView.isUserInteractionEnabled = false
     }
 }
 
