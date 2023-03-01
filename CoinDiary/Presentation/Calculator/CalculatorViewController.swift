@@ -237,6 +237,42 @@ class CalculatorViewController: BaseViewController {
         return l
     }()
     
+    lazy var orLabel: UILabel = {
+        var l = UILabel()
+        l.text = "OR"
+        l.textAlignment = .center
+        return l
+    }()
+    
+    lazy var percentField2: UITextField = {
+        var tf = UITextField()
+        tf.addLeftPadding()
+        tf.layer.borderColor = UIColor.gray.cgColor
+        tf.layer.borderWidth = 0.5
+        tf.layer.cornerRadius = 10
+        tf.placeholder = "기준값"
+        tf.keyboardType = .decimalPad
+        return tf
+    }()
+    
+    lazy var eseoLabel: UILabel = {
+        var l = UILabel()
+        l.text = "에서"
+        l.textAlignment = .center
+        return l
+    }()
+    
+    lazy var percentAfterField2: UITextField = {
+        var tf = UITextField()
+        tf.addLeftPadding()
+        tf.layer.borderColor = UIColor.gray.cgColor
+        tf.layer.borderWidth = 0.5
+        tf.layer.cornerRadius = 10
+        tf.placeholder = "변경값"
+        tf.keyboardType = .decimalPad
+        return tf
+    }()
+    
     public var viewModel: CalculatorViewModel!
     var subscriptions = Set<AnyCancellable>()
     
@@ -277,7 +313,7 @@ class CalculatorViewController: BaseViewController {
         [combineBeforeAvgField, combineBeforeBuyField, combineAfterAvgField, combineAfterBuyField, combineResultBtn, combineBeforeLabel, combineAfterLabel].forEach { self.combineView.addSubview($0) }
         
         //MARK: PercentView addsubView
-        [percentField, percentAfterField, percentPlusBtn, percentminusBtn, percentLabel].forEach { self.percentView.addSubview($0) }
+        [percentField, percentAfterField, percentPlusBtn, percentminusBtn, percentLabel, orLabel, percentField2, eseoLabel, percentAfterField2].forEach { self.percentView.addSubview($0) }
         
     }
     
@@ -431,7 +467,36 @@ class CalculatorViewController: BaseViewController {
             $0.top.equalTo(percentminusBtn.snp.bottom).offset(50)
             $0.leading.equalToSuperview().offset(30)
             $0.trailing.equalToSuperview().offset(-30)
-            $0.height.equalTo(50)
+            $0.height.equalTo(30)
+        }
+        
+        orLabel.snp.makeConstraints {
+            $0.top.equalTo(percentLabel.snp.bottom).offset(10)
+            $0.leading.equalToSuperview().offset(30)
+            $0.trailing.equalToSuperview().offset(-30)
+            $0.height.equalTo(20)
+        }
+        
+        percentField2.snp.makeConstraints {
+            $0.top.equalTo(orLabel.snp.bottom).offset(40)
+            $0.leading.equalToSuperview().offset(30)
+            $0.height.equalTo(30)
+            $0.width.equalToSuperview().dividedBy(3)
+        }
+        
+        percentAfterField2.snp.makeConstraints {
+            $0.top.equalTo(percentField2)
+            $0.trailing.equalToSuperview().offset(-30)
+            $0.height.equalTo(30)
+            $0.width.equalToSuperview().dividedBy(3)
+        }
+        
+        eseoLabel.snp.makeConstraints {
+            $0.top.equalTo(percentField2)
+            $0.leading.equalTo(percentField2.snp.trailing)
+            $0.trailing.equalTo(percentAfterField2.snp.leading)
+            $0.height.equalTo(30)
+//            $0.width.equalToSuperview().dividedBy(3).offset(-50)
         }
     }
     
