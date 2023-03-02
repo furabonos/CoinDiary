@@ -252,6 +252,7 @@ class CalculatorViewController: BaseViewController {
         tf.layer.cornerRadius = 10
         tf.placeholder = "기준값"
         tf.keyboardType = .decimalPad
+        tf.delegate = self
         return tf
     }()
     
@@ -270,7 +271,14 @@ class CalculatorViewController: BaseViewController {
         tf.layer.cornerRadius = 10
         tf.placeholder = "변경값"
         tf.keyboardType = .decimalPad
+        tf.delegate = self
         return tf
+    }()
+    
+    lazy var percentLabel2: UILabel = {
+        var l = UILabel()
+        l.numberOfLines = 0
+        return l
     }()
     
     public var viewModel: CalculatorViewModel!
@@ -313,7 +321,7 @@ class CalculatorViewController: BaseViewController {
         [combineBeforeAvgField, combineBeforeBuyField, combineAfterAvgField, combineAfterBuyField, combineResultBtn, combineBeforeLabel, combineAfterLabel].forEach { self.combineView.addSubview($0) }
         
         //MARK: PercentView addsubView
-        [percentField, percentAfterField, percentPlusBtn, percentminusBtn, percentLabel, orLabel, percentField2, eseoLabel, percentAfterField2].forEach { self.percentView.addSubview($0) }
+        [percentField, percentAfterField, percentPlusBtn, percentminusBtn, percentLabel, orLabel, percentField2, eseoLabel, percentAfterField2, percentLabel2].forEach { self.percentView.addSubview($0) }
         
     }
     
@@ -464,7 +472,7 @@ class CalculatorViewController: BaseViewController {
         }
         
         percentLabel.snp.makeConstraints {
-            $0.top.equalTo(percentminusBtn.snp.bottom).offset(50)
+            $0.top.equalTo(percentminusBtn.snp.bottom).offset(30)
             $0.leading.equalToSuperview().offset(30)
             $0.trailing.equalToSuperview().offset(-30)
             $0.height.equalTo(30)
@@ -496,7 +504,13 @@ class CalculatorViewController: BaseViewController {
             $0.leading.equalTo(percentField2.snp.trailing)
             $0.trailing.equalTo(percentAfterField2.snp.leading)
             $0.height.equalTo(30)
-//            $0.width.equalToSuperview().dividedBy(3).offset(-50)
+        }
+        
+        percentLabel2.snp.makeConstraints {
+            $0.top.equalTo(percentField2.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().offset(30)
+            $0.trailing.equalToSuperview().offset(-30)
+//            $0.height.equalTo(30)
         }
     }
     
@@ -644,6 +658,21 @@ extension CalculatorViewController: UITextFieldDelegate {
             }
         }
         
+        if textField == self.percentAfterField2 {
+            guard let before = self.percentField2.text else { return true }
+            guard let after = self.percentAfterField2.text else { return true }
+            
+            if after != "" {
+                var calculator = (Double(after.replacingOccurrences(of: ",", with: ""))! - Double(before.replacingOccurrences(of: ",", with: ""))!) / Double(before.replacingOccurrences(of: ",", with: ""))! * 100
+                if calculator > 0 {
+                    self.percentLabel2.text = "\(before)이(가) \(after)로 바뀌면 \(calculator)% 증가입니다"
+                }else {
+                    self.percentLabel2.text = "\(before)이(가) \(after)로 바뀌면 \(String(calculator).replacingOccurrences(of: "-", with: ""))% 감소입니다"
+                }
+            }else {
+                self.percentLabel2.text = ""
+            }
+        }
         
         return false
     }
