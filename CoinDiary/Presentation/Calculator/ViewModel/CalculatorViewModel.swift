@@ -50,9 +50,11 @@ public final class CalculatorViewModel: CalculatorViewModelInput, CalculatorView
             var minus = 1 - (Double(percent)! / 100)
             
             if tag == 0 {
-                self.percentMSG = "\(Double(before)! * plus)"
+//                self.percentMSG = "\(Double(before)! * plus)"
+                self.percentMSG = "기준값에서 입력하신 퍼센트를 적용한 값은 \(Double(before)! * plus) 입니다."
             }else {
-                self.percentMSG = "\(Double(before)! * minus)"
+//                self.percentMSG = "\(Double(before)! * minus)"
+                self.percentMSG = "기준값에서 입력하신 퍼센트를 적용한 값은 \(Double(before)! * minus) 입니다."
             }
         }
     }

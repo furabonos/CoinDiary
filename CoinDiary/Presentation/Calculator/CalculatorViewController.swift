@@ -234,6 +234,7 @@ class CalculatorViewController: BaseViewController {
     lazy var percentLabel: UILabel = {
         var l = UILabel()
         l.textAlignment = .center
+        l.numberOfLines = 0
         return l
     }()
     
@@ -475,7 +476,7 @@ class CalculatorViewController: BaseViewController {
             $0.top.equalTo(percentminusBtn.snp.bottom).offset(30)
             $0.leading.equalToSuperview().offset(30)
             $0.trailing.equalToSuperview().offset(-30)
-            $0.height.equalTo(30)
+//            $0.height.equalTo(30)
         }
         
         orLabel.snp.makeConstraints {
@@ -665,9 +666,9 @@ extension CalculatorViewController: UITextFieldDelegate {
             if after != "" {
                 var calculator = (Double(after.replacingOccurrences(of: ",", with: ""))! - Double(before.replacingOccurrences(of: ",", with: ""))!) / Double(before.replacingOccurrences(of: ",", with: ""))! * 100
                 if calculator > 0 {
-                    self.percentLabel2.text = "\(before)이(가) \(after)로 바뀌면 \(calculator)% 증가입니다"
+                    self.percentLabel2.text = "\(before)이(가) \(after)로 바뀌면 \(String(format: "%.2f", calculator))% 증가입니다"
                 }else {
-                    self.percentLabel2.text = "\(before)이(가) \(after)로 바뀌면 \(String(calculator).replacingOccurrences(of: "-", with: ""))% 감소입니다"
+                    self.percentLabel2.text = "\(before)이(가) \(after)로 바뀌면 \(String(format: "%.2f", calculator).replacingOccurrences(of: "-", with: ""))% 감소입니다"
                 }
             }else {
                 self.percentLabel2.text = ""
