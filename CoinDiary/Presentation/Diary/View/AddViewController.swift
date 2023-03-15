@@ -41,6 +41,7 @@ class AddViewController: BaseViewController {
         tf.layer.borderWidth = 0.5
         tf.layer.cornerRadius = 10
         tf.keyboardType = .decimalPad
+        tf.text = UserDefaults.standard.string(forKey: "CurrentSeed") == nil ? "" : UserDefaults.standard.string(forKey: "CurrentSeed")!
         return tf
     }()
     
@@ -278,6 +279,7 @@ class AddViewController: BaseViewController {
         }else if end == "" {
             showAlert(message: "종료금액을 입력해주세요.")
         }else {
+            UserDefaults.standard.set(end, forKey: "CurrentSeed")
             indicatorView.startAnimating()
             viewModel.saveData(date: Date().getToday, start: start, end: end, memo: memo, image: images)
             
