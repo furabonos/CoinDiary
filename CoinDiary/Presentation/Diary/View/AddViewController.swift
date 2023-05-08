@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Combine
+import DLRadioButton
 
 class AddViewController: BaseViewController {
     
@@ -111,12 +112,37 @@ class AddViewController: BaseViewController {
         return iv
     }()
     
+    lazy var radioBtn1: DLRadioButton = {
+        var b = DLRadioButton()
+        b.setTitle("매매", for: .normal)
+        b.setTitleColor(.black, for: .normal)
+        b.addTarget(self, action: #selector(clickRadio(_:)), for: .touchUpInside)
+        return b
+    }()
+    
+    lazy var radioBtn2: DLRadioButton = {
+        var b = DLRadioButton()
+        b.setTitle("입금", for: .normal)
+        b.setTitleColor(.black, for: .normal)
+        b.addTarget(self, action: #selector(clickRadio(_:)), for: .touchUpInside)
+        return b
+    }()
+    
+    lazy var radioBtn3: DLRadioButton = {
+        var b = DLRadioButton()
+        b.setTitle("출금", for: .normal)
+        b.setTitleColor(.black, for: .normal)
+        b.addTarget(self, action: #selector(clickRadio(_:)), for: .touchUpInside)
+        return b
+    }()
+    
     var images: UIImage!
     
     var pictureView = PictureView(frame: .zero, image: nil)
     
     public var viewModel: AddViewModel!
     var subscriptions = Set<AnyCancellable>()
+    var types = "매매"
     
     static func create(with viewModel: AddViewModel) -> AddViewController {
         let view = AddViewController()
@@ -137,7 +163,10 @@ class AddViewController: BaseViewController {
     }
     
     override func setupUI() {
-        [dateLabel, dateField, startLabel, startField, endLabel, endField, memoLabel, memoField, photoBtn, imageView, addBtn, cancelBtn, indicatorView].forEach { self.view.addSubview($0) }
+        [dateLabel, dateField, startLabel, startField, endLabel, endField, memoLabel, memoField, photoBtn, imageView, addBtn, cancelBtn, indicatorView, radioBtn1, radioBtn2, radioBtn3].forEach { self.view.addSubview($0) }
+        radioBtn1.otherButtons.append(radioBtn2)
+        radioBtn1.otherButtons.append(radioBtn3)
+        radioBtn1.isSelected = true
     }
     
     override func setupConstraints() {
@@ -223,6 +252,27 @@ class AddViewController: BaseViewController {
             $0.center.equalToSuperview()
             $0.width.height.equalTo(50)
         }
+        
+        radioBtn1.snp.makeConstraints {
+            $0.top.equalTo(memoField.snp.bottom).offset(10)
+            $0.leading.equalTo(memoField.snp.leading)
+            $0.height.equalTo(25)
+            $0.width.equalTo(60)
+        }
+        
+        radioBtn2.snp.makeConstraints {
+            $0.top.equalTo(memoField.snp.bottom).offset(10)
+            $0.leading.equalTo(radioBtn1.snp.trailing)
+            $0.height.equalTo(25)
+            $0.width.equalTo(60)
+        }
+        
+        radioBtn3.snp.makeConstraints {
+            $0.top.equalTo(memoField.snp.bottom).offset(10)
+            $0.leading.equalTo(radioBtn2.snp.trailing)
+            $0.height.equalTo(25)
+            $0.width.equalTo(60)
+        }
     }
     
     override func bind() {
@@ -281,10 +331,15 @@ class AddViewController: BaseViewController {
         }else {
             UserDefaults.standard.set(end, forKey: "CurrentSeed")
             indicatorView.startAnimating()
-            viewModel.saveData(date: Date().getToday, start: start, end: end, memo: memo, image: images)
+            viewModel.saveData(date: Date().getToday, start: start, end: end, memo: memo, type: self.types, image: images)
             
         }
-        
+    }
+    
+    @objc func clickRadio(_ sender: DLRadioButton) {
+        guard let titles = sender.currentTitle else { return }
+        self.types = titles
+        print(self.types)
     }
     
 }

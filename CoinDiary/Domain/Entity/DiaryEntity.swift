@@ -15,14 +15,16 @@ public struct DiaryEntity: Hashable, Identifiable {
     public let start: String
     public let end: String
     public let today: String
+    public let types: String?
     
-    public init(imageURL: String?, memo: String?, start: String, end: String, today: String)
+    public init(imageURL: String?, memo: String?, start: String, end: String, today: String, types: String?)
     {
         self.imageURL = imageURL
         self.memo = memo
         self.start = start
         self.end = end
         self.today = today
+        self.types = types
     }
 }
 

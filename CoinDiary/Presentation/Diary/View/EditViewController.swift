@@ -163,7 +163,7 @@ class EditViewController: BaseViewController {
             $0.centerX.equalToSuperview()
             $0.width.height.equalTo(30)
         }
-        arrowView.image = UIImage(systemName: "arrow.down")?.withRenderingMode(.alwaysOriginal)
+        arrowView.image = UIImage(systemName: "arrow.down")
         
         endField.snp.makeConstraints {
             $0.top.equalTo(arrowView.snp.bottom).offset(10)

@@ -53,7 +53,7 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
     var removeBoolPublisher = PassthroughSubject<Bool, Never>()
     
     @Published public var diaryList: [DiaryEntity] = []
-    @Published public var diary = DiaryEntity(imageURL: nil, memo: nil, start: "", end: "", today: "")
+    @Published public var diary = DiaryEntity(imageURL: nil, memo: nil, start: "", end: "", today: "", types: "")
     
     init(useCase: DiaryUseCaseInterface, actions: DiaryViewModelAction? = nil) {
         self.useCase = useCase
@@ -67,6 +67,7 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
                 case .finished:
                     break
                 case .failure(let error):
+                    print("fetchdata error :: \(error)")
                     self.diaryList = []
                 }
             } receiveValue: { diaryList in

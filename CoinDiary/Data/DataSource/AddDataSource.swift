@@ -12,13 +12,13 @@ import FirebaseCore
 import FirebaseStorage
 
 public protocol AddDataSourceInterface {
-    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?,
+    func saveData(date: String, start: String, end: String, memo: String, type: String, image: UIImage?,
                   completion: @escaping (Bool) -> Void) -> Cancellable?
 }
 
 public final class AddDataSource: AddDataSourceInterface {
     
-    public func saveData(date: String, start: String, end: String, memo: String, image: UIImage?,completion: @escaping (Bool) -> Void) -> Cancellable? {
+    public func saveData(date: String, start: String, end: String, memo: String, type: String, image: UIImage?, completion: @escaping (Bool) -> Void) -> Cancellable? {
         let task = RepositoryTask()
         let db = Firestore.firestore()
         
@@ -27,6 +27,7 @@ public final class AddDataSource: AddDataSourceInterface {
                 "start": start,
                 "end": end,
                 "memo": memo,
+                "type": type,
                 "today": date
             ]) { (error) in
                 if error == nil {
@@ -55,6 +56,7 @@ public final class AddDataSource: AddDataSourceInterface {
                                 "start": start,
                                 "end": end,
                                 "memo": memo,
+                                "type": type,
                                 "today": date,
                                 "imageURL": urlString
                             ]) { (error) in

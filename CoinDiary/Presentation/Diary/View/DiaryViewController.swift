@@ -262,8 +262,6 @@ class DiaryViewController: BaseViewController {
 
             self.present(alert, animated: true, completion: nil)
         }
-        
-        
     }
     
     func menuInOut(bools: Bool) {

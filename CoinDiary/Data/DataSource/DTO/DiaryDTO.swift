@@ -14,12 +14,13 @@ public struct DiaryDTO: Codable {
     let start: String
     let end: String
     let today: String
+    let types: String?
     
     enum CodingKeys: String, CodingKey {
-        case imageURL, memo, start, end, today
+        case imageURL, memo, start, end, today, types
     }
     
     public func dto() -> DiaryEntity {
-        return DiaryEntity(imageURL: imageURL, memo: memo, start: start, end: end, today: today)
+        return DiaryEntity(imageURL: imageURL, memo: memo, start: start, end: end, today: today, types: types)
     }
 }

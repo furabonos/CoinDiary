@@ -91,21 +91,43 @@ class DiaryCell: BaseCollectionViewCell {
         var starts = Double(info.start.replacingOccurrences(of: "KRW", with: "").replacingOccurrences(of: ",", with: "").replacingOccurrences(of: "USDT", with: ""))
         var ends = Double(info.end.replacingOccurrences(of: "KRW", with: "").replacingOccurrences(of: ",", with: "").replacingOccurrences(of: "USDT", with: ""))
         
-        if yieldCalculation(start: starts!, end: ends!).contains("-") {
-            yieldLabel.textColor = .red
+        
+        if (info.types == "" || info.types == "매매" || info.types == nil) {
+            
+            if yieldCalculation(start: starts!, end: ends!).contains("-") {
+                yieldLabel.textColor = .red
+            }else {
+                yieldLabel.textColor = .blue
+            }
+            
+            dateLabel.text = info.today
+            startLabel.text = info.start
+            endLabel.text = info.end
+            yieldLabel.text = yieldCalculation(start: starts!, end: ends!)
+            if let memos = info.memo {
+                memoLabel.text = memos
+            }else {
+                memoLabel.text = ""
+            }
         }else {
-            yieldLabel.textColor = .blue
+            dateLabel.text = info.today
+            startLabel.text = info.start
+            endLabel.text = info.end
+            yieldLabel.text = info.types
+            
+            if info.types == "입금" {
+                yieldLabel.textColor = .blue
+            }else {
+                yieldLabel.textColor = .red
+            }
+            
+            if let memos = info.memo {
+                memoLabel.text = memos
+            }else {
+                memoLabel.text = ""
+            }
         }
         
-        dateLabel.text = info.today
-        startLabel.text = info.start
-        endLabel.text = info.end
-        yieldLabel.text = yieldCalculation(start: starts!, end: ends!)
-        if let memos = info.memo {
-            memoLabel.text = memos
-        }else {
-            memoLabel.text = ""
-        }
     }
     
 }

@@ -10,7 +10,7 @@ import Combine
 import UIKit
 
 protocol AddViewModelInput {
-    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?)
+    func saveData(date: String, start: String, end: String, memo: String, type: String, image: UIImage?)
     func clickCancel()
 }
 
@@ -50,8 +50,8 @@ public final class AddViewModel: AddViewModelInput, AddViewModelOutput, Observab
         self.shouldPopView = true
     }
     
-    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?) {
-        useCase.saveData(date: date, start: start, end: end, memo: memo, image: image) { result in
+    func saveData(date: String, start: String, end: String, memo: String, type: String, image: UIImage?) {
+        useCase.saveData(date: date, start: start, end: end, memo: memo, type: type, image: image) { result in
             switch result {
             case true:
                 self.saveData = true
