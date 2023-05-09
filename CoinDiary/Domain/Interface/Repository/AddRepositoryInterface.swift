@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 public protocol AddRepositoryInterface {
-    func saveData(date: String, start: String, end: String, memo: String, type: String, image: UIImage?, completion: @escaping (Bool) -> Void) -> Cancellable?
+    func saveData(date: String, start: String, end: String, memo: String, type: String, image: UIImage?, register: String, completion: @escaping (Bool) -> Void) -> Cancellable?
 }

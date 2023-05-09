@@ -51,7 +51,7 @@ public final class AddViewModel: AddViewModelInput, AddViewModelOutput, Observab
     }
     
     func saveData(date: String, start: String, end: String, memo: String, type: String, image: UIImage?) {
-        useCase.saveData(date: date, start: start, end: end, memo: memo, type: type, image: image) { result in
+        useCase.saveData(date: date, start: start, end: end, memo: memo, type: type, image: image, register: "\(Date())") { result in
             switch result {
             case true:
                 self.saveData = true

@@ -25,7 +25,7 @@ public final class DiaryDataSource: DiaryDataSourceInterface {
         
         completion(
             Future<[DiaryDTO], Error> { promise in
-                db.order(by: "today", descending: true).getDocuments { documents, error in
+                db.order(by: "register", descending: true).getDocuments { documents, error in
                     if let error = error {
                         promise(.failure(error))
                     } else if let documents = documents {

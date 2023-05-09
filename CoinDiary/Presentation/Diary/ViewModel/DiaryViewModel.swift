@@ -53,7 +53,7 @@ public final class DiaryViewModel: DiaryViewModelInput, DiaryViewModelOutput, Ob
     var removeBoolPublisher = PassthroughSubject<Bool, Never>()
     
     @Published public var diaryList: [DiaryEntity] = []
-    @Published public var diary = DiaryEntity(imageURL: nil, memo: nil, start: "", end: "", today: "", types: "")
+    @Published public var diary = DiaryEntity(imageURL: nil, memo: nil, start: "", end: "", today: "", types: "", register: "")
     
     init(useCase: DiaryUseCaseInterface, actions: DiaryViewModelAction? = nil) {
         self.useCase = useCase

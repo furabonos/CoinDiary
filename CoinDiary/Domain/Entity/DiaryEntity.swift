@@ -16,8 +16,9 @@ public struct DiaryEntity: Hashable, Identifiable {
     public let end: String
     public let today: String
     public let types: String?
+    public let register: String
     
-    public init(imageURL: String?, memo: String?, start: String, end: String, today: String, types: String?)
+    public init(imageURL: String?, memo: String?, start: String, end: String, today: String, types: String?, register: String)
     {
         self.imageURL = imageURL
         self.memo = memo
@@ -25,6 +26,7 @@ public struct DiaryEntity: Hashable, Identifiable {
         self.end = end
         self.today = today
         self.types = types
+        self.register = register
     }
 }
 

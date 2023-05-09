@@ -24,7 +24,7 @@ public final class ChartDataSource: ChartDataSourceInterface {
         
         completion(
             Future<[[String]], Error> { promise in
-                db.order(by: "today", descending: false).getDocuments { documents, error in
+                db.order(by: "register", descending: false).getDocuments { documents, error in
                     if let error = error {
                         promise(.failure(error))
                     } else if let documents = documents {

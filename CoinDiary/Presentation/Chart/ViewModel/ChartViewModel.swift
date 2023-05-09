@@ -44,12 +44,39 @@ public final class ChartViewModel: ChartViewModelInput, ChartViewModelOutput, Ob
                 }
             } receiveValue: { diaryList in
                 diaryList[0].map {
+                    print($0.cutYear)
                     self.dateList.append($0.cutYear)
                 }
                 
                 diaryList[1].map {
+                    print($0.toDouble)
                     self.endList.append($0.toDouble)
                 }
+                
+                var aa = Array<[String: Double]>()
+                for i in 0..<self.dateList.count {
+                    aa.append([self.dateList[i]: self.endList[i]])
+                }
+
+                var resultDicts: [[String: Double]] = []
+                var uniqueKeys: Set<String> = []
+                
+                for dict in aa.reversed() {
+                    guard let (key, value) = dict.first, !uniqueKeys.contains(key) else {
+                        continue
+                    }
+                    uniqueKeys.insert(key)
+                    resultDicts.append([key: value])
+                }
+
+                    self.dateList = []
+                    self.endList = []
+                
+                resultDicts.reversed().map {
+                    self.dateList.append(contentsOf: $0.keys)
+                    self.endList.append(contentsOf: $0.values)
+                }
+        
             }
             .store(in: &bag)
         }
