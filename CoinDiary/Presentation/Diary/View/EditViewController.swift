@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import Kingfisher
 import SnapKit
+import DLRadioButton
 
 
 class EditViewController: BaseViewController {
@@ -101,9 +102,35 @@ class EditViewController: BaseViewController {
         return iv
     }()
     
+    lazy var radioBtn1: DLRadioButton = {
+        var b = DLRadioButton()
+        b.setTitle("매매", for: .normal)
+        b.setTitleColor(.black, for: .normal)
+        b.addTarget(self, action: #selector(clickRadio(_:)), for: .touchUpInside)
+        return b
+    }()
+    
+    lazy var radioBtn2: DLRadioButton = {
+        var b = DLRadioButton()
+        b.setTitle("입금", for: .normal)
+        b.setTitleColor(.black, for: .normal)
+        b.addTarget(self, action: #selector(clickRadio(_:)), for: .touchUpInside)
+        return b
+    }()
+    
+    lazy var radioBtn3: DLRadioButton = {
+        var b = DLRadioButton()
+        b.setTitle("출금", for: .normal)
+        b.setTitleColor(.black, for: .normal)
+        b.addTarget(self, action: #selector(clickRadio(_:)), for: .touchUpInside)
+        return b
+    }()
+    
     public var viewModel: EditViewModel!
     var subscriptions = Set<AnyCancellable>()
     var images: UIImage!
+    var diaryData: DiaryEntity!
+    var types = ""
     
     static func create(with viewModel: EditViewModel) -> EditViewController {
         let view = EditViewController()
@@ -124,7 +151,10 @@ class EditViewController: BaseViewController {
     }
     
     override func setupUI() {
-        [titleLabel, imageView, memoView, startField, arrowView, endField, photoBtn, addBtn, cancelBtn, removeBtn, indicatorView].forEach { self.view.addSubview($0) }
+        [titleLabel, imageView, memoView, startField, arrowView, endField, photoBtn, addBtn, cancelBtn, removeBtn, indicatorView, radioBtn1, radioBtn2, radioBtn3].forEach { self.view.addSubview($0) }
+        radioBtn1.otherButtons.append(radioBtn2)
+        radioBtn1.otherButtons.append(radioBtn3)
+        
     }
     
     override func setupConstraints() {
@@ -172,8 +202,29 @@ class EditViewController: BaseViewController {
             $0.height.equalTo(30)
         }
         
+        radioBtn1.snp.makeConstraints {
+            $0.top.equalTo(endField.snp.bottom).offset(10)
+            $0.leading.equalTo(endField.snp.leading)
+            $0.height.equalTo(25)
+            $0.width.equalTo(60)
+        }
+        
+        radioBtn2.snp.makeConstraints {
+            $0.top.equalTo(endField.snp.bottom).offset(10)
+            $0.leading.equalTo(radioBtn1.snp.trailing)
+            $0.height.equalTo(25)
+            $0.width.equalTo(60)
+        }
+        
+        radioBtn3.snp.makeConstraints {
+            $0.top.equalTo(endField.snp.bottom).offset(10)
+            $0.leading.equalTo(radioBtn2.snp.trailing)
+            $0.height.equalTo(25)
+            $0.width.equalTo(60)
+        }
+        
         photoBtn.snp.makeConstraints {
-            $0.top.equalTo(endField.snp.bottom).offset(50)
+            $0.top.equalTo(endField.snp.bottom).offset(80)
             $0.leading.equalToSuperview().offset(20)
             $0.width.equalTo(50)
         }
@@ -209,6 +260,15 @@ class EditViewController: BaseViewController {
         viewModel.$diary
             .receive(on: RunLoop.main)
             .sink { diary in
+                self.diaryData = diary
+                self.types = diary.types ?? "매매"
+                if self.types == "매매" {
+                    self.radioBtn1.isSelected = true
+                }else if self.types == "입금" {
+                    self.radioBtn2.isSelected = true
+                }else {
+                    self.radioBtn3.isSelected = true
+                }
                 self.titleLabel.text = diary.today
                 self.memoView.text = diary.memo
                 self.startField.text = diary.start
@@ -223,6 +283,13 @@ class EditViewController: BaseViewController {
                 if value == .View {
                     self.cancelBtn.setTitle("수정", for: .normal)
                     self.addBtn.setTitle("확인", for: .normal)
+                    
+                    self.memoView.text = diaryData.memo
+                    self.startField.text = diaryData.start
+                    self.endField.text = diaryData.end
+                    guard let imageURL = diaryData.imageURL else { return }
+                    self.imageView.kf.setImage(with: URL(string: imageURL))
+                    
                     [memoView, startField, endField, photoBtn].forEach { $0.isUserInteractionEnabled = true }
                 }else if value == .Edit {
                     self.cancelBtn.setTitle("취소", for: .normal)
@@ -267,7 +334,7 @@ class EditViewController: BaseViewController {
                 showAlert(message: "종료금액을 입력해주세요.")
             }else {
                 indicatorView.startAnimating()
-                viewModel.saveData(date: today, start: start, end: end, memo: memo, image: images)
+                viewModel.saveData(date: today, start: start, end: end, memo: memo, image: images, type: self.types, register: self.diaryData.register)
             }
         }else {
             viewModel.clickAdd()
@@ -279,7 +346,7 @@ class EditViewController: BaseViewController {
         let alert = UIAlertController(title: "", message: "기록을 삭제하시겠습니까?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: { action in
             self.indicatorView.startAnimating()
-            self.viewModel.removeData(date: self.titleLabel.text!)
+            self.viewModel.removeData(date: self.diaryData.register)
         })
         let cancelAction = UIAlertAction(title: "취소", style: .default)
         [okAction, cancelAction].forEach { alert.addAction($0) }
@@ -297,6 +364,11 @@ class EditViewController: BaseViewController {
         vc.delegate = self
         vc.allowsEditing = true
         present(vc, animated: true)
+    }
+    
+    @objc func clickRadio(_ sender: DLRadioButton) {
+        guard let titles = sender.currentTitle else { return }
+        self.types = titles
     }
 
 }

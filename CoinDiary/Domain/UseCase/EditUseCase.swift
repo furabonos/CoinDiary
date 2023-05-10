@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 public protocol EditUseCaseInterface {
-    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?, completion: @escaping (Bool) -> Void) -> Cancellable?
+    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?, type: String, register: String, completion: @escaping (Bool) -> Void) -> Cancellable?
     func removeData(date: String, completion: @escaping (Bool) -> Void) -> Cancellable?
 }
 
@@ -22,8 +22,8 @@ public final class EditUseCase: EditUseCaseInterface {
         self.repository = repository
     }
     
-    public func saveData(date: String, start: String, end: String, memo: String, image: UIImage?, completion: @escaping (Bool) -> Void) -> Cancellable? {
-        repository.saveData(date: date, start: start, end: end, memo: memo, image: image) { result in
+    public func saveData(date: String, start: String, end: String, memo: String, image: UIImage?, type: String, register: String, completion: @escaping (Bool) -> Void) -> Cancellable? {
+        repository.saveData(date: date, start: start, end: end, memo: memo, image: image, type: type, register: register) { result in
             completion(result)
         }
     }

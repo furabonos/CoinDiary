@@ -18,7 +18,7 @@ public enum ViewMode {
 protocol EditViewModelInput {
     func clickAdd()
     func clickCancel()
-    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?)
+    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?, type: String, register: String)
     func removeData(date: String)
 }
 
@@ -84,8 +84,8 @@ public final class EditViewModel: EditViewModelInput, EditViewModelOutput, Obser
         }
     }
     
-    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?) {
-        useCase.saveData(date: date, start: start, end: end, memo: memo, image: image) { result in
+    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?, type: String, register: String) {
+        useCase.saveData(date: date, start: start, end: end, memo: memo, image: image, type: type, register: register) { result in
             switch result {
             case true:
                 self.saveData = true

@@ -13,22 +13,24 @@ import FirebaseCore
 import FirebaseStorage
 
 public protocol EditDataSourceInterface {
-    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?,
+    func saveData(date: String, start: String, end: String, memo: String, image: UIImage?, type: String, register: String,
                   completion: @escaping (Bool) -> Void) -> Cancellable?
     func removeData(date: String, completion: @escaping (Bool) -> Void) -> Cancellable?
 }
 
 public final class EditDataSource: EditDataSourceInterface {
     
-    public func saveData(date: String, start: String, end: String, memo: String, image: UIImage?,completion: @escaping (Bool) -> Void) -> Cancellable? {
+    public func saveData(date: String, start: String, end: String, memo: String, image: UIImage?, type: String, register: String, completion: @escaping (Bool) -> Void) -> Cancellable? {
         let task = RepositoryTask()
         let db = Firestore.firestore()
         
         if image == nil {
-            db.collection(UserDefaults.standard.string(forKey: "UUID")!).document(date).setData([
+            db.collection(UserDefaults.standard.string(forKey: "UUID")!).document(register).setData([
                 "start": start,
                 "end": end,
                 "memo": memo,
+                "type": type,
+                "register": register,
                 "today": date
             ]) { (error) in
                 if error == nil {
@@ -57,6 +59,8 @@ public final class EditDataSource: EditDataSourceInterface {
                                 "start": start,
                                 "end": end,
                                 "memo": memo,
+                                "type": type,
+                                "register": register,
                                 "today": date,
                                 "imageURL": urlString
                             ]) { (error) in

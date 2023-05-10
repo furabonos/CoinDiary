@@ -68,9 +68,9 @@ public final class ChartViewModel: ChartViewModelInput, ChartViewModelOutput, Ob
                     uniqueKeys.insert(key)
                     resultDicts.append([key: value])
                 }
-
-                    self.dateList = []
-                    self.endList = []
+                
+                self.dateList = []
+                self.endList = []
                 
                 resultDicts.reversed().map {
                     self.dateList.append(contentsOf: $0.keys)
